@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { X, Download, ExternalLink, FileText, Maximize2 } from 'lucide-react'
+import { X, Download, ExternalLink, FileText } from 'lucide-react'
 
 export default function PdfModal({ pdf, onClose }) {
   useEffect(() => {

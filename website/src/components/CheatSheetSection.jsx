@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FileCode2, Copy, Check, Search, BookMarked, Sparkles, AlertCircle, ArrowUpRight } from 'lucide-react'
+import { Copy, Check, Search, Sparkles, AlertCircle } from 'lucide-react'
 
 export default function CheatSheetSection() {
   const [activeCategory, setActiveCategory] = useState('pandas')

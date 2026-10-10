@@ -1,5 +1,4 @@
 import React from 'react'
-import { Heart, Sparkles, BookOpen, Code2 } from 'lucide-react'
 
 export default function Footer({ onSelectTab }) {
   return (

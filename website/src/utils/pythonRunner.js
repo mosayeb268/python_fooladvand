@@ -104,58 +104,60 @@ export async function initPyodide(onProgress) {
   notifyStatus('loading', 'در حال راه‌اندازی هسته WebAssembly...')
   if (onProgress) onProgress('در حال راه‌اندازی هسته WebAssembly...')
 
-  pyodideLoadingPromise = new Promise(async (resolve) => {
-    try {
-      if (typeof window === 'undefined') {
-        notifyStatus('failed', 'محیط پنجره مرورگر در دسترس نیست')
-        resolve(null)
-        return
-      }
+  pyodideLoadingPromise = new Promise((resolve) => {
+    (async () => {
+      try {
+        if (typeof window === 'undefined') {
+          notifyStatus('failed', 'محیط پنجره مرورگر در دسترس نیست')
+          resolve(null)
+          return
+        }
 
-      // Check if pyodide script is already loaded
-      if (!window.loadPyodide) {
-        const script = document.createElement('script')
-        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js'
-        script.async = true
+        // Check if pyodide script is already loaded
+        if (!window.loadPyodide) {
+          const script = document.createElement('script')
+          script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js'
+          script.async = true
 
-        const loadScriptPromise = new Promise((scriptRes, scriptRej) => {
-          script.onload = () => scriptRes(true)
-          script.onerror = () => scriptRej(new Error('دانلود اسکریپت Pyodide با خطا مواجه شد'))
+          const loadScriptPromise = new Promise((scriptRes, scriptRej) => {
+            script.onload = () => scriptRes(true)
+            script.onerror = () => scriptRej(new Error('دانلود اسکریپت Pyodide با خطا مواجه شد'))
+          })
+
+          document.head.appendChild(script)
+          await loadScriptPromise
+        }
+
+        if (onProgress) onProgress('در حال بارگذاری مفسر WebAssembly پایتون...')
+        notifyStatus('loading', 'در حال کامپایل باینری‌های WebAssembly...')
+
+        const pyodide = await window.loadPyodide({
+          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/'
         })
 
-        document.head.appendChild(script)
-        await loadScriptPromise
+        // Mount Virtual Filesystem
+        if (onProgress) onProgress('در حال سوار کردن دیتاست‌های آموزشی (Employees & Titanic)...')
+        await mountVirtualFilesystem(pyodide)
+
+        // Preload numpy & pandas in the background for zero-latency execution
+        if (onProgress) onProgress('در حال آماده‌سازی کتابخانه‌های علم داده (NumPy & Pandas)...')
+        try {
+          await pyodide.loadPackage(['numpy', 'pandas'])
+        } catch (pkgErr) {
+          console.warn('Preload packages note:', pkgErr)
+        }
+
+        pyodideInstance = pyodide
+        notifyStatus('ready', '🟢 موتور پایتون ۳ و کتابخانه‌های تحلیل داده آماده اجراست')
+        if (onProgress) onProgress('موتور پایتون ۳ آماده اجراست.')
+        resolve(pyodide)
+
+      } catch (err) {
+        console.warn('Pyodide initialization caught error:', err)
+        notifyStatus('failed', err.message || 'خطا در بارگذاری هسته WebAssembly')
+        resolve(null)
       }
-
-      if (onProgress) onProgress('در حال بارگذاری مفسر WebAssembly پایتون...')
-      notifyStatus('loading', 'در حال کامپایل باینری‌های WebAssembly...')
-
-      const pyodide = await window.loadPyodide({
-        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/'
-      })
-
-      // Mount Virtual Filesystem
-      if (onProgress) onProgress('در حال سوار کردن دیتاست‌های آموزشی (Employees & Titanic)...')
-      await mountVirtualFilesystem(pyodide)
-
-      // Preload numpy & pandas in the background for zero-latency execution
-      if (onProgress) onProgress('در حال آماده‌سازی کتابخانه‌های علم داده (NumPy & Pandas)...')
-      try {
-        await pyodide.loadPackage(['numpy', 'pandas'])
-      } catch (pkgErr) {
-        console.warn('Preload packages note:', pkgErr)
-      }
-
-      pyodideInstance = pyodide
-      notifyStatus('ready', '🟢 موتور پایتون ۳ و کتابخانه‌های تحلیل داده آماده اجراست')
-      if (onProgress) onProgress('موتور پایتون ۳ آماده اجراست.')
-      resolve(pyodide)
-
-    } catch (err) {
-      console.warn('Pyodide initialization caught error:', err)
-      notifyStatus('failed', err.message || 'خطا در بارگذاری هسته WebAssembly')
-      resolve(null)
-    }
+    })()
   })
 
   return pyodideLoadingPromise

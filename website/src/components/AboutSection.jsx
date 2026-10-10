@@ -1,7 +1,7 @@
 import React from 'react'
-import { BookOpen, GraduationCap, Laptop, CheckCircle2, FileCode2, Download, Terminal } from 'lucide-react'
+import { BookOpen, GraduationCap, Download, Terminal } from 'lucide-react'
 
-export default function AboutSection({ onOpenPdf }) {
+export default function AboutSection({ onOpenPdf: _onOpenPdf }) {
   return (
     <div className="space-y-8 max-w-5xl mx-auto">
       {/* Hero Banner */}

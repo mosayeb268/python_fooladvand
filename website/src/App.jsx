@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
 import A4BookletView from './components/A4BookletView'
 import StatsBanner from './components/StatsBanner'
-import TimelineRoadmap from './components/TimelineRoadmap'
-import CheatSheetSection from './components/CheatSheetSection'
-import PdfSection from './components/PdfSection'
 import PdfModal from './components/PdfModal'
-import PythonScriptsSection from './components/PythonScriptsSection'
-import NotebooksSection from './components/NotebooksSection'
-import DatasetsSection from './components/DatasetsSection'
-import QuizSection from './components/QuizSection'
-import AboutSection from './components/AboutSection'
-import SearchModal from './components/SearchModal'
 import Footer from './components/Footer'
 import pdfsData from './data/pdfs.json'
+
+// Code-split heavy secondary tabs to optimize tablet load time & bundle chunks
+const TimelineRoadmap = lazy(() => import('./components/TimelineRoadmap'))
+const CheatSheetSection = lazy(() => import('./components/CheatSheetSection'))
+const PdfSection = lazy(() => import('./components/PdfSection'))
+const PythonScriptsSection = lazy(() => import('./components/PythonScriptsSection'))
+const NotebooksSection = lazy(() => import('./components/NotebooksSection'))
+const DatasetsSection = lazy(() => import('./components/DatasetsSection'))
+const QuizSection = lazy(() => import('./components/QuizSection'))
+const AboutSection = lazy(() => import('./components/AboutSection'))
+const SearchModal = lazy(() => import('./components/SearchModal'))
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('a4booklet') // Default: Exactly matching the user's requested A4 Booklet template!
@@ -62,6 +64,15 @@ export default function App() {
     }
   }
 
+  const renderTabFallback = () => (
+    <div className="flex items-center justify-center py-20 text-slate-400 text-sm font-sans">
+      <div className="flex items-center gap-3">
+        <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping" />
+        <span>در حال بارگذاری بخش مورد نظر...</span>
+      </div>
+    </div>
+  )
+
   return (
     <div className={`min-h-screen flex flex-col font-sans ${isDarkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-300 text-slate-900'}`}>
       
@@ -82,62 +93,73 @@ export default function App() {
           <A4BookletView onOpenPdf={(pdf) => setSelectedPdf(pdf)} />
         )}
 
-        {/* TAB 2: Dashboard & Roadmap */}
-        {activeTab === 'dashboard' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-in fade-in duration-200">
-            <StatsBanner onSelectTab={(tab) => setActiveTab(tab)} />
-            <TimelineRoadmap onSelectContent={handleSelectTimelineItem} />
-          </div>
-        )}
+        <Suspense fallback={renderTabFallback()}>
+          {/* TAB 2: Dashboard & Roadmap */}
+          {activeTab === 'dashboard' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-in fade-in duration-200">
+              <StatsBanner onSelectTab={(tab) => setActiveTab(tab)} />
+              <TimelineRoadmap onSelectContent={handleSelectTimelineItem} />
+            </div>
+          )}
 
-        {/* TAB 3: Cheat Sheet & Code Snippets */}
-        {activeTab === 'cheatsheet' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <CheatSheetSection />
-          </div>
-        )}
+          {/* TAB 3: Cheat Sheet & Code Snippets */}
+          {activeTab === 'cheatsheet' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <CheatSheetSection />
+            </div>
+          )}
 
-        {/* TAB 4: PDFs */}
-        {activeTab === 'pdfs' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <PdfSection onOpenPdf={(pdf) => setSelectedPdf(pdf)} />
-          </div>
-        )}
+          {/* TAB 4: PDFs */}
+          {activeTab === 'pdfs' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <PdfSection onOpenPdf={(pdf) => setSelectedPdf(pdf)} />
+            </div>
+          )}
 
-        {/* TAB 5: Python Scripts */}
-        {activeTab === 'scripts' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <PythonScriptsSection />
-          </div>
-        )}
+          {/* TAB 5: Python Scripts */}
+          {activeTab === 'scripts' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <PythonScriptsSection />
+            </div>
+          )}
 
-        {/* TAB 6: Jupyter Notebooks */}
-        {activeTab === 'notebooks' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <NotebooksSection />
-          </div>
-        )}
+          {/* TAB 6: Jupyter Notebooks */}
+          {activeTab === 'notebooks' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <NotebooksSection />
+            </div>
+          )}
 
-        {/* TAB 7: Datasets */}
-        {activeTab === 'datasets' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <DatasetsSection />
-          </div>
-        )}
+          {/* TAB 7: Datasets */}
+          {activeTab === 'datasets' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <DatasetsSection />
+            </div>
+          )}
 
-        {/* TAB 8: Self-Assessment Quiz */}
-        {activeTab === 'quiz' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <QuizSection />
-          </div>
-        )}
+          {/* TAB 8: Self-Assessment Quiz */}
+          {activeTab === 'quiz' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <QuizSection />
+            </div>
+          )}
 
-        {/* TAB 9: About Course */}
-        {activeTab === 'about' && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
-            <AboutSection onOpenPdf={(pdf) => setSelectedPdf(pdf)} />
-          </div>
-        )}
+          {/* TAB 9: About Course */}
+          {activeTab === 'about' && (
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in duration-200">
+              <AboutSection onOpenPdf={(pdf) => setSelectedPdf(pdf)} />
+            </div>
+          )}
+
+          {/* Search Modal */}
+          {isSearchOpen && (
+            <SearchModal
+              isOpen={isSearchOpen}
+              onClose={() => setIsSearchOpen(false)}
+              onSelectResult={handleSelectSearchResult}
+            />
+          )}
+        </Suspense>
 
       </main>
 
@@ -145,12 +167,6 @@ export default function App() {
       <PdfModal
         pdf={selectedPdf}
         onClose={() => setSelectedPdf(null)}
-      />
-
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        onSelectResult={handleSelectSearchResult}
       />
 
       {/* Footer */}

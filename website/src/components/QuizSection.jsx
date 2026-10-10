@@ -6,7 +6,6 @@ export default function QuizSection() {
   const [currentIdx, setCurrentIdx] = useState(0)
   const [selectedAnswers, setSelectedAnswers] = useState({})
   const [showExplanation, setShowExplanation] = useState({})
-  const [quizFinished, setQuizFinished] = useState(false)
 
   const currentQ = quizQuestions[currentIdx]
 
@@ -26,7 +25,6 @@ export default function QuizSection() {
     setSelectedAnswers({})
     setShowExplanation({})
     setCurrentIdx(0)
-    setQuizFinished(false)
   }
 
   // Calculate score

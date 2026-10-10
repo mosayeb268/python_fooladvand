@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BookOpen, Copy, Check, Download, Search, Terminal, Table, ChevronRight, Eye, Bookmark, CheckCircle2, Sparkles, Filter, Play, Image as ImageIcon } from 'lucide-react'
+import { BookOpen, Copy, Check, Download, Search, Terminal, CheckCircle2, Filter, Play, Image as ImageIcon } from 'lucide-react'
 import notebooksData from '../data/notebooks.json'
 import { executePython } from '../utils/pythonRunner'
 

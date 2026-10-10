@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FileText, Code2, BookOpen, Database, Filter, ExternalLink, CheckCircle2, Circle, Link2, Sparkles, Layers, ListOrdered, Calendar } from 'lucide-react'
+import { FileText, Code2, BookOpen, Database, ExternalLink, CheckCircle2, Circle, Link2, Sparkles, Layers, ListOrdered } from 'lucide-react'
 import timelineData from '../data/timeline.json'
 
 export default function TimelineRoadmap({ onSelectContent }) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BookOpen, Code2, Database, FileText, Search, Sun, Moon, Sparkles, FolderArchive, HelpCircle, BookMarked, Terminal, FileSpreadsheet } from 'lucide-react'
+import { BookOpen, Code2, Database, FileText, Search, Sun, Moon, Sparkles, HelpCircle, BookMarked, FileSpreadsheet } from 'lucide-react'
 
 export default function Navbar({ activeTab, setActiveTab, onOpenSearch, isDarkMode, setIsDarkMode }) {
   const navItems = [

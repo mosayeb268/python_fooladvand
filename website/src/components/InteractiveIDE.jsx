@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Terminal, Play, RotateCcw, Copy, Check, Trash2, Code2, Sparkles, X, Image as ImageIcon } from 'lucide-react'
-import { executePython, getPyodideStatus } from '../utils/pythonRunner'
+import React, { useState } from 'react'
+import { Terminal, Play, Copy, Check, Trash2, X, Image as ImageIcon } from 'lucide-react'
+import { executePython } from '../utils/pythonRunner'
 
 export default function InteractiveIDE({ code, setCode, onClose, isOpen }) {
   const [outputLines, setOutputLines] = useState([

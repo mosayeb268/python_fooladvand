@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FileText, Download, Eye, Search, BookOpen, Bookmark, Tag } from 'lucide-react'
+import { FileText, Download, Eye, Search } from 'lucide-react'
 import pdfsData from '../data/pdfs.json'
 
 export default function PdfSection({ onOpenPdf }) {
