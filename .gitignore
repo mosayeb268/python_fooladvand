@@ -13,6 +13,10 @@ build/
 android/app/build/
 android/build/
 android/.gradle/
+website/android/app/build/
+website/android/build/
+website/android/.gradle/
+website/android/local.properties
 *.apk
 *.aab
 

@@ -20,12 +20,28 @@ const InteractiveIDE = lazy(() => import('./components/InteractiveIDE'))
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('a4booklet') // Default: Exactly matching the user's requested A4 Booklet template!
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem('pda_theme')
+      if (saved) return saved === 'dark'
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches
+      }
+      return true
+    } catch {
+      return true
+    }
+  })
   const [selectedPdf, setSelectedPdf] = useState(null)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
 
-  // Sync theme class
+  // Sync theme class & persist
   useEffect(() => {
+    try {
+      localStorage.setItem('pda_theme', isDarkMode ? 'dark' : 'light')
+    } catch {
+      // ignore
+    }
     if (isDarkMode) {
       document.documentElement.classList.add('dark')
       document.documentElement.classList.remove('light')

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --font-sans: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -78,3 +80,190 @@
 .light .dataframe th, .light .dataframe td {
   border-color: #e2e8f0;
 }
+
+/* ==========================================================================
+   Professional Dark Mode Styling for A4 Educational Booklet & Cards
+   ========================================================================== */
+.dark .page {
+  background-color: #0b1120 !important; /* deep slate/zinc */
+  color: #e2e8f0 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid #1e293b;
+}
+
+.dark .main-title {
+  border-bottom-color: #ea580c !important;
+}
+
+.dark .main-title h1 {
+  color: #f8fafc !important;
+}
+
+.dark .main-title .subtitle {
+  color: #94a3b8 !important;
+}
+
+.dark .slide {
+  border-color: #1e293b !important;
+  background-color: #0f172a !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+}
+
+.dark .slide-body {
+  color: #cbd5e1 !important;
+  background-color: #0f172a !important;
+}
+
+.dark .slide-body p,
+.dark .slide-body li {
+  color: #cbd5e1 !important;
+}
+
+.dark .slide-body strong {
+  color: #f1f5f9 !important;
+}
+
+/* Callout boxes in dark theme */
+.dark .bg-slate-50,
+.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+.dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .border-slate-200,
+.dark .border-slate-300 {
+  border-color: #1e293b !important;
+}
+
+.dark .bg-amber-50 {
+  background-color: rgba(120, 53, 15, 0.25) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fde68a !important;
+}
+.dark .text-amber-900,
+.dark .text-amber-800 {
+  color: #fbbf24 !important;
+}
+
+.dark .bg-orange-50 {
+  background-color: rgba(154, 52, 18, 0.25) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
+  color: #fdba74 !important;
+}
+.dark .text-orange-950,
+.dark .text-orange-900,
+.dark .text-orange-800 {
+  color: #fdba74 !important;
+}
+
+.dark .bg-blue-50,
+.dark .bg-cyan-50 {
+  background-color: rgba(14, 116, 144, 0.25) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #67e8f9 !important;
+}
+.dark .text-blue-900,
+.dark .text-cyan-900 {
+  color: #67e8f9 !important;
+}
+
+.dark .bg-emerald-50,
+.dark .bg-green-50 {
+  background-color: rgba(6, 95, 70, 0.25) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #6ee7b7 !important;
+}
+.dark .text-emerald-900,
+.dark .text-green-900 {
+  color: #6ee7b7 !important;
+}
+
+.dark .bg-purple-50,
+.dark .bg-indigo-50 {
+  background-color: rgba(88, 28, 135, 0.25) !important;
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  color: #d8b4fe !important;
+}
+.dark .text-purple-900,
+.dark .text-indigo-900 {
+  color: #d8b4fe !important;
+}
+
+.dark .bg-rose-50,
+.dark .bg-red-50 {
+  background-color: rgba(159, 18, 57, 0.25) !important;
+  border-color: rgba(244, 63, 94, 0.35) !important;
+  color: #fda4af !important;
+}
+.dark .text-rose-900,
+.dark .text-red-900 {
+  color: #fda4af !important;
+}
+
+/* Booklet Table Styling in Dark Mode */
+.dark table {
+  border-color: #334155 !important;
+}
+.dark th {
+  background-color: #1e293b !important;
+  color: #38bdf8 !important;
+}
+.dark td {
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+.dark tr:nth-child(even) td {
+  background-color: rgba(30, 41, 59, 0.35) !important;
+}
+
+/* Buttons inside booklet that were hardcoded bg-white */
+.dark .slide button.bg-white,
+.dark .page button.bg-white {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+.dark .slide button.bg-white:hover,
+.dark .page button.bg-white:hover {
+  background-color: #334155 !important;
+  color: #ffffff !important;
+}
+
+/* Print rule: always revert to white page for real printing */
+@media print {
+  .dark .page,
+  .page {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .dark .slide,
+  .dark .slide-body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #cbd5e1 !important;
+  }
+  .dark .main-title h1,
+  .main-title h1 {
+    color: #000000 !important;
+  }
+}
+

@@ -29,15 +29,26 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo.
-echo 2. بررسی بسته‌های Capacitor...
-call npx --yes @capacitor/cli sync android
+echo 2. همگام‌سازی کدهای وب با پروژه اندروید...
+call npx @capacitor/cli sync android
 
 echo.
-echo ======================================================================
-echo [موفقیت] فایل‌های اندروید همگام‌سازی شدند!
-echo جهت ساخت فایل خروجی APK:
-echo   دستور مقابل را اجرا کنید تا در Android Studio باز شود:
-echo   cd website ^&^& npx @capacitor/cli open android
-echo ======================================================================
+echo 3. ساخت مستقیم فایل APK با Gradle...
+cd android
+if exist "gradlew.bat" (
+    call gradlew.bat assembleDebug
+    if exist "app\build\outputs\apk\debug\app-debug.apk" (
+        echo.
+        echo ======================================================================
+        echo [موفقیت کامل] فایل APK با موفقیت ساخته شد!
+        echo آدرس فایل نصبی:
+        echo website\android\app\build\outputs\apk\debug\app-debug.apk
+        echo ======================================================================
+    )
+) else (
+    echo [اطلاع] فایل Gradle wrapper پیدا نشد. برای باز کردن در اندروید استودیو:
+    echo npx @capacitor/cli open android
+)
+
 echo.
 pause
