@@ -64,9 +64,22 @@ jobs:
         run: |
           set -o pipefail
           ./gradlew assembleDebug --stacktrace --no-daemon 2>&1 | tee ../../build.log || {
-            tail -n 25 ../../build.log | while IFS= read -r line; do
-              echo "::error title=Gradle::$line"
-            done
+            python3 -c "
+with open('../../build.log', 'r', errors='ignore') as f:
+    text = f.read()
+idx = text.find('FAILURE:')
+if idx == -1:
+    idx = text.find('* What went wrong:')
+if idx != -1:
+    relevant = text[idx:idx+2500]
+    for line in relevant.split('\n')[:30]:
+        if line.strip():
+            print(f'::error title=Gradle::{line.strip()}')
+else:
+    for line in text.split('\n')[-30:]:
+        if line.strip():
+            print(f'::error title=Gradle::{line.strip()}')
+"
             exit 1
           }
 
