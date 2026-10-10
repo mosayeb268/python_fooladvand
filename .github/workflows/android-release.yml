@@ -64,9 +64,19 @@ jobs:
         run: |
           set -o pipefail
           ./gradlew assembleDebug --stacktrace --no-daemon 2>&1 | tee ../../build.log || {
+            BUILD_STATUS=$?
             echo "::error::Gradle assembleDebug failed!"
-            grep -n -C 5 "FAILURE:" ../../build.log || true
-            exit 1
+            grep -C 2 -E "FAILURE|What went wrong|Caused by" ../../build.log | while IFS= read -r line; do
+              echo "::error title=GradleDetail::$line"
+            done
+            cd ../..
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git checkout -B ci-debug-log
+            git add -f build.log
+            git commit -m "ci: build.log diagnostics"
+            git push -f origin ci-debug-log || true
+            exit $BUILD_STATUS
           }
 
       - name: Upload Build Log on Failure
