@@ -1,0 +1,230 @@
+[
+  {
+    "id": "pdf-01",
+    "order": 1,
+    "filename": "01-PDA_ReferenceBooks.pdf",
+    "title": "کتاب‌ها و مراجع درس پایتون برای تحلیل داده",
+    "category": "منابع و مراجع",
+    "description": "فهرست و معرفی کتاب‌های معتبر و مراجع رسمی درس تحلیل داده با پایتون (PDA)، سرفصل‌های مطالعاتی و کتب پیشنهادی جهت تعمیق یادگیری.",
+    "topics": [
+      "مراجع معتبر پایتون",
+      "کتاب‌های تحلیل داده",
+      "منابع Pandas و NumPy",
+      "نقشه یادگیری PDA"
+    ],
+    "sizeFormatted": "168 KB",
+    "badge": "مرجع",
+    "relatedItems": [
+      "02-Python for Data Analysis_2022.pdf",
+      "03-booklet_PDA_Session1.pdf"
+    ]
+  },
+  {
+    "id": "pdf-02",
+    "order": 2,
+    "filename": "02-Python for Data Analysis_2022.pdf",
+    "title": "کتاب مرجع اصلی: Python for Data Analysis (3rd Edition)",
+    "category": "کتاب اصلی",
+    "description": "کتاب مرجع اصلی درس تألیف وس مک‌کینی (خالق و توسعه‌دهنده اصلی کتابخانه Pandas)، چاپ ۲۰۲۲ ویرایش سوم. شامل آموزش کامل کار با NumPy، Pandas و مصورسازی داده.",
+    "topics": [
+      "Wes McKinney",
+      "Pandas Core Concepts",
+      "NumPy Essentials",
+      "Data Wrangling",
+      "Time Series Analysis"
+    ],
+    "sizeFormatted": "9.15 MB",
+    "badge": "کتاب رفرنس",
+    "relatedItems": [
+      "10-NumPy.pdf",
+      "14-Pandas_TableOfContents.pdf",
+      "15-pandas_1.ipynb",
+      "18-pandas_2.ipynb"
+    ]
+  },
+  {
+    "id": "pdf-03",
+    "order": 3,
+    "filename": "03-booklet_PDA_Session1.pdf",
+    "title": "جزوه جلسه اول: مفاهیم پایه و مقدمات پایتون",
+    "category": "جزوه کلاسی",
+    "description": "یادداشت‌ها و جزوه آموزشی جلسه نخست دوره: آشنایی با محیط پایتون، متغیرها، انواع داده‌ها، عملگرهای محاسباتی و منطقی و سینتکس پایه.",
+    "topics": [
+      "مقدمات پایتون",
+      "تعریف متغیرها",
+      "عملگرهای ریاضی و منطقی",
+      "دستورات خروجی و ورودی"
+    ],
+    "sizeFormatted": "158 KB",
+    "badge": "جلسه ۱",
+    "relatedItems": [
+      "05-Examples_Python_1",
+      "04-Sequences_in_Python.pdf"
+    ]
+  },
+  {
+    "id": "pdf-04",
+    "order": 4,
+    "filename": "04-Sequences_in_Python.pdf",
+    "title": "جزوه ساختارهای توالی در پایتون (Sequences)",
+    "category": "مفاهیم زبان پایتون",
+    "description": "بررسی جامع ساختمان‌داده‌های توالی و مجموعه‌ای در پایتون شامل لیست‌ها (List)، تاپل‌ها (Tuple)، رشته‌ها (String)، مجموعه‌ها (Set) و دیکشنری‌ها (Dictionary).",
+    "topics": [
+      "لیست‌ها (List)",
+      "تاپل‌ها (Tuple)",
+      "دیکشنری‌ها (Dict)",
+      "مجموعه‌ها (Set)",
+      "برش و ایندکس‌گذاری (Slicing)"
+    ],
+    "sizeFormatted": "139 KB",
+    "badge": "ساختارهای داده",
+    "relatedItems": [
+      "06-Examples_Python_2",
+      "07-Function_Parameter_Argument.pdf"
+    ]
+  },
+  {
+    "id": "pdf-07",
+    "order": 7,
+    "filename": "07-Function_Parameter_Argument.pdf",
+    "title": "جزوه توابع، پارامترها و آرگومان‌ها در پایتون",
+    "category": "مفاهیم زبان پایتون",
+    "description": "آموزش دقیق ساختار توابع در پایتون، انواع پارامترها (موقعیتی، کلیدواژه‌ای، پیش‌فرض)، ارسال آرگومان‌های متغیر (*args و **kwargs) و برگرداندن مقادیر.",
+    "topics": [
+      "تعریف توابع با def",
+      "Default Parameters",
+      "Keyword Arguments",
+      "*args و **kwargs",
+      "Scope و حوزه متغیرها"
+    ],
+    "sizeFormatted": "261 KB",
+    "badge": "توابع",
+    "relatedItems": [
+      "08-Examples_Python_3",
+      "09-Examples_Python_4"
+    ]
+  },
+  {
+    "id": "pdf-10",
+    "order": 10,
+    "filename": "10-NumPy.pdf",
+    "title": "جزوه جامع کتابخانه نام‌پای (NumPy)",
+    "category": "کتابخانه‌های تحلیل داده",
+    "description": "آموزش کامل محاسبات علمی با NumPy، کار با آرایه‌های چندبعدی (ndarray)، اعمال برداری، اعمال ماتریسی، ابعاد و توابع ریاضی با سرعت بالا.",
+    "topics": [
+      "ساختار ndarray",
+      "اعمال برداری (Vectorization)",
+      "اعمال ریاضی و ماتریسی",
+      "برش و فیلترینگ آرایه"
+    ],
+    "sizeFormatted": "420 KB",
+    "badge": "NumPy",
+    "relatedItems": [
+      "11-numpy_1.ipynb",
+      "12-NumPy_TableOfContents.pdf",
+      "13-numpy_2.ipynb"
+    ]
+  },
+  {
+    "id": "pdf-12",
+    "order": 12,
+    "filename": "12-NumPy_TableOfContents.pdf",
+    "title": "فهرست و سرفصل‌های مباحث نام‌پای (NumPy TOC)",
+    "category": "سرفصل‌ها",
+    "description": "فهرست مدون و سرفصل‌های موضوعی تدریس‌شده در بخش کتابخانه نام‌پای به همراه ساختار تمرینات و مباحث تخصصی.",
+    "topics": [
+      "سرفصل‌های نام‌پای",
+      "توابع پرکاربرد np",
+      "تغییر شکل و ابعاد (Reshape)",
+      "محاسبات تجمعی"
+    ],
+    "sizeFormatted": "177 KB",
+    "badge": "سرفصل",
+    "relatedItems": [
+      "10-NumPy.pdf",
+      "11-numpy_1.ipynb",
+      "13-numpy_2.ipynb"
+    ]
+  },
+  {
+    "id": "pdf-14",
+    "order": 14,
+    "filename": "14-Pandas_TableOfContents.pdf",
+    "title": "فهرست و سرفصل‌های کتابخانه پانداس (Pandas TOC)",
+    "category": "سرفصل‌ها",
+    "description": "چارت و فهرست تفصیلی مباحث تدریس‌شده در بخش کتابخانه پانداس شامل ساختارهای داده Series و DataFrame، پاکسازی داده و تجمیع اطلاعات.",
+    "topics": [
+      "ساختار Series",
+      "ساختار DataFrame",
+      "روش‌های ایندکس‌گذاری (loc, iloc)",
+      "فیلترینگ داده‌ها"
+    ],
+    "sizeFormatted": "390 KB",
+    "badge": "سرفصل",
+    "relatedItems": [
+      "15-pandas_1.ipynb",
+      "17-Pandas_Titles_1.pdf",
+      "18-pandas_2.ipynb"
+    ]
+  },
+  {
+    "id": "pdf-17",
+    "order": 17,
+    "filename": "17-Pandas_Titles_1.pdf",
+    "title": "عناوین و تمرینات بخش اول پانداس (Pandas Titles 1)",
+    "category": "تمرینات کلاسی",
+    "description": "مسائل و تمرینات دسته‌بندی‌شده پیرامون کار با دیتافریم‌های پانداس، متدهای جستجو، شرط‌گذاری و فیلتر کردن ردیف‌ها و ستون‌ها.",
+    "topics": [
+      "تمرینات پایه‌ای پانداس",
+      "کار با ستون‌ها",
+      "فیلترینگ شرطی",
+      "متدهای آماری توصیفی"
+    ],
+    "sizeFormatted": "144 KB",
+    "badge": "تمرینات ۱",
+    "relatedItems": [
+      "15-pandas_1.ipynb",
+      "16-Employees.csv"
+    ]
+  },
+  {
+    "id": "pdf-19",
+    "order": 19,
+    "filename": "19-Pandas_Titles(Employees).pdf",
+    "title": "عناوین تمرینات پانداس با دیتاست کارکنان (Employees)",
+    "category": "پروژه‌های کاربردی",
+    "description": "مجموعه پرسش‌ها و سوالات تحلیلی روی دیتاست کارمندان (Employees.csv) جهت بررسی حقوق، شهر، سابقه، تخصص، و سن افراد با کدهای پانداس.",
+    "topics": [
+      "تحلیل دیتاست Employees",
+      "گروه‌بندی حقوق و دستمزد",
+      "مدیریت مقادیر گمشده (NaN)",
+      "تحلیل‌های تجمیعی"
+    ],
+    "sizeFormatted": "153 KB",
+    "badge": "دیتاست Employees",
+    "relatedItems": [
+      "16-Employees.csv",
+      "18-pandas_2.ipynb"
+    ]
+  },
+  {
+    "id": "pdf-20",
+    "order": 20,
+    "filename": "20-Pandas_Titles(titanic).pdf",
+    "title": "عناوین تمرینات و تحلیل پیشرفته پانداس با دیتاست تایتانیک (Titanic)",
+    "category": "پروژه‌های کاربردی",
+    "description": "صورت مسائل و سوالات تحلیلی دنیای واقعی روی دیتاست مشهور تایتانیک (titanic.csv) شامل نرخ بقا، دسته‌بندی بر اساس کلاس بلیت، سن، جنسیت و کرایه.",
+    "topics": [
+      "تحلیل بقای مسافران Titanic",
+      "گروه‌بندی با groupby",
+      "محاسبه درصدها و میانگین‌ها",
+      "تمیزسازی و بازتولید ویژگی‌ها"
+    ],
+    "sizeFormatted": "165 KB",
+    "badge": "دیتاست Titanic",
+    "relatedItems": [
+      "21-titanic.csv",
+      "18-pandas_2.ipynb"
+    ]
+  }
+]

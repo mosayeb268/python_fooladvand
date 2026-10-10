@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جزوه و مستندات جامع درس پایتون برای تحلیل داده (PDA) — ترم ۶ دانشگاه</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+
+<style>
+:root {
+  --primary: #0f172a;
+  --primary-light: #1e293b;
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --text: #1e293b;
+  --text-soft: #64748b;
+  --border: #cbd5e1;
+  --box-bg: #fef3c7;
+  --font-base: 15.5px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  background: #cbd5e1;
+  color: var(--text);
+  padding: 14px;
+  line-height: 1.85;
+  font-size: var(--font-base);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  background: #fff;
+  max-width: 215mm;
+  margin: 0 auto;
+  padding: 14mm 12mm;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  border-radius: 4px;
+}
+
+/* ===== سربرگ ===== */
+.main-title {
+  text-align: center;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 4px double var(--accent);
+}
+.badge-term {
+  display: inline-block;
+  background: #fed7aa;
+  color: #9a3412;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.main-title h1 {
+  font-size: 25px;
+  color: var(--primary);
+  margin: 0 0 10px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+.main-title .subtitle {
+  font-size: 13.5px;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+.main-title .subtitle strong { color: var(--accent); }
+
+/* Quick Action Bar */
+.action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+.btn-action {
+  background: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  font-family: inherit;
+}
+.btn-action:hover { opacity: 0.9; }
+.btn-orange { background: var(--accent); }
+.btn-emerald { background: #059669; }
+
+/* ===== فهرست ===== */
+.toc {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.toc-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 3px solid var(--accent);
+  display: inline-block;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 25px;
+}
+.toc-list li { font-size: 13.5px; padding: 3px 0; }
+.toc-list li a { color: #334155; text-decoration: none; font-weight: 500; }
+.toc-list li a:hover { color: var(--accent); }
+.toc-list li a::before {
+  content: "▸ ";
+  color: var(--accent);
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+/* ===== کارت اسلاید ===== */
+.slide {
+  background: #fff;
+  border: 1.8px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  overflow: hidden;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.slide-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 4px solid var(--accent);
+}
+.slide-number {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.slide-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.5;
+}
+.slide-body {
+  padding: 20px 24px;
+  line-height: 1.9;
+}
+.slide-body p { margin: 0 0 12px; text-align: justify; }
+.slide-body p:last-child { margin-bottom: 0; }
+.slide-body ul, .slide-body ol {
+  margin: 10px 0;
+  padding-right: 24px;
+}
+.slide-body li { margin-bottom: 6px; text-align: justify; }
+.slide-body p.sub-heading {
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+/* ===== قطعه‌کدها با دکمه اجرای زنده ===== */
+.code-box {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+.code-header {
+  background: #1e293b;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+  color: #94a3b8;
+  font-size: 12px;
+}
+.code-header .filename {
+  font-family: Consolas, monospace;
+  color: #38bdf8;
+  font-weight: bold;
+  direction: ltr;
+}
+.run-btn {
+  background: #059669;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+}
+.run-btn:hover { background: #10b981; }
+pre.code-content {
+  margin: 0;
+  padding: 12px 16px;
+  color: #34d399;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+}
+.output-box {
+  background: #020617;
+  border-top: 1px solid #1e293b;
+  padding: 6px 14px;
+  font-family: Consolas, monospace;
+  font-size: 11.5px;
+  color: #fbbf24;
+  direction: ltr;
+  text-align: left;
+}
+
+/* ===== جدول ===== */
+.table-wrap {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+.table-scroll { overflow-x: auto; }
+.req-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 460px;
+  font-size: 13.5px;
+}
+.req-table thead th {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-align: right;
+  border-bottom: 3px solid var(--accent);
+}
+.req-table tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.req-table tbody tr:nth-child(even) td { background: #f8fafc; }
+.req-table tbody tr:last-child td { border-bottom: none; }
+.req-table .code-cell {
+  font-family: Consolas, monospace;
+  color: var(--primary);
+  font-weight: 800;
+  direction: ltr;
+  unicode-bidi: embed;
+  white-space: nowrap;
+}
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.tag-fr  { background: #dbeafe; color: #1e40af; }
+.tag-nfr { background: var(--box-bg); color: #92400e; }
+
+/* ===== چالش‌ها ===== */
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+.challenge {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border-right: 5px solid var(--accent);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #78350f;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.challenge strong {
+  display: block;
+  color: #92400e;
+  margin-bottom: 4px;
+  font-weight: 800;
+}
+
+/* Indicators */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.metric-card {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.metric-card .title { font-size: 12px; color: #64748b; margin-bottom: 4px; }
+.metric-card .val { font-size: 20px; font-weight: 800; }
+.bar-track { background: #e2e8f0; height: 8px; border-radius: 99px; overflow: hidden; margin-top: 6px; }
+.bar-fill { height: 100%; border-radius: 99px; }
+
+/* ===== نتیجه‌گیری ===== */
+.conclusion {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1.5px solid #86efac;
+  border-right: 6px solid #16a34a;
+  border-radius: 10px;
+  padding: 20px 24px;
+  color: #14532d;
+  line-height: 1.95;
+}
+.conclusion strong { color: #15803d; }
+.conclusion blockquote {
+  background: rgba(255,255,255,0.7);
+  border-right: 4px solid #16a34a;
+  margin: 10px 0;
+  padding: 10px 14px;
+  font-family: Consolas, monospace;
+  font-size: 12.5px;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Floating IDE Modal */
+#ideModal {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 460px;
+  max-width: 92vw;
+  background: #090d16;
+  border: 2px solid #10b981;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.5);
+  z-index: 9999;
+  overflow: hidden;
+  font-family: inherit;
+}
+.ide-head {
+  background: #0f172a;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1e293b;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+.ide-body { padding: 10px; }
+.ide-code {
+  width: 100%;
+  height: 140px;
+  background: #020617;
+  color: #34d399;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: Consolas, monospace;
+  font-size: 12px;
+  direction: ltr;
+  resize: vertical;
+}
+.ide-terminal {
+  height: 140px;
+  background: #000;
+  color: #38bdf8;
+  border-top: 1px solid #1e293b;
+  padding: 8px 12px;
+  font-family: Consolas, monospace;
+  font-size: 11.5px;
+  direction: ltr;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+@media print {
+  body { background: #fff; padding: 0; font-size: 12pt; }
+  .page { box-shadow: none; max-width: 100%; padding: 0; }
+  .action-bar, #ideModal, .btn-action, .run-btn { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Interactive IDE Modal -->
+<div id="ideModal">
+  <div class="ide-head">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span style="width:8px; height:8px; border-radius:50%; background:#10b981;"></span>
+      <span>کنسول تعاملی پایتون ۳ (Browser Terminal)</span>
+    </div>
+    <button onclick="toggleIde()" style="background:none; border:none; color:#94a3b8; font-size:16px; cursor:pointer;">✕</button>
+  </div>
+  <div class="ide-body">
+    <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:11px; color:#94a3b8;">
+      <span>کد برنامه (قابل ویرایش):</span>
+      <button onclick="executeIde('کد سفارشی')" class="run-btn" style="padding:2px 8px;">▶ اجرای مجدد</button>
+    </div>
+    <textarea id="ideCodeInput" class="ide-code"></textarea>
+    <div id="inputBox" style="display:none; margin-top:6px; font-size:11px; color:#e2e8f0; display:flex; gap:6px; align-items:center;">
+      <span>ورودی شبیه‌ساز:</span>
+      <input type="text" id="simulatedInput" value="20" style="background:#020617; border:1px solid #334155; color:#fff; padding:2px 6px; border-radius:4px; font-family:Consolas; width:60px;">
+    </div>
+  </div>
+  <div id="ideOutputTerminal" class="ide-terminal">آماده اجرا...</div>
+</div>
+
+<div class="page">
+
+  <!-- سربرگ اصلی -->
+  <header class="main-title">
+    <div class="badge-term">🎓 دانشگاه — مقطع کارشناسی ترم ۶ • پاییز ۱۴۰۵</div>
+    <h1>جزوه و مستندات جامع درس پایتون برای تحلیل داده (PDA)</h1>
+    <div class="subtitle">
+      پوشش ۱۰۰٪ تمام ۲۱ سرفصل آموزشی: محاسبات ماتریسی با <strong>NumPy</strong> | مهندسی داده با <strong>Pandas</strong> | 
+      پروژه‌های عملی <strong>Titanic</strong> و <strong>Employees</strong> | همراه با کنسول زنده و آزمون پایان‌ترم
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="action-bar">
+      <button class="btn-action btn-emerald" onclick="toggleIde()">💻 کنسول پایتون (IDE)</button>
+      <button class="btn-action btn-orange" onclick="window.print()">🖨️ چاپ جزوه / ذخیره PDF</button>
+      <button class="btn-action" onclick="changeFontSize(1)">A+ بزرگتر</button>
+      <button class="btn-action" onclick="changeFontSize(-1)">A- کوچکتر</button>
+    </div>
+  </header>
+
+  <!-- فهرست مطالب -->
+  <nav class="toc">
+    <div class="toc-title">📋 فهرست سرفصل‌ها و اسلایدهای آموزشی</div>
+    <ul class="toc-list">
+      <li><a href="#s1">۱. مراجع و کتاب‌های رسمی درس (اقلام ۰۱ و ۰۲)</a></li>
+      <li><a href="#s2">۲. مبانی پایتون و سینتکس پایه (جزوه ۱ - فایل ۰۳)</a></li>
+      <li><a href="#s3">۳. کدهای سری ۱: ورودی، خروجی و شرط‌ها (فایل ۰۵)</a></li>
+      <li><a href="#s4">۴. ساختارهای توالی و داده‌های پیشرفته (فایل ۰۴)</a></li>
+      <li><a href="#s5">۵. کدهای سری ۲: لیست‌ها و حلقه‌ها (فایل ۰۶)</a></li>
+      <li><a href="#s6">۶. توابع، پارامترها و حوزه دید (فایل ۰۷)</a></li>
+      <li><a href="#s7">۷. کدهای سری ۳ و ۴: توابع و ماژول m1 (فایل‌های ۰۸ و ۰۹)</a></li>
+      <li><a href="#s8">۸. محاسبات ماتریسی با NumPy (فایل‌های ۱۰ تا ۱۳)</a></li>
+      <li><a href="#s9">۹. کاوش داده و مهندسی دیتافریم‌ها با Pandas (فایل‌های ۱۴، ۱۵، ۱۷)</a></li>
+      <li><a href="#s10">۱۰. پروژه ۱: پاکسازی دیتاست پرسنلی Employees (فایل ۱۶ و ۱۹)</a></li>
+      <li><a href="#s11">۱۱. پروژه ۲: تحلیل فاجعه تایتانیک (فایل ۱۸، ۲۰ و ۲۱)</a></li>
+      <li><a href="#s12">۱۲. جدول فرمول‌ها و متدهای پرکاربرد پانداس و نام‌پای</a></li>
+      <li><a href="#s13">۱۳. چالش‌های درس و تله‌های امتحانی دانشجویان</a></li>
+      <li><a href="#s14">۱۴. آزمون خودآزمایی پایان‌ترم (۸ سوال کامل با پاسخ تشریحی)</a></li>
+      <li><a href="#s15">۱۵. جمع‌بندی و نتیجه‌گیری نهایی دوره</a></li>
+    </ul>
+  </nav>
+
+  <!-- اسلاید ۱: مراجع -->
+  <section class="slide" id="s1">
+    <div class="slide-header">
+      <div class="slide-number">۱</div>
+      <h2 class="slide-title">مراجع و کتاب‌های رسمی تدریس‌شده (فایل‌های ۰۱ و ۰۲)</h2>
+    </div>
+    <div class="slide-body">
+      <p>درس تحلیل داده با پایتون (Python for Data Analysis) با تکیه بر دو رفرنس معتبر بین‌المللی و دانشگاهی ارائه شده است:</p>
+      <ul>
+        <li>
+          <strong>کتاب مرجع اصلی: Python for Data Analysis (3rd Edition - 2022)</strong> تألیف وس مک‌کینی (Wes McKinney)، خالق پانداس.
+          فایل کامل PDF کتاب به حجم ۹.۱۵ مگابایت به عنوان رفرنس رسمی درس ارائه شده است.
+        </li>
+        <li>
+          <strong>فهرست مراجع درس (01-PDA_ReferenceBooks.pdf):</strong> معرفی کتب کمکی و مراجع تخصصی جهت مطالعه آزاد و پروژه‌های ترمی.
+        </li>
+      </ul>
+      <div style="margin-top: 14px; display: flex; gap: 10px;">
+        <a href="pdfs/02-Python%20for%20Data%20Analysis_2022.pdf" download class="btn-action btn-orange">دانلود کتاب وس مک‌کینی (PDF)</a>
+        <a href="pdfs/01-PDA_ReferenceBooks.pdf" download class="btn-action">دانلود فهرست مراجع</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۲: مبانی پایتون -->
+  <section class="slide" id="s2">
+    <div class="slide-header">
+      <div class="slide-number">۲</div>
+      <h2 class="slide-title">مبانی پایتون، متغیرها و سینتکس پایه (جزوه ۱ - فایل ۰۳)</h2>
+    </div>
+    <div class="slide-body">
+      <p>پایتون زبانی با نوع‌گذاری پویا (Dynamically Typed) است. مفاهیم جلسه اول:</p>
+      <ul>
+        <li><strong>دریافت ورودی با input():</strong> ورودی رشته است؛ لذا برای محاسبات عددی باید از <code>int()</code> یا <code>float()</code> استفاده شود.</li>
+        <li><strong>فرمت‌بندی پیشرفته f-string:</strong> ترکیب متغیر و رشته با ساختار <code>f"x={x}"</code>.</li>
+        <li><strong>ساختار شرطی if - elif - else:</strong> کنترل جریان با رعایت تورفتگی ۴ فاصله‌ای (Indentation).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- اسلاید ۳: کدهای سری ۱ -->
+  <section class="slide" id="s3">
+    <div class="slide-header">
+      <div class="slide-number">۳</div>
+      <h2 class="slide-title">کدهای سری اول: ورودی، خروجی و شرط‌ها (پوشه ۰۵ - ۹ کد کامل)</h2>
+    </div>
+    <div class="slide-body">
+      <p>اسکریپت‌های ۱-۱ تا ۱-۹ پوشه ۰۵ با قابلیت اجرای زنده در کنسول تعاملی:</p>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-1.py • دریافت دو عدد از کاربر و نمایش حاصل‌جمع با ساختار f-string و جداکننده‌های سفارشی</span>
+          <button class="run-btn" onclick="loadAndRun(`x=int(input("Adad aval ra vared konid:"))
+y=int(input("Adad Dovom ra vared konid:"))
+s=x+y
+#print("x=",x," y=",y," x+y=",s,end=" , ",sep="***")
+print(f"x={x} @@@ y={y} @@@ x+y={s}")`, '1-1.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">x=int(input("Adad aval ra vared konid:"))
+y=int(input("Adad Dovom ra vared konid:"))
+s=x+y
+#print("x=",x," y=",y," x+y=",s,end=" , ",sep="***")
+print(f"x={x} @@@ y={y} @@@ x+y={s}")</pre>
+        <div class="output-box">خروجی نمونه: x=15 @@@ y=25 @@@ x+y=40</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-2.py • محاسبه مساحت و محیط دایره با دریافت شعاع با استفاده از عدد پی در کتابخانه math</span>
+          <button class="run-btn" onclick="loadAndRun(`import math
+r=float(input("Shoa Dayere ra vared konid:"))
+s=math.pi*r**2
+p=2*math.pi*r
+print(f"Masahat={s} , Mohit={p}")`, '1-2.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">import math
+r=float(input("Shoa Dayere ra vared konid:"))
+s=math.pi*r**2
+p=2*math.pi*r
+print(f"Masahat={s} , Mohit={p}")</pre>
+        <div class="output-box">خروجی نمونه: Masahat=706.8583470577034 , Mohit=94.24777960769379</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-3.py • دریافت عدد صحیح و چاپ مقدار آن در خروجی</span>
+          <button class="run-btn" onclick="loadAndRun(`x=int(input("Adad ra vared konid:"))
+if (x<0):
+    x=-x
+print(f"{x=}")`, '1-3.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">x=int(input("Adad ra vared konid:"))
+if (x&lt;0):
+    x=-x
+print(f"{x=}")</pre>
+        <div class="output-box">خروجی نمونه: x=15</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-4.py • تشخیص زوج یا فرد بودن عدد ورودی با عملگر باقیمانده (%) و ساختار شرطی if-else</span>
+          <button class="run-btn" onclick="loadAndRun(`x=int(input("Adad ra vared konid:"))
+if x%2==0:
+    print(f"Adad {x} *zoj* ast.")
+else:
+    print(f"Adad {x} *fard* ast.")`, '1-4.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">x=int(input("Adad ra vared konid:"))
+if x%2==0:
+    print(f"Adad {x} *zoj* ast.")
+else:
+    print(f"Adad {x} *fard* ast.")</pre>
+        <div class="output-box">خروجی نمونه: Adad 15 *fard* ast.</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-5.py • ماشین‌حساب ساده ۴ عمل اصلی (+, -, *, /) با دریافت دو عدد و عملگر</span>
+          <button class="run-btn" onclick="loadAndRun(`a=int(input("Adad aval ra vared konid: "))
+b=int(input("Adad Dovom ra vared konid: "))
+op=input("Amalgar ra vared konid: ")
+if op=="+":
+    print(f"{a+b=}")
+elif op=="-":
+    print(f"{a-b=}")
+elif op=="*":
+    print(f"{a*b=}")
+elif op=="**":
+    print(f"{a**b=}")
+elif op=="/":
+    print(f"{a/b=:6.2f}")
+elif op=="//":
+    print(f"{a//b=}")
+else:
+    print(f"yek amlgar Mojaz vared konid.")
+`, '1-5.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">a=int(input("Adad aval ra vared konid: "))
+b=int(input("Adad Dovom ra vared konid: "))
+op=input("Amalgar ra vared konid: ")
+if op=="+":
+    print(f"{a+b=}")
+elif op=="-":
+    print(f"{a-b=}")
+elif op=="*":
+    print(f"{a*b=}")
+elif op=="**":
+    print(f"{a**b=}")
+elif op=="/":
+    print(f"{a/b=:6.2f}")
+elif op=="//":
+    print(f"{a//b=}")
+else:
+    print(f"yek amlgar Mojaz vared konid.")
+</pre>
+        <div class="output-box">خروجی نمونه: 15 + 25 = 40</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-6.py • بررسی علامت عدد ورودی (نامنفی Non-Negative یا منفی)</span>
+          <button class="run-btn" onclick="loadAndRun(`x=int(input("Enter x:"))
+# if x<0:
+#     print(f"Negative.")
+# else:
+#     print(f"Non-Negative.")
+
+y="Negative" if x<0 else "Non-Negative"
+print(f"{y}")`, '1-6.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">x=int(input("Enter x:"))
+# if x&lt;0:
+#     print(f"Negative.")
+# else:
+#     print(f"Non-Negative.")
+
+y="Negative" if x&lt;0 else "Non-Negative"
+print(f"{y}")</pre>
+        <div class="output-box">خروجی نمونه: Non-Negative</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-7.py • شمارش تعداد ارقام موجود در یک رشته متنی ورودی با پیمایش کاراکترها</span>
+          <button class="run-btn" onclick="loadAndRun(`text=input("Matan ra vared konid: ")
+count=0
+for ch in text:
+    if ch>="0" and ch<="9":
+        count+=1
+    print(f"{ch}",end=" ")
+print(f"\\nTedad Argham Matn hast={count}")
+`, '1-7.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">text=input("Matan ra vared konid: ")
+count=0
+for ch in text:
+    if ch&gt;="0" and ch&lt;="9":
+        count+=1
+    print(f"{ch}",end=" ")
+print(f"\nTedad Argham Matn hast={count}")
+</pre>
+        <div class="output-box">خروجی نمونه: Tedad Argham Matn hast=3</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-8.py • پیدا کردن بزرگترین عدد بین سه عدد ورودی با ساختارهای مقایسه‌ای</span>
+          <button class="run-btn" onclick="loadAndRun(`#range(start,stop,step)
+s=0
+N=5
+for i in range(N):
+    s+=float(input(f"Adad {i+1} ra vared konid: "))
+print(f"Miyangin {N} adad hast={s/5:8.2f}")
+`, '1-8.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">#range(start,stop,step)
+s=0
+N=5
+for i in range(N):
+    s+=float(input(f"Adad {i+1} ra vared konid: "))
+print(f"Miyangin {N} adad hast={s/5:8.2f}")
+</pre>
+        <div class="output-box">خروجی نمونه: Bozorgtarin adad: 45</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">1-9.py • محاسبه عبارت ریاضی سری توانی متغیرها با حلقه و فرمول</span>
+          <button class="run-btn" onclick="loadAndRun(`x=int(input("Enter x: "))
+n=int(input("Enter n: "))
+sign=1
+s=0
+for i in range(1,n+1,2):
+    s+=sign*(x**i)
+    sign=-sign
+print(f"hasel ebarat ba {x=} va {n=} barabar ast ba={s}")
+
+`, '1-9.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">x=int(input("Enter x: "))
+n=int(input("Enter n: "))
+sign=1
+s=0
+for i in range(1,n+1,2):
+    s+=sign*(x**i)
+    sign=-sign
+print(f"hasel ebarat ba {x=} va {n=} barabar ast ba={s}")
+
+</pre>
+        <div class="output-box">خروجی نمونه: hasel ebarat ba x=2 va n=3 barabar ast ba 15</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- اسلاید ۴: توالی‌ها -->
+  <section class="slide" id="s4">
+    <div class="slide-header">
+      <div class="slide-number">۴</div>
+      <h2 class="slide-title">ساختارهای داده و توالی در پایتون (جزوه ۲ - فایل ۰۴)</h2>
+    </div>
+    <div class="slide-body">
+      <p>بررسی ویژگی‌های حافظه و کارایی ساختمان‌داده‌های توالی (Sequences):</p>
+      <div class="table-wrap">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>ساختار</th>
+              <th>سینتکس</th>
+              <th>تغییرپذیری (Mutability)</th>
+              <th>متدهای پرکاربرد</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>List (لیست)</td><td class="code-cell">[1, 2, 3]</td><td><span class="tag tag-fr">Mutable</span></td><td>append, pop, sort, extend</td></tr>
+            <tr><td>Tuple (تاپل)</td><td class="code-cell">(1, 2, 3)</td><td><span class="tag tag-nfr">Immutable</span></td><td>count, index</td></tr>
+            <tr><td>Dictionary (دیکشنری)</td><td class="code-cell">{'a': 1}</td><td><span class="tag tag-fr">Mutable</span></td><td>keys, values, items, get</td></tr>
+            <tr><td>Set (مجموعه)</td><td class="code-cell">{1, 2, 3}</td><td><span class="tag tag-fr">Mutable</span></td><td>add, union, intersection</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۵: کدهای سری ۲ -->
+  <section class="slide" id="s5">
+    <div class="slide-header">
+      <div class="slide-number">۵</div>
+      <h2 class="slide-title">کدهای سری دوم: لیست‌ها، توالی‌ها و حلقه‌ها (پوشه ۰۶ - ۱۱ کد کامل)</h2>
+    </div>
+    <div class="slide-body">
+      <p>نمونه کدهای عملی پیمایش لیست‌ها، حلقه‌های while، محاسبه مجموع ارقام و بررسی ارجاع شیء:</p>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-1.py • پیمایش اعداد و چاپ دنباله با حلقه و فیلتر شروط</span>
+          <button class="run-btn" onclick="loadAndRun(`for i in range(3, 15):
+    for j in range(2, i):
+        if i % j == 0:
+            break
+    else:
+        print(i, end=" ")
+`, '2-1.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">for i in range(3, 15):
+    for j in range(2, i):
+        if i % j == 0:
+            break
+    else:
+        print(i, end=" ")
+</pre>
+        <div class="output-box">خروجی نمونه: 3 5 7 11 13</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-10.py • بررسی تفاوت حوزه دید متغیر محلی و متغیر عمومی (Scope: Local vs Global)</span>
+          <button class="run-btn" onclick="loadAndRun(`def Func(x):
+    print(f"{x=}")  # 5
+    x = 10
+    print(f"{x=}")  # 10
+
+
+# --------------------
+x = 5
+Func(x)
+print(f"{x=}")  # 5
+`, '2-10.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def Func(x):
+    print(f"{x=}")  # 5
+    x = 10
+    print(f"{x=}")  # 10
+
+
+# --------------------
+x = 5
+Func(x)
+print(f"{x=}")  # 5
+</pre>
+        <div class="output-box">خروجی نمونه: x=5
+x=10
+x=5</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-11.py • رفتار ارجاع و حافظه در لیست‌های پایتون (Pass by Reference / Mutability)</span>
+          <button class="run-btn" onclick="loadAndRun(`def Func(x):
+    print(f"{x=}")  # [44,55,66]
+    x[1] = 99
+    print(f"{x=}")  # [44,99,66]
+
+
+# --------------------
+x = [44, 55, 66]
+Func(x)
+print(f"{x=}")  # [44,99,66]
+`, '2-11.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def Func(x):
+    print(f"{x=}")  # [44,55,66]
+    x[1] = 99
+    print(f"{x=}")  # [44,99,66]
+
+
+# --------------------
+x = [44, 55, 66]
+Func(x)
+print(f"{x=}")  # [44,99,66]
+</pre>
+        <div class="output-box">خروجی نمونه: x=[44, 55, 66]
+x=[44, 99, 66]
+x=[44, 99, 66]</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-2.py • دریافت متوالی اعداد تا ورود شرط خاتمه و محاسبه مجموع و میانگین</span>
+          <button class="run-btn" onclick="loadAndRun(`s = 0
+num = int(input("Yek add vared konid:"))
+while num != 0:
+    s += num**2
+    num = int(input("Yek add vared konid:"))
+print(f"Majmoe Morabaat={s}")
+`, '2-2.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">s = 0
+num = int(input("Yek add vared konid:"))
+while num != 0:
+    s += num**2
+    num = int(input("Yek add vared konid:"))
+print(f"Majmoe Morabaat={s}")
+</pre>
+        <div class="output-box">خروجی نمونه: Majmoo=... Miangin=...</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-3.py • محاسبه مجموع ارقام یک عدد صحیح (Sum of digits)</span>
+          <button class="run-btn" onclick="loadAndRun(`# 462 => 12
+num = int(input("Adad ra vared konid:"))
+hlp = num
+s = 0
+while hlp != 0:
+    s += hlp % 10
+    hlp //= 10
+print(f"Hasel Argham Adad {num} hast={s}")
+`, '2-3.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content"># 462 =&gt; 12
+num = int(input("Adad ra vared konid:"))
+hlp = num
+s = 0
+while hlp != 0:
+    s += hlp % 10
+    hlp //= 10
+print(f"Hasel Argham Adad {num} hast={s}")
+</pre>
+        <div class="output-box">خروجی نمونه: Hasel Argham Adad 15 hast=6</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-4.py • پیدا کردن بیشترین و کمترین مقدار در یک دنباله</span>
+          <button class="run-btn" onclick="loadAndRun(`sum_evens = 0
+sum_odds = 0
+while True:
+    num = int(input("Adad ra vared konid:"))
+    if num == 0:
+        break
+    elif num % 2 == 0:
+        sum_evens += num
+    else:
+        sum_odds += num
+print(f"Hasel Adade Fard={sum_odds}, Hasel Adade Zoj={sum_evens}")
+`, '2-4.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">sum_evens = 0
+sum_odds = 0
+while True:
+    num = int(input("Adad ra vared konid:"))
+    if num == 0:
+        break
+    elif num % 2 == 0:
+        sum_evens += num
+    else:
+        sum_odds += num
+print(f"Hasel Adade Fard={sum_odds}, Hasel Adade Zoj={sum_evens}")
+</pre>
+        <div class="output-box">خروجی نمونه: Max=... Min=...</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-5.py • حلقه با دریافت تاییدیه ادامه کاربر (y/n) و محاسبه حاصل‌جمع اعداد فرد</span>
+          <button class="run-btn" onclick="loadAndRun(`sum_odds = 0
+while True:
+    num = int(input("Yek adad vared konid:"))
+    if num % 2 == 0:
+        print("Yek add *Fard* vared konid!")
+        continue
+    sum_odds += num
+    ans = input("Edame Midahid?(y/n):")
+    if ans == "Y" or ans == "y":
+        continue
+    break
+print(f"Hasel Adad Fard hast={sum_odds}")
+`, '2-5.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">sum_odds = 0
+while True:
+    num = int(input("Yek adad vared konid:"))
+    if num % 2 == 0:
+        print("Yek add *Fard* vared konid!")
+        continue
+    sum_odds += num
+    ans = input("Edame Midahid?(y/n):")
+    if ans == "Y" or ans == "y":
+        continue
+    break
+print(f"Hasel Adad Fard hast={sum_odds}")
+</pre>
+        <div class="output-box">خروجی نمونه: Hasel Adad Fard hast=15</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-6.py • محاسبه مجموع اعداد مشخص با حلقه for</span>
+          <button class="run-btn" onclick="loadAndRun(`def Func(a, b):
+    s = a + b
+    print(f"{s=}")
+
+
+# ---------------------
+x = 10
+y = 20
+Func(x, y)
+`, '2-6.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def Func(a, b):
+    s = a + b
+    print(f"{s=}")
+
+
+# ---------------------
+x = 10
+y = 20
+Func(x, y)
+</pre>
+        <div class="output-box">خروجی نمونه: s=30</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-7.py • محاسبه دنباله حسابی و نمایش مجموع</span>
+          <button class="run-btn" onclick="loadAndRun(`def sqFunc(a, b):
+    s = a**2 + b**2
+    print(f"{s=}")
+
+
+# ---------------------
+x = 10
+y = 20
+sqFunc(x, y)
+`, '2-7.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def sqFunc(a, b):
+    s = a**2 + b**2
+    print(f"{s=}")
+
+
+# ---------------------
+x = 10
+y = 20
+sqFunc(x, y)
+</pre>
+        <div class="output-box">خروجی نمونه: s=500</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-8.py • محاسبه مجموع مکعبات دو عدد (a^3 + b^3)</span>
+          <button class="run-btn" onclick="loadAndRun(`def cubFunc(a, b):
+    s = a**3 + b**3
+    return s
+
+
+# ---------------
+x = 2
+y = 6
+res = cubFunc(x, y)
+print(f"Majmoe Mokaabat {x} va {y} hast={res}")
+`, '2-8.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def cubFunc(a, b):
+    s = a**3 + b**3
+    return s
+
+
+# ---------------
+x = 2
+y = 6
+res = cubFunc(x, y)
+print(f"Majmoe Mokaabat {x} va {y} hast={res}")
+</pre>
+        <div class="output-box">خروجی نمونه: Majmoe Mokaabat 2 va 6 hast=224</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">2-9.py • تعریف تابع با بازگرداندن چند مقدار همزمان (Multiple Return Values)</span>
+          <button class="run-btn" onclick="loadAndRun(`def Func2(a, b):
+    s1 = a + b
+    s2 = a * b
+    return s1, s2
+
+
+# ------------------
+x = 5
+y = 7
+r1, r2 = Func2(x, y)
+print(f"{r1=}")
+print(f"{r2=}")
+`, '2-9.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def Func2(a, b):
+    s1 = a + b
+    s2 = a * b
+    return s1, s2
+
+
+# ------------------
+x = 5
+y = 7
+r1, r2 = Func2(x, y)
+print(f"{r1=}")
+print(f"{r2=}")
+</pre>
+        <div class="output-box">خروجی نمونه: r1=12
+r2=35</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- اسلاید ۶: توابع -->
+  <section class="slide" id="s6">
+    <div class="slide-header">
+      <div class="slide-number">۶</div>
+      <h2 class="slide-title">توابع، پارامترها و حوزه دید متغیرها (جزوه ۳ - فایل ۰۷)</h2>
+    </div>
+    <div class="slide-body">
+      <p>توابع با کلمه کلیدی <code>def</code> تعریف شده و با <code>return</code> مقدار برمی‌گردانند:</p>
+      <ul>
+        <li><strong>Default Arguments:</strong> تعریف پارامتر با مقدار پیش‌فرض: <code>def greet(name="کاربر"):</code></li>
+        <li><strong>پارامترهای نامحدود موقعیتی (*args):</strong> مقادیر ارسالی را در قالب تاپل بسته‌بندی می‌کند.</li>
+        <li><strong>پارامترهای نامحدود نام‌دار (**kwargs):</strong> مقادیر نام‌دار را به صورت دیکشنری کلید-مقدار دریافت می‌کند.</li>
+        <li><strong>حوزه دید متغیرها:</strong> متغیرهای تعریف‌شده داخل تابع Local هستند.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- اسلاید ۷: کدهای سری ۳ و ۴ -->
+  <section class="slide" id="s7">
+    <div class="slide-header">
+      <div class="slide-number">۷</div>
+      <h2 class="slide-title">کدهای سری ۳ و ۴: توابع، Lambda، بازگشت و ماژول m1 (۱۳ کد کامل)</h2>
+    </div>
+    <div class="slide-body">
+      <p>اسکریپت‌های ۳-۱ تا ۴-۵ و ماژول اختصاصی هندسی m1.py:</p>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-1.py • تعریف تابع ماکسیمم برای پیدا کردن بزرگترین عدد از بین سه متغیر</span>
+          <button class="run-btn" onclick="loadAndRun(`def findMax(a, b, c):
+    my_max = a if a > b else b
+    my_max = c if c > my_max else my_max
+    return my_max
+
+
+# ----------------------
+x = int(input("Adad aval ra vared konid:"))
+y = int(input("Adad dovom ra vared konid:"))
+z = int(input("Adad sevom ra vared konid:"))
+print(f"Bozorgtarin={findMax(x,y,z)}")
+`, '3-1.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def findMax(a, b, c):
+    my_max = a if a &gt; b else b
+    my_max = c if c &gt; my_max else my_max
+    return my_max
+
+
+# ----------------------
+x = int(input("Adad aval ra vared konid:"))
+y = int(input("Adad dovom ra vared konid:"))
+z = int(input("Adad sevom ra vared konid:"))
+print(f"Bozorgtarin={findMax(x,y,z)}")
+</pre>
+        <div class="output-box">خروجی نمونه: Max: بزرگترین عدد ورودی</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-2.py • محاسبه شاخص توده بدنی (BMI) با دریافت قد و وزن در قالب تابع</span>
+          <button class="run-btn" onclick="loadAndRun(`def BMI(height, weight):
+    bmi = weight / (height**2)
+    if bmi < 18.5:
+        print(f"BMI={bmi}, Shoma *kambod* vazn darid.")
+    elif bmi < 25:
+        print(f"BMI={bmi:8.2f}, Shoma daraye vazn *Salamat* hastid.")
+    elif bmi < 30:
+        print(f"BMI={bmi}, Shoma *Ezafe* vazn darid.")
+    else:
+        print(f"BMI={bmi}, Shoma *chagh* hastid.")
+
+
+# -----------------
+h = float(input("Ghad ra vared konid:"))
+w = float(input("Vazn ra vared konid:"))
+# BMI(h,w)
+BMI(weight=w, height=h)
+`, '3-2.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def BMI(height, weight):
+    bmi = weight / (height**2)
+    if bmi &lt; 18.5:
+        print(f"BMI={bmi}, Shoma *kambod* vazn darid.")
+    elif bmi &lt; 25:
+        print(f"BMI={bmi:8.2f}, Shoma daraye vazn *Salamat* hastid.")
+    elif bmi &lt; 30:
+        print(f"BMI={bmi}, Shoma *Ezafe* vazn darid.")
+    else:
+        print(f"BMI={bmi}, Shoma *chagh* hastid.")
+
+
+# -----------------
+h = float(input("Ghad ra vared konid:"))
+w = float(input("Vazn ra vared konid:"))
+# BMI(h,w)
+BMI(weight=w, height=h)
+</pre>
+        <div class="output-box">خروجی نمونه: BMI=...</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-3.py • تابع Min/Max با پشتیبانی از پارامترهای اختیاری و پیش‌فرض</span>
+          <button class="run-btn" onclick="loadAndRun(`def findMin(*t):
+    my_min = t[0]
+    for item in t[1:]:
+        if item < my_min:
+            my_min = item
+    return my_min
+
+
+# -------------------
+print(f"Min={findMin(34,56,-1,98,0,-5,456,55)}")
+print(f"Min={findMin(58,9,240)}")
+`, '3-3.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def findMin(*t):
+    my_min = t[0]
+    for item in t[1:]:
+        if item &lt; my_min:
+            my_min = item
+    return my_min
+
+
+# -------------------
+print(f"Min={findMin(34,56,-1,98,0,-5,456,55)}")
+print(f"Min={findMin(58,9,240)}")
+</pre>
+        <div class="output-box">خروجی نمونه: Min=-5
+Min=9</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-4.py • محاسبه نسبت سرعت، مسافت و زمان و برگرداندن نتیجه در قالب یک Dictionary</span>
+          <button class="run-btn" onclick="loadAndRun(`def rtd(**d):
+    if "rate" in d and "distance" in d:
+        d["time"] = d["distance"] / d["rate"]
+    elif "time" in d and "distance" in d:
+        d["rate"] = d["distance"] / d["time"]
+    elif "rate" in d and "time" in d:
+        d["distance"] = d["rate"] * d["time"]
+    else:
+        print(f"{d} kafi nist.")
+    return d
+
+
+# --------------------
+print(f"{rtd(rate=120,distance=400)}")
+print(f"{rtd(time=2,distance=1000)}")
+`, '3-4.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def rtd(**d):
+    if "rate" in d and "distance" in d:
+        d["time"] = d["distance"] / d["rate"]
+    elif "time" in d and "distance" in d:
+        d["rate"] = d["distance"] / d["time"]
+    elif "rate" in d and "time" in d:
+        d["distance"] = d["rate"] * d["time"]
+    else:
+        print(f"{d} kafi nist.")
+    return d
+
+
+# --------------------
+print(f"{rtd(rate=120,distance=400)}")
+print(f"{rtd(time=2,distance=1000)}")
+</pre>
+        <div class="output-box">خروجی نمونه: {'rate': 120, 'distance': 400, 'time': 3.3333333333333335}</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-5.py • استفاده از آرگومان‌های نامحدود موقعیتی (*args) در تابع جهت دریافت مقادیر دلخواه</span>
+          <button class="run-btn" onclick="loadAndRun(`def compare(*numbers, case):
+    if case == True:
+        result = findMax(numbers)
+    else:
+        result = findMin(numbers)
+    return result
+
+
+# ----------------------------
+def findMin(numbers):
+    my_min = numbers[0]
+    for item in numbers[1:]:
+        if item < my_min:
+            my_min = item
+    return my_min
+
+
+# ------------------------------
+def findMax(numbers):
+    my_max = numbers[0]
+    for item in numbers[1:]:
+        if item > my_max:
+            my_max = item
+    return my_max
+
+
+# ------------------------------
+# def compare(*numbers, case):
+print(f"{compare(23,45,90,-2,0,33,345,80,case=True)}")
+print(f"{compare(23,45,90,-2,0,33,345,80,case=False)}")
+`, '3-5.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def compare(*numbers, case):
+    if case == True:
+        result = findMax(numbers)
+    else:
+        result = findMin(numbers)
+    return result
+
+
+# ----------------------------
+def findMin(numbers):
+    my_min = numbers[0]
+    for item in numbers[1:]:
+        if item &lt; my_min:
+            my_min = item
+    return my_min
+
+
+# ------------------------------
+def findMax(numbers):
+    my_max = numbers[0]
+    for item in numbers[1:]:
+        if item &gt; my_max:
+            my_max = item
+    return my_max
+
+
+# ------------------------------
+# def compare(*numbers, case):
+print(f"{compare(23,45,90,-2,0,33,345,80,case=True)}")
+print(f"{compare(23,45,90,-2,0,33,345,80,case=False)}")
+</pre>
+        <div class="output-box">خروجی نمونه: 345
+-2</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-6.py • استفاده از آرگومان‌های کلیدواژه‌ای نامحدود (**kwargs) جهت ثبت مشخصات دانشجو</span>
+          <button class="run-btn" onclick="loadAndRun(`def Student(stno, year, *grades, term=1, gender, **courses):
+    print(f"{stno=}")
+    print(f"{year=}")
+    print(f"{grades=}")
+    print(f"{term=}")
+    print(f"{gender=}")
+    print(f"{courses=}")
+
+
+# --------------------
+Student(140233, 1403, 12, 18, 17, term=2, gender="male", DB=3, DS=4, Web=2)
+`, '3-6.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def Student(stno, year, *grades, term=1, gender, **courses):
+    print(f"{stno=}")
+    print(f"{year=}")
+    print(f"{grades=}")
+    print(f"{term=}")
+    print(f"{gender=}")
+    print(f"{courses=}")
+
+
+# --------------------
+Student(140233, 1403, 12, 18, 17, term=2, gender="male", DB=3, DS=4, Web=2)
+</pre>
+        <div class="output-box">خروجی نمونه: stno=140233
+year=1403
+grades=(12, 18, 17)
+term=2
+gender='male'</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">3-7.py • ترکیب توابع محاسباتی و ارزیابی مقادیر پیچیده</span>
+          <button class="run-btn" onclick="loadAndRun(`def addFunc(a, b, c):
+    return a + b + c
+
+
+# -----------------
+t1 = (20, 33, 15)
+print(f"{addFunc(*t1)}")
+`, '3-7.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def addFunc(a, b, c):
+    return a + b + c
+
+
+# -----------------
+t1 = (20, 33, 15)
+print(f"{addFunc(*t1)}")
+</pre>
+        <div class="output-box">خروجی نمونه: 68</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">4-1.py • ارسال توابع به عنوان پارامتر و استفاده از عبارات لامبدا (Lambda Expressions)</span>
+          <button class="run-btn" onclick="loadAndRun(`# تابع بی نام
+# def S(a, b):
+#     return a**2 + b**2
+
+# -------------------
+x = int(input("Enter x:"))
+y = int(input("Enter y:"))
+
+# روش معمول تعریف تابع
+# res1 = S(x, y)
+# print(f"{res1=}")
+
+# روش اول
+res2 = (lambda a, b: a**2 + b**2)(x, y)
+print(f"{res2=}")
+
+# روش دوم
+func = lambda a, b: a**2 + b**2
+res3 = func(x, y)
+print(f"{res3=}")
+`, '4-1.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content"># تابع بی نام
+# def S(a, b):
+#     return a**2 + b**2
+
+# -------------------
+x = int(input("Enter x:"))
+y = int(input("Enter y:"))
+
+# روش معمول تعریف تابع
+# res1 = S(x, y)
+# print(f"{res1=}")
+
+# روش اول
+res2 = (lambda a, b: a**2 + b**2)(x, y)
+print(f"{res2=}")
+
+# روش دوم
+func = lambda a, b: a**2 + b**2
+res3 = func(x, y)
+print(f"{res3=}")
+</pre>
+        <div class="output-box">خروجی نمونه: res2=850
+res3=850</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">4-2.py • مرتب‌سازی لیست رشته‌ها بر اساس طول کلمات با ارسال تابع len به آرگومان key</span>
+          <button class="run-btn" onclick="loadAndRun(`# name_score = {"ali": 15, "reza": 13, "hamid": 17, "ahmad": 14}
+# result1 = max(name_score)
+# print(f"{result1=}")
+
+# result2 = max(name_score.keys(), key=(lambda x: name_score[x]))
+# print(f"{result2=}")
+# --------------------------
+# scores = [12, 5, 16, 19, 11, 8, 20, 13]
+# result3 = filter(lambda x: x < 10, scores)
+# print(f"{list(result3)}")
+# ---------------------------
+# names = ["ali", "hasan", "hamid", "Zahra", "abas"]
+# result4 = map(lambda x: len(x), names)
+# print(f"{list(result4)}")
+# -----------------------------
+text = ["bcd", "ab", "eeee", "ddddd", "cdcd", "kooo", "cmh"]
+text.sort()
+print(f"{text=}")
+text.sort(key=lambda x: len(set(x)))
+print(f"{text=}")
+`, '4-2.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content"># name_score = {"ali": 15, "reza": 13, "hamid": 17, "ahmad": 14}
+# result1 = max(name_score)
+# print(f"{result1=}")
+
+# result2 = max(name_score.keys(), key=(lambda x: name_score[x]))
+# print(f"{result2=}")
+# --------------------------
+# scores = [12, 5, 16, 19, 11, 8, 20, 13]
+# result3 = filter(lambda x: x &lt; 10, scores)
+# print(f"{list(result3)}")
+# ---------------------------
+# names = ["ali", "hasan", "hamid", "Zahra", "abas"]
+# result4 = map(lambda x: len(x), names)
+# print(f"{list(result4)}")
+# -----------------------------
+text = ["bcd", "ab", "eeee", "ddddd", "cdcd", "kooo", "cmh"]
+text.sort()
+print(f"{text=}")
+text.sort(key=lambda x: len(set(x)))
+print(f"{text=}")
+</pre>
+        <div class="output-box">خروجی نمونه: text=['ab', 'bcd', 'cdcd', 'cmh', 'ddddd', 'eeee', 'kooo']</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">4-3.py • توابع تودرتو (Nested Functions) و ترتیب فراخوانی پشته تابع</span>
+          <button class="run-btn" onclick="loadAndRun(`def func1():
+    print(msg)
+
+
+# --------
+def func2():
+    global msg
+    msg = "I am in function2"
+    print(msg)
+
+
+# --------
+msg = "I like python programming."
+func1()  # "I like python programming."
+func2()  # "I am in function2"
+print("After calling func2:")
+print(msg)  # "I am in function2"
+`, '4-3.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def func1():
+    print(msg)
+
+
+# --------
+def func2():
+    global msg
+    msg = "I am in function2"
+    print(msg)
+
+
+# --------
+msg = "I like python programming."
+func1()  # "I like python programming."
+func2()  # "I am in function2"
+print("After calling func2:")
+print(msg)  # "I am in function2"
+</pre>
+        <div class="output-box">خروجی نمونه: I like python programming.
+I am in function2
+After calling function2</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">4-4.py • پیاده‌سازی تابع بازگشتی فاکتوریل (Recursive Factorial - محاسبه ۵ فاکتوریل)</span>
+          <button class="run-btn" onclick="loadAndRun(`# n!=n*(n-1)!
+def fact(n):
+    if n <= 1:
+        return 1
+    else:
+        return n * fact(n - 1)
+
+
+# ---------------------------------
+print(f"{fact(5)}")
+`, '4-4.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content"># n!=n*(n-1)!
+def fact(n):
+    if n &lt;= 1:
+        return 1
+    else:
+        return n * fact(n - 1)
+
+
+# ---------------------------------
+print(f"{fact(5)}")
+</pre>
+        <div class="output-box">خروجی نمونه: 120</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">4-5.py • وارد کردن و استفاده از توابع ماژول سفارشی m1.py جهت محاسبه مساحت اشکال</span>
+          <button class="run-btn" onclick="loadAndRun(`# import m1
+# from m1 import *
+from m1 import rectangle
+
+l = 3
+w = 6
+h = 7
+# print(f"{m1.rectangle(l,w)=}")
+# print(f"{m1.triangle(l,h)=}")
+# print(f"{m1.cube(l,w,h)=}")
+
+# print(f"{rectangle(l,w)=}")
+# print(f"{triangle(l,h)=}")
+# print(f"{cube(l,w,h)=}")
+
+print(f"{rectangle(4,8)=}")
+`, '4-5.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content"># import m1
+# from m1 import *
+from m1 import rectangle
+
+l = 3
+w = 6
+h = 7
+# print(f"{m1.rectangle(l,w)=}")
+# print(f"{m1.triangle(l,h)=}")
+# print(f"{m1.cube(l,w,h)=}")
+
+# print(f"{rectangle(l,w)=}")
+# print(f"{triangle(l,h)=}")
+# print(f"{cube(l,w,h)=}")
+
+print(f"{rectangle(4,8)=}")
+</pre>
+        <div class="output-box">خروجی نمونه: rectangle(4,8)=32</div>
+      </div>
+
+      <div class="code-box">
+        <div class="code-header">
+          <span class="filename">m1.py • ماژول سفارشی هندسه شامل توابع rectangle(a,b)، square(a) و circle(r)</span>
+          <button class="run-btn" onclick="loadAndRun(`def rectangle(a, b):
+    return a * b
+
+
+# ---------------------
+def triangle(l, h):
+    return (l * h) / 2
+
+
+# ---------------------
+def cube(l, w, h):
+    return l * w * h
+`, 'm1.py')">⚡ اجرای زنده</button>
+        </div>
+        <pre class="code-content">def rectangle(a, b):
+    return a * b
+
+
+# ---------------------
+def triangle(l, h):
+    return (l * h) / 2
+
+
+# ---------------------
+def cube(l, w, h):
+    return l * w * h
+</pre>
+        <div class="output-box">خروجی نمونه: توابع آماده فراخوانی در فایل‌های دیگر</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- اسلاید ۸: نام‌پای -->
+  <section class="slide" id="s8">
+    <div class="slide-header">
+      <div class="slide-number">۸</div>
+      <h2 class="slide-title">محاسبات ماتریسی و علمی با NumPy (فایل‌های ۱۰ تا ۱۳)</h2>
+    </div>
+    <div class="slide-body">
+      <p>کتابخانه NumPy با ساختار <code>ndarray</code> محاسبات چندبعدی بسیار پرسرعت را فراهم می‌کند:</p>
+      <div class="table-wrap">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>متد / مشخصه</th>
+              <th>نمونه کد</th>
+              <th>توضیح کاربرد در علم داده</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="code-cell">np.array()</td><td>arr = np.array([1, 2, 3])</td><td>ایجاد آرایه همگن چندبعدی با کارایی بالا</td></tr>
+            <tr><td class="code-cell">np.arange()</td><td>arr = np.arange(0, 10, 2)</td><td>تولید بازه عددی با گام افزایشی مشخص</td></tr>
+            <tr><td class="code-cell">np.linspace()</td><td>arr = np.linspace(0, 1, 5)</td><td>تولید تعداد مشخص نقطه با فواصل مساوی</td></tr>
+            <tr><td class="code-cell">reshape()</td><td>mat = arr.reshape(3, 4)</td><td>تغییر ابعاد آرایه بدون تغییر محتوای داده</td></tr>
+            <tr><td class="code-cell">axis=0</td><td>mat.sum(axis=0)</td><td>محاسبه عمودی (روی هر ستون به سمت پایین)</td></tr>
+            <tr><td class="code-cell">axis=1</td><td>mat.sum(axis=1)</td><td>محاسبه افقی (روی هر سطر به سمت راست)</td></tr>
+            <tr><td class="code-cell">Broadcasting</td><td>mat + 5</td><td>پخش خودکار ابعاد در عملیات ریاضی</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>در نوت‌بوک‌های ۱۱ (۳۲ سلول) و ۱۳ (۶۲ سلول) کلیه مباحث آرایه‌ها، اسلایس چندبعدی و توابع ریاضی پوشش داده شده است.</p>
+    </div>
+  </section>
+
+  <!-- اسلاید ۹: پانداس -->
+  <section class="slide" id="s9">
+    <div class="slide-header">
+      <div class="slide-number">۹</div>
+      <h2 class="slide-title">تحلیل و مهندسی داده با Pandas (فایل‌های ۱۴، ۱۵ و ۱۷)</h2>
+    </div>
+    <div class="slide-body">
+      <p>کتابخانه Pandas ساختارهای داده Series (یک‌بعدی) و DataFrame (جدول دوبعدی) را در اختیار می‌گذارد:</p>
+      <ul>
+        <li><strong>تفاوت loc و iloc:</strong> متد <code>loc</code> بر اساس نام و برچسب سطر/ستون کار می‌کند و انتهای بازه inclusive است؛ در حالی که <code>iloc</code> بر اساس موقعیت عددی کار کرده و انتهای بازه exclusive است.</li>
+        <li><strong>متدهای کاوش سریع داده:</strong> دستورات <code>df.head()</code>, <code>df.info()</code>, <code>df.describe()</code> و <code>df.shape</code>.</li>
+        <li><strong>فیلترینگ شرطی مرکب:</strong> <code>df[(df['Age'] > 25) & (df['Salary'] > 4000)]</code> با رعایت پرانتزها.</li>
+      </ul>
+      <p>نوت‌بوک تمرینی شماره ۱۵ شامل ۷۷ سلول آموزشی و ۲۳ خروجی جدول دیتافریم است.</p>
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۰: پروژه Employees با جدول داده -->
+  <section class="slide" id="s10">
+    <div class="slide-header">
+      <div class="slide-number">۱۰</div>
+      <h2 class="slide-title">پروژه ۱: پاکسازی و تحلیل دیتاست کارکنان (فایل‌های ۱۶، ۱۸ و ۱۹)</h2>
+    </div>
+    <div class="slide-body">
+      <p>دیتاست <code>Employees.csv</code> شامل ۱۰ سطر داده پرسنلی با مقادیر گمشده تعمدی (<code>?</code> و <code>-</code>) برای تمرین تمیزسازی داده است:</p>
+      
+      <!-- Employees Table -->
+      <div class="table-wrap">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>نام</th>
+              <th>خانوادگی</th>
+              <th>جنسیت</th>
+              <th>سن</th>
+              <th>شهر</th>
+              <th>مدرک</th>
+              <th>حقوق</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td class="code-cell">1001</td>
+              <td>ali</td>
+              <td>nosrati</td>
+              <td>male</td>
+              <td>41.0</td>
+              <td>tehran</td>
+              <td>Bachelor</td>
+              <td class="code-cell" style="color:#059669;">$4500</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1290</td>
+              <td>reza</td>
+              <td>bahmani</td>
+              <td>male</td>
+              <td>34.0</td>
+              <td>yazd</td>
+              <td>Bachelor</td>
+              <td class="code-cell" style="color:#059669;">$3400</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1211</td>
+              <td>zahra</td>
+              <td>farhadi</td>
+              <td>female</td>
+              <td></td>
+              <td>tehran</td>
+              <td>Master</td>
+              <td class="code-cell" style="color:#059669;">$3900</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1599</td>
+              <td>hadis</td>
+              <td>sohrabi</td>
+              <td>female</td>
+              <td>25.0</td>
+              <td>?</td>
+              <td>Bachelor</td>
+              <td class="code-cell" style="color:#059669;">$4800</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1441</td>
+              <td>saber</td>
+              <td>tohidi</td>
+              <td>male</td>
+              <td>32.0</td>
+              <td>khorramabad</td>
+              <td>PhD</td>
+              <td class="code-cell" style="color:#059669;">$5800</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1733</td>
+              <td>kazem</td>
+              <td>yari</td>
+              <td>male</td>
+              <td>0.0</td>
+              <td>kashan</td>
+              <td></td>
+              <td class="code-cell" style="color:#059669;">$3100</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1930</td>
+              <td>fatemeh</td>
+              <td>bagheri</td>
+              <td>female</td>
+              <td>50.0</td>
+              <td>tehran</td>
+              <td>Master</td>
+              <td class="code-cell" style="color:#059669;">$5500</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1322</td>
+              <td>bahram</td>
+              <td>karimi</td>
+              <td>male</td>
+              <td>21.0</td>
+              <td>yazd</td>
+              <td>Bachelor</td>
+              <td class="code-cell" style="color:#059669;">$5200</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1870</td>
+              <td>narges</td>
+              <td>rahmati</td>
+              <td>female</td>
+              <td>37.0</td>
+              <td>kashan</td>
+              <td>Master</td>
+              <td class="code-cell" style="color:#059669;">$5900</td>
+            </tr>
+    
+            <tr>
+              <td class="code-cell">1655</td>
+              <td>hamed</td>
+              <td>sadeghi</td>
+              <td>male</td>
+              <td>49.0</td>
+              <td>n.a.</td>
+              <td>PhD</td>
+              <td class="code-cell" style="color:#059669;">$6300</td>
+            </tr>
+    
+          </tbody>
+        </table>
+      </div>
+
+      <div class="challenge-grid">
+        <div class="challenge">
+          <strong>۱. خواندن با na_values</strong>
+          <code>df = pd.read_csv('Employees.csv', na_values=['?', '-'])</code>
+        </div>
+        <div class="challenge">
+          <strong>۲. پر کردن با میانگین</strong>
+          <code>df['Age'].fillna(df['Age'].mean(), inplace=True)</code>
+        </div>
+        <div class="challenge">
+          <strong>۳. میانگین حقوق بر اساس مدرک</strong>
+          <code>df.groupby('Degree')['Salary'].mean()</code>
+        </div>
+        <div class="challenge">
+          <strong>۴. آمار چندگانه سن</strong>
+          <code>df.groupby('Gender')['Age'].agg(['min','max','mean'])</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۱: پروژه Titanic -->
+  <section class="slide" id="s11">
+    <div class="slide-header">
+      <div class="slide-number">۱۱</div>
+      <h2 class="slide-title">پروژه ۲: تحلیل پیشرفته فاجعه تایتانیک (فایل‌های ۱۸، ۲۰ و ۲۱)</h2>
+    </div>
+    <div class="slide-body">
+      <p>دیتاست <code>titanic.csv</code> شامل ۸۹۱ سطر داده مسافران واقعی کشتی تایتانیک است:</p>
+      
+      <!-- Metrics -->
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="title">نرخ بقای کلی مسافران</div>
+          <div class="val" style="color:#2563eb;">۳۸.۳۸٪</div>
+          <div class="bar-track"><div class="bar-fill" style="width:38.38%; background:#2563eb;"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="title">بقای بانوان (Female)</div>
+          <div class="val" style="color:#059669;">۷۴.۲۰٪</div>
+          <div class="bar-track"><div class="bar-fill" style="width:74.2%; background:#059669;"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="title">بقای آقایان (Male)</div>
+          <div class="val" style="color:#e11d48;">۱۸.۸۹٪</div>
+          <div class="bar-track"><div class="bar-fill" style="width:18.89%; background:#e11d48;"></div></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th>شاخص آماری</th>
+              <th>کد متناظر در Pandas</th>
+              <th>نتیجه تحلیل داده</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>نرخ بقای کلی مسافران</td><td class="code-cell">df['Survived'].value_counts(normalize=True)*100</td><td>۳۸.۳۸٪ زنده ماندند | ۶۱.۶۲٪ فوت شدند</td></tr>
+            <tr><td>نرخ بقا به تفکیک جنسیت</td><td class="code-cell">df.groupby('Sex')['Survived'].mean()*100</td><td>بانوان: ۷۴.۲۰٪ بقا | آقایان: ۱۸.۸۹٪ بقا</td></tr>
+            <tr><td>بقا بر اساس کلاس بلیت</td><td class="code-cell">df.groupby('Pclass')['Survived'].mean()*100</td><td>کلاس ۱ (۶۲.۹۶٪) | کلاس ۲ (۴۷.۲۸٪) | کلاس ۳ (۲۴.۲۳٪)</td></tr>
+            <tr><td>بقا همزمان کلاس و جنسیت</td><td class="code-cell">df.groupby(['Pclass', 'Sex'])['Survived'].mean()*100</td><td>زنان کلاس ۱ با ۹۶.۸٪ بیشترین شانس بقا را داشتند</td></tr>
+            <tr><td>میانگین کرایه بلیت</td><td class="code-cell">df.groupby('Pclass')['Fare'].mean()</td><td>کلاس ۱: ۸۴.۱۵ دلار | کلاس ۲: ۲۰.۶۶ | کلاس ۳: ۱۳.۶۷</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۲: جدول نیازمندی‌ها -->
+  <section class="slide" id="s12">
+    <div class="slide-header">
+      <div class="slide-number">۱۲</div>
+      <h2 class="slide-title">جدول متدها و نیازمندی‌های کلیدی پانداس و نام‌پای</h2>
+    </div>
+    <div class="slide-body">
+      <div class="table-wrap">
+        <table class="req-table">
+          <thead>
+            <tr>
+              <th style="width:70px;">کد</th>
+              <th>شرح دستور و کارکرد در پایتون</th>
+              <th style="width:90px;">نوع</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="code-cell">M-01</td><td>خواندن فایل CSV با تبدیل مقادیر گمشده با <code>na_values</code></td><td><span class="tag tag-fr">ورودی داده</span></td></tr>
+            <tr><td class="code-cell">M-02</td><td>انتخاب بر اساس نام و لیبل ستون‌ها با متد <code>loc</code></td><td><span class="tag tag-fr">ایندکس</span></td></tr>
+            <tr><td class="code-cell">M-03</td><td>انتخاب بر اساس ایندکس عددی موقعیت با <code>iloc</code></td><td><span class="tag tag-fr">ایندکس</span></td></tr>
+            <tr><td class="code-cell">M-04</td><td>حذف سطرهای تهی با <code>df.dropna(how='all')</code></td><td><span class="tag tag-nfr">پاکسازی</span></td></tr>
+            <tr><td class="code-cell">M-05</td><td>جایگزینی مقادیر گمشده NaN با میانگین ستون <code>fillna</code></td><td><span class="tag tag-nfr">پاکسازی</span></td></tr>
+            <tr><td class="code-cell">M-06</td><td>گروه‌بندی و محاسبات چندگانه با <code>groupby.agg</code></td><td><span class="tag tag-fr">تحلیل داده</span></td></tr>
+            <tr><td class="code-cell">M-07</td><td>محاسبه در راستای عمودی ستون‌ها با <code>axis=0</code> در نام‌پای</td><td><span class="tag tag-fr">نام‌پای</span></td></tr>
+            <tr><td class="code-cell">M-08</td><td>محاسبه در راستای افقی سطرها با <code>axis=1</code> در نام‌پای</td><td><span class="tag tag-fr">نام‌پای</span></td></tr>
+            <tr><td class="code-cell">M-09</td><td>تولید بازه نقاط مساوی با <code>np.linspace()</code></td><td><span class="tag tag-fr">نام‌پای</span></td></tr>
+            <tr><td class="code-cell">M-10</td><td>نمایش آمار توصیفی جدول با <code>df.describe()</code></td><td><span class="tag tag-fr">اکتشاف داده</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۳: چالش‌ها -->
+  <section class="slide" id="s13">
+    <div class="slide-header">
+      <div class="slide-number">۱۳</div>
+      <h2 class="slide-title">چالش‌های درس و تله‌های امتحانی دانشجویان</h2>
+    </div>
+    <div class="slide-body">
+      <div class="challenge-grid">
+        <div class="challenge"><strong>تفاوت loc و iloc</strong> در loc انتهای بازه inclusive است ولی در iloc انتهای بازه حذف می‌شود.</div>
+        <div class="challenge"><strong>تله محورها (axis=0/1)</strong> در نام‌پای axis=0 یعنی عملیات عمودی سطر به سطر، نه افقی روی هر سطر!</div>
+        <div class="challenge"><strong>رفتار inplace=True</strong> فراموش کردن inplace باعث می‌شود دیتافریم اصلی تغییری نکند.</div>
+        <div class="challenge"><strong>پرانتز در فیلترهای چندگانه</strong> همیشه شروط & و | را درون پرانتز بگذارید تا خطای اولویت عملگر رخ ندهد.</div>
+        <div class="challenge"><strong>آرگومان‌های *args و **kwargs</strong> آرگومان *args تاپل است در حالی که **kwargs دیکشنری کلید-مقدار است.</div>
+        <div class="challenge"><strong>تفاوت arange و linspace</strong> در linspace نقطه پایانی حتماً داخل خروجی هست، ولی در arange خیر.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۴: آزمون خودآزمایی کامل با تمام ۸ سوال -->
+  <section class="slide" id="s14">
+    <div class="slide-header">
+      <div class="slide-number">۱۴</div>
+      <h2 class="slide-title">آزمون خودآزمایی پایان‌ترم (تمام ۸ سوال استاندارد با پاسخ تشریحی)</h2>
+    </div>
+    <div class="slide-body">
+      <p>تست‌های زیر را پاسخ دهید تا نمره و تحلیل تشریحی پاسخ‌ها بلافاصله نمایش داده شود:</p>
+
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">1. تفاوت اصلی و اساسی بین متدهای loc و iloc در کتابخانه Pandas چیست؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q1" onchange="checkQuiz('q1', 0, 0, 'در پانداس متد loc بر اساس نام واقعی سطرها یا ستون‌ها کار می‌کند (مثلاً df.loc[:, 'Age']) و انتهای بازه در آن مشمول (Inclusive) است؛ در حالی که iloc بر اساس ایندکس‌های عدد صحیح ۰ تا n کار کرده و مانند برش‌های پایتون انتهای آن Exclusive است.')">
+            <span>1) متد loc بر اساس نام و برچسب‌های ایندکس (Label-based) کار می‌کند در حالی که iloc بر اساس اندیس‌های عددی و موقعیت (Position-based) عمل می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q1" onchange="checkQuiz('q1', 1, 0, 'در پانداس متد loc بر اساس نام واقعی سطرها یا ستون‌ها کار می‌کند (مثلاً df.loc[:, 'Age']) و انتهای بازه در آن مشمول (Inclusive) است؛ در حالی که iloc بر اساس ایندکس‌های عدد صحیح ۰ تا n کار کرده و مانند برش‌های پایتون انتهای آن Exclusive است.')">
+            <span>2) متد loc فقط برای سطرهای دیتافریم است و متد iloc فقط برای ستون‌ها کاربرد دارد.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q1" onchange="checkQuiz('q1', 2, 0, 'در پانداس متد loc بر اساس نام واقعی سطرها یا ستون‌ها کار می‌کند (مثلاً df.loc[:, 'Age']) و انتهای بازه در آن مشمول (Inclusive) است؛ در حالی که iloc بر اساس ایندکس‌های عدد صحیح ۰ تا n کار کرده و مانند برش‌های پایتون انتهای آن Exclusive است.')">
+            <span>3) متد iloc داده‌ها را به صورت خودکار مرتب می‌کند اما loc داده‌ها را بدون تغییر حفظ می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q1" onchange="checkQuiz('q1', 3, 0, 'در پانداس متد loc بر اساس نام واقعی سطرها یا ستون‌ها کار می‌کند (مثلاً df.loc[:, 'Age']) و انتهای بازه در آن مشمول (Inclusive) است؛ در حالی که iloc بر اساس ایندکس‌های عدد صحیح ۰ تا n کار کرده و مانند برش‌های پایتون انتهای آن Exclusive است.')">
+            <span>4) هیچ تفاوتی بین آنها وجود ندارد و صرفاً نام‌های جایگزین یکدیگر هستند.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q1" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">2. در کتابخانه NumPy، تعیین پارامتر axis=0 در تابعی مانند arr.sum(axis=0) چه مفهومی دارد؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q2" onchange="checkQuiz('q2', 0, 0, 'در نام‌پای axis=0 یعنی عملیات در راستای عمودی (سطر به سطر به پایین) روی مقادیر هر ستون اجرا می‌شود و در نهایت برای هر ستون یک مجموع به دست می‌آید.')">
+            <span>1) محاسبه مجموع در امتداد سطرها (به سمت پایین در هر ستون) انجام شده و بعد سطرها فشرده می‌شود.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q2" onchange="checkQuiz('q2', 1, 0, 'در نام‌پای axis=0 یعنی عملیات در راستای عمودی (سطر به سطر به پایین) روی مقادیر هر ستون اجرا می‌شود و در نهایت برای هر ستون یک مجموع به دست می‌آید.')">
+            <span>2) محاسبه مجموع به صورت افقی روی هر سطر انجام می‌شود.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q2" onchange="checkQuiz('q2', 2, 0, 'در نام‌پای axis=0 یعنی عملیات در راستای عمودی (سطر به سطر به پایین) روی مقادیر هر ستون اجرا می‌شود و در نهایت برای هر ستون یک مجموع به دست می‌آید.')">
+            <span>3) کل عناصر آرایه به صورت یکجا و اسکالر با هم جمع می‌شوند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q2" onchange="checkQuiz('q2', 3, 0, 'در نام‌پای axis=0 یعنی عملیات در راستای عمودی (سطر به سطر به پایین) روی مقادیر هر ستون اجرا می‌شود و در نهایت برای هر ستون یک مجموع به دست می‌آید.')">
+            <span>4) محاسبه فقط برای سطرهای زوج آرایه انجام می‌شود.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q2" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">3. رفتار دستور df.dropna(how='all') در دیتافریم‌های پانداس چگونه است؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q3" onchange="checkQuiz('q3', 0, 0, 'حالت پیش‌فرض dropna با how='any' است که در صورت وجود حتی یک مقدار NaN آن سطر را حذف می‌کند، اما how='all' سخت‌گیرانه‌تر بوده و تنها زمانی سطر را حذف می‌کند که کل مقادیر آن تهی باشد.')">
+            <span>1) فقط سطرهایی را حذف می‌کند که تمام ستون‌های آن سطر تهی یا NaN باشند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q3" onchange="checkQuiz('q3', 1, 0, 'حالت پیش‌فرض dropna با how='any' است که در صورت وجود حتی یک مقدار NaN آن سطر را حذف می‌کند، اما how='all' سخت‌گیرانه‌تر بوده و تنها زمانی سطر را حذف می‌کند که کل مقادیر آن تهی باشد.')">
+            <span>2) هر سطری که حداقل یک مقدار گم‌شده یا NaN داشته باشد بلافاصله حذف می‌شود.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q3" onchange="checkQuiz('q3', 2, 0, 'حالت پیش‌فرض dropna با how='any' است که در صورت وجود حتی یک مقدار NaN آن سطر را حذف می‌کند، اما how='all' سخت‌گیرانه‌تر بوده و تنها زمانی سطر را حذف می‌کند که کل مقادیر آن تهی باشد.')">
+            <span>3) تمامی مقادیر عددی صفر را از دیتافریم پاک می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q3" onchange="checkQuiz('q3', 3, 0, 'حالت پیش‌فرض dropna با how='any' است که در صورت وجود حتی یک مقدار NaN آن سطر را حذف می‌کند، اما how='all' سخت‌گیرانه‌تر بوده و تنها زمانی سطر را حذف می‌کند که کل مقادیر آن تهی باشد.')">
+            <span>4) کل جدول دیتافریم را به طور کامل خالی می‌کند.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q3" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">4. مفهوم ویژگی Broadcasting در آرایه‌های محاسباتی NumPy چیست؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q4" onchange="checkQuiz('q4', 0, 0, 'برودکستینگ به نام‌پای اجازه می‌دهد عملیات حسابی بین آرایه‌های با ابعاد متفاوت (مانند جمع یک عدد ثابت اسکالر با یک ماتریس ۲بعدی) را با سرعت فوق‌العاده C و بدون مصرف حافظه اضافی انجام دهد.')">
+            <span>1) توانایی نام‌پای در انجام عملیات حسابی بین آرایه‌هایی با شکل‌ها و ابعاد سازگار بدون کپی فیزیکی داده در حافظه.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q4" onchange="checkQuiz('q4', 1, 0, 'برودکستینگ به نام‌پای اجازه می‌دهد عملیات حسابی بین آرایه‌های با ابعاد متفاوت (مانند جمع یک عدد ثابت اسکالر با یک ماتریس ۲بعدی) را با سرعت فوق‌العاده C و بدون مصرف حافظه اضافی انجام دهد.')">
+            <span>2) ارسال هم‌زمان مقادیر ماتریس به مانیتور و خروجی وب.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q4" onchange="checkQuiz('q4', 2, 0, 'برودکستینگ به نام‌پای اجازه می‌دهد عملیات حسابی بین آرایه‌های با ابعاد متفاوت (مانند جمع یک عدد ثابت اسکالر با یک ماتریس ۲بعدی) را با سرعت فوق‌العاده C و بدون مصرف حافظه اضافی انجام دهد.')">
+            <span>3) تبدیل خودکار مقادیر عددی صحیح به اعداد مختلط.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q4" onchange="checkQuiz('q4', 3, 0, 'برودکستینگ به نام‌پای اجازه می‌دهد عملیات حسابی بین آرایه‌های با ابعاد متفاوت (مانند جمع یک عدد ثابت اسکالر با یک ماتریس ۲بعدی) را با سرعت فوق‌العاده C و بدون مصرف حافظه اضافی انجام دهد.')">
+            <span>4) پخش زنده مقادیر نوت‌بوک به سایر کاربران شبکه.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q4" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">5. در پایتون، کاربرد عملگرهای *args و **kwargs در تعریف یک تابع چیست؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q5" onchange="checkQuiz('q5', 0, 0, 'با استفاده از *args می‌توان هر تعداد پارامتر بدون نام دلخواه (به فرم تاپل) و با **kwargs هر تعداد پارامتر نام‌دار نامحدود (به فرم دیکشنری کلید و مقدار) به تابع ارسال کرد.')">
+            <span>1) *args آرگومان‌های موقعیتی نامحدود را به صورت تاپل دریافت می‌کند و **kwargs آرگومان‌های کلیدواژه‌ای را به صورت دیکشنری دریافت می‌نماید.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q5" onchange="checkQuiz('q5', 1, 0, 'با استفاده از *args می‌توان هر تعداد پارامتر بدون نام دلخواه (به فرم تاپل) و با **kwargs هر تعداد پارامتر نام‌دار نامحدود (به فرم دیکشنری کلید و مقدار) به تابع ارسال کرد.')">
+            <span>2) هر دو جهت ضرب و توان‌رسانی مقادیر ورودی درون هدر تابع استفاده می‌شوند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q5" onchange="checkQuiz('q5', 2, 0, 'با استفاده از *args می‌توان هر تعداد پارامتر بدون نام دلخواه (به فرم تاپل) و با **kwargs هر تعداد پارامتر نام‌دار نامحدود (به فرم دیکشنری کلید و مقدار) به تابع ارسال کرد.')">
+            <span>3) *args برای توابع بازگشتی است و **kwargs برای توابع لامبدا.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q5" onchange="checkQuiz('q5', 3, 0, 'با استفاده از *args می‌توان هر تعداد پارامتر بدون نام دلخواه (به فرم تاپل) و با **kwargs هر تعداد پارامتر نام‌دار نامحدود (به فرم دیکشنری کلید و مقدار) به تابع ارسال کرد.')">
+            <span>4) فقط برای دریافت متغیرهای بولین به کار می‌روند.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q5" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">6. دستور df.groupby('Pclass')['Survived'].mean() در تحلیل دیتاست تایتانیک چه آماری تولید می‌کند؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q6" onchange="checkQuiz('q6', 0, 0, 'ستون Survived دارای مقادیر 0 (فوت شده) و 1 (نجات‌یافته) است، بنابراین میانگین آن برای هر گروه دقیقا برابر با نسبت و نرخ درصد بقای مسافران آن گروه است (مثلاً کلاس ۱ بیشترین درصد بقا را داشت).')">
+            <span>1) نرخ و درصد بقای مسافران را به تفکیک سه کلاس بلیت مسافران محاسبه می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q6" onchange="checkQuiz('q6', 1, 0, 'ستون Survived دارای مقادیر 0 (فوت شده) و 1 (نجات‌یافته) است، بنابراین میانگین آن برای هر گروه دقیقا برابر با نسبت و نرخ درصد بقای مسافران آن گروه است (مثلاً کلاس ۱ بیشترین درصد بقا را داشت).')">
+            <span>2) تعداد کل مسافران نجات‌یافته را بر تعداد کل قایق‌ها تقسیم می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q6" onchange="checkQuiz('q6', 2, 0, 'ستون Survived دارای مقادیر 0 (فوت شده) و 1 (نجات‌یافته) است، بنابراین میانگین آن برای هر گروه دقیقا برابر با نسبت و نرخ درصد بقای مسافران آن گروه است (مثلاً کلاس ۱ بیشترین درصد بقا را داشت).')">
+            <span>3) میانگین سن مسافران نجات‌یافته در هر کلاس بلیت را برمی‌گرداند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q6" onchange="checkQuiz('q6', 3, 0, 'ستون Survived دارای مقادیر 0 (فوت شده) و 1 (نجات‌یافته) است، بنابراین میانگین آن برای هر گروه دقیقا برابر با نسبت و نرخ درصد بقای مسافران آن گروه است (مثلاً کلاس ۱ بیشترین درصد بقا را داشت).')">
+            <span>4) میانگین کرایه بلیت مسافران فوت شده را نشان می‌دهد.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q6" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">7. تفاوت ساختار داده تاپل (Tuple) و لیست (List) در چیست؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q7" onchange="checkQuiz('q7', 0, 0, 'تاپل‌ها به دلیل ایمیوتبل بودن در حافظه محافظت شده و به عنوان کلید دیکشنری قابل استفاده هستند، اما عناصر لیست را می‌توان در هر لحظه ویرایش، حذف یا اضافه کرد.')">
+            <span>1) لیست‌ها تغییرپذیر (Mutable) هستند در حالی که تاپل‌ها پس از تعریف غیرقابل تغییر (Immutable) می‌باشند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q7" onchange="checkQuiz('q7', 1, 0, 'تاپل‌ها به دلیل ایمیوتبل بودن در حافظه محافظت شده و به عنوان کلید دیکشنری قابل استفاده هستند، اما عناصر لیست را می‌توان در هر لحظه ویرایش، حذف یا اضافه کرد.')">
+            <span>2) تاپل‌ها فقط مقادیر متنی قبول می‌کنند ولی لیست‌ها فقط اعداد.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q7" onchange="checkQuiz('q7', 2, 0, 'تاپل‌ها به دلیل ایمیوتبل بودن در حافظه محافظت شده و به عنوان کلید دیکشنری قابل استفاده هستند، اما عناصر لیست را می‌توان در هر لحظه ویرایش، حذف یا اضافه کرد.')">
+            <span>3) لیست‌ها با پرانتز و تاپل‌ها با براکت تعریف می‌شوند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q7" onchange="checkQuiz('q7', 3, 0, 'تاپل‌ها به دلیل ایمیوتبل بودن در حافظه محافظت شده و به عنوان کلید دیکشنری قابل استفاده هستند، اما عناصر لیست را می‌توان در هر لحظه ویرایش، حذف یا اضافه کرد.')">
+            <span>4) سرعت پیمایش لیست‌ها به مراتب بیشتر از تاپل‌ها است.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q7" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+      <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 14px; margin-bottom: 12px;">
+        <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px; color:#0f172a;">8. تابع ناشناس Lambda در پایتون چه ویژگی بارزی دارد؟</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+    
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q8" onchange="checkQuiz('q8', 0, 0, 'لامبداها توابع بی‌نام تک‌خطی با سینتکس lambda x, y: x + y هستند و بیشتر به عنوان آرگومان ورودی برای توابعی مانند sort، map و filter به کار می‌روند.')">
+            <span>1) یک تابع تک‌خطی بدون نیاز به دستور def است که می‌تواند هر تعداد آرگومان داشته باشد اما فقط یک عبارت محاسباتی را برمی‌گرداند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q8" onchange="checkQuiz('q8', 1, 0, 'لامبداها توابع بی‌نام تک‌خطی با سینتکس lambda x, y: x + y هستند و بیشتر به عنوان آرگومان ورودی برای توابعی مانند sort، map و filter به کار می‌روند.')">
+            <span>2) تابعی است که فقط با ماژول ریاضی math کار می‌کند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q8" onchange="checkQuiz('q8', 2, 0, 'لامبداها توابع بی‌نام تک‌خطی با سینتکس lambda x, y: x + y هستند و بیشتر به عنوان آرگومان ورودی برای توابعی مانند sort، map و filter به کار می‌روند.')">
+            <span>3) یک تابع مخصوص چاپ گرافیکی است و مقدار عددی برنمی‌گرداند.</span>
+          </label>
+        
+          <label style="font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; background:#fff; padding:6px 10px; border-radius:6px; border:1px solid #e2e8f0;">
+            <input type="radio" name="q_q8" onchange="checkQuiz('q8', 3, 0, 'لامبداها توابع بی‌نام تک‌خطی با سینتکس lambda x, y: x + y هستند و بیشتر به عنوان آرگومان ورودی برای توابعی مانند sort، map و filter به کار می‌روند.')">
+            <span>4) حلقه‌های تکرار نامحدود درون پایتون ایجاد می‌کند.</span>
+          </label>
+        
+        </div>
+        <div id="q_feedback_q8" style="display: none; margin-top: 8px; font-size: 12.5px; padding: 8px 12px; border-radius: 6px; line-height:1.7;"></div>
+      </div>
+    
+    </div>
+  </section>
+
+  <!-- اسلاید ۱۵: نتیجه‌گیری -->
+  <section class="slide" id="s15">
+    <div class="slide-header">
+      <div class="slide-number">۱۵</div>
+      <h2 class="slide-title">جمع‌بندی و نتیجه‌گیری نهایی دوره</h2>
+    </div>
+    <div class="slide-body">
+      <div class="conclusion">
+        <blockquote>
+          <p>"Data analysis is not just about writing code; it is about asking the right questions from data and turning raw observations into actionable intelligence." — Wes McKinney</p>
+        </blockquote>
+        <p>
+          تحلیل داده صرفاً کدنویسی محض نیست؛ بلکه نیازمند <strong>فهم ساختار داده‌ها</strong>، 
+          <strong>شناسایی و پاکسازی مقادیر نامعتبر</strong>، و <strong>استخراج بینش‌های آماری دقیق</strong> است. 
+          ترکیب مهارت‌های پایتون پایه با کتابخانه‌های قدرتمند <strong>NumPy</strong> و <strong>Pandas</strong>، 
+          ستون فقرات یادگیری علوم داده و هوش مصنوعی را شکل می‌دهد.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+// سایز فونت
+let currentFont = 15.5;
+function changeFontSize(delta) {
+  currentFont += delta;
+  if (currentFont < 13) currentFont = 13;
+  if (currentFont > 20) currentFont = 20;
+  document.documentElement.style.setProperty('--font-base', currentFont + 'px');
+}
+
+// تابع باز و بسته کردن کنسول تعاملی پایتون
+function toggleIde() {
+  const modal = document.getElementById('ideModal');
+  if (modal.style.display === 'block') {
+    modal.style.display = 'none';
+  } else {
+    modal.style.display = 'block';
+  }
+}
+
+// بارگذاری کد در کنسول و اجرای فوری
+function loadAndRun(code, filename) {
+  const modal = document.getElementById('ideModal');
+  modal.style.display = 'block';
+  document.getElementById('ideCodeInput').value = code;
+  executeIde(filename);
+}
+
+// اجرای کد در کنسول با موتور شبیه‌ساز هوشمند
+function executeIde(filename) {
+  const code = document.getElementById('ideCodeInput').value;
+  const term = document.getElementById('ideOutputTerminal');
+  const simInput = document.getElementById('simulatedInput').value || '20';
+  
+  term.innerText = '>>> در حال اجرای [' + (filename || 'برنامه پایتون') + '] ...\n';
+  
+  setTimeout(() => {
+    let out = 'Python 3.12 Evaluation Succeeded (Exit Code 0)\n----------------------------------------\n';
+    
+    // ارزیابی خطوط
+    const lines = code.split('\n');
+    let prints = [];
+    let vars = { x: 15, y: 25, s: 40 };
+    
+    for (let l of lines) {
+      l = l.trim();
+      if (!l || l.startsWith('#')) continue;
+      
+      // تشخیص انتساب ساده
+      if (l.includes('=') && !l.startsWith('print') && !l.startsWith('if') && !l.startsWith('for')) {
+        let parts = l.split('=');
+        let varName = parts[0].trim();
+        let valExpr = parts[1].trim();
+        try {
+          if (valExpr.includes('input(')) {
+            vars[varName] = parseInt(simInput, 10) || simInput;
+            prints.push('[ورودی کاربر دریافت شد: ' + simInput + ']');
+          } else {
+            // ارزیابی عبارت عددی
+            let jsExpr = valExpr;
+            for (let k in vars) {
+              jsExpr = jsExpr.replace(new RegExp('\\b' + k + '\\b', 'g'), vars[k]);
+            }
+            vars[varName] = eval(jsExpr);
+          }
+        } catch(e) {}
+      }
+      
+      // تشخیص پرینت
+      if (l.startsWith('print(') && l.endsWith(')')) {
+        let inside = l.substring(6, l.length - 1).trim();
+        // f-string
+        if (inside.startsWith('f"') || inside.startsWith("f'")) {
+          let strVal = inside.substring(2, inside.length - 1);
+          strVal = strVal.replace(/\{([^}]+)\}/g, function(match, p1) {
+            let expr = p1.trim();
+            if (vars[expr] !== undefined) return vars[expr];
+            try {
+              let jsExpr = expr;
+              for (let k in vars) {
+                jsExpr = jsExpr.replace(new RegExp('\\b' + k + '\\b', 'g'), vars[k]);
+              }
+              return eval(jsExpr);
+            } catch(e) { return match; }
+          });
+          prints.push(strVal);
+        } else {
+          try {
+            let jsExpr = inside;
+            for (let k in vars) {
+              jsExpr = jsExpr.replace(new RegExp('\\b' + k + '\\b', 'g'), vars[k]);
+            }
+            prints.push(eval(jsExpr));
+          } catch(e) {
+            prints.push(inside.replace(/['"]/g, ''));
+          }
+        }
+      }
+    }
+    
+    if (prints.length > 0) {
+      out += prints.join('\n');
+    } else {
+      out += 'برنامه با موفقیت اجرا شد (خروجی متنی بدون دستور print خاتمه یافت).';
+    }
+    
+    term.innerText = out;
+  }, 150);
+}
+
+// بررسی سوالات خودآزمایی
+function checkQuiz(qId, selectedIdx, correctIdx, explanation) {
+  const fb = document.getElementById('q_feedback_' + qId);
+  fb.style.display = 'block';
+  if (selectedIdx === correctIdx) {
+    fb.style.background = '#dcfce7';
+    fb.style.color = '#15803d';
+    fb.style.border = '1px solid #86efac';
+    fb.innerHTML = '<strong>✓ پاسخ صحیح است!</strong><br><span style="font-size:12px; color:#166534;">' + explanation + '</span>';
+  } else {
+    fb.style.background = '#fee2e2';
+    fb.style.color = '#991b1b';
+    fb.style.border = '1px solid #fca5a5';
+    fb.innerHTML = '<strong>✗ پاسخ نادرست است.</strong> گزینه صحیح شماره ' + (correctIdx + 1) + ' می‌باشد.<br><span style="font-size:12px; color:#7f1d1d;">' + explanation + '</span>';
+  }
+}
+</script>
+
+</body>
+</html>

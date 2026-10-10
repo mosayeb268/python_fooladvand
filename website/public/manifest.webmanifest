@@ -1,0 +1,22 @@
+{
+  "name": "پرتال جامع پایتون برای تحلیل داده (PDA)",
+  "short_name": "PDA Python",
+  "description": "جزوه آموزشی جامع و محیط تعاملی تحلیل داده با پایتون ویژه تبلت شیائومی Pad 6 Pro و وب",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 192x192 256x256 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "developer", "productivity"]
+}

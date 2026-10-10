@@ -1,0 +1,884 @@
+[
+  {
+    "id": "ch-intro",
+    "num": "۰",
+    "title": "مقدمه و مراجع درس پایتون برای تحلیل داده",
+    "subtitle": "نقشه راه، ساختار دوره دانشگاهی ترم ۶ و معرفی کتب مرجع اصلی",
+    "badge": "مراجع دوره",
+    "color": "from-cyan-500 to-blue-600",
+    "sections": [
+      {
+        "id": "sec-welcome",
+        "title": "۱. درباره دوره و اهداف آموزشی",
+        "content": "به جزوه آموزشی تعاملی درس «پایتون برای تحلیل داده (Python for Data Analysis)» خوش آمدید!\nاین جزوه به گونه‌ای طراحی شده است که شما بتوانید تمام مباحث ترم ۶ دانشگاه را از صفر به صورت گام‌به‌گام و مرتب مطالعه کنید. در کنار متن درس، تمام ۳۳ برنامه آموزشی، ۴ نوت‌بوک ژوپیتر و ۲ دیتاست واقعی با قابلیت اجرای زنده در IDE یکپارچه تعبیه شده‌اند.\n\n🎯 **اهداف این دوره:**\n• یادگیری اصولی پایتون ۳ و ساختارهای داده اصلی (لیست، تاپل، ست و دیکشنری)\n• تسلط بر تعریف توابع ماژولار، متغیرهای متغیر و عبارات Lambda\n• محاسبات ماتریسی سریع و برداری با کتابخانه NumPy\n• تحلیل، دستکاری و پاکسازی داده‌ها (Data Cleaning) با کتابخانه قدرتمند Pandas\n• مهندسی و کاوش داده روی دیتاست‌های واقعی جهان از جمله تایتانیک و آمار پرسنلی",
+        "type": "text"
+      },
+      {
+        "id": "sec-refs",
+        "title": "۲. کتب و مراجع رسمی تدریس‌شده (فایل‌های ۰۱ و ۰۲)",
+        "content": "در این دوره از دو منبع استاندارد استفاده می‌شود:\n\n📚 **کتاب اول: Python for Data Analysis (3rd Edition - 2022)**\nتألیف: وس مک‌کینی (Wes McKinney - خالق پانداس)\nاین کتاب، مرجع جهانی علم داده با پایتون است. نسخه کامل این کتاب با حجم ۹.۱۵ مگابایت به صورت PDF در پرتال قرار گرفته است و تمامی سرفصل‌های نام‌پای و پانداس بر اساس فصول ۴ تا ۷ این کتاب تنظیم شده‌اند.\n\n📚 **کتاب دوم: لیست کتب تکمیلی و راهنمای مراجع**\nفایل `01-PDA_ReferenceBooks.pdf` که راهنمای مطالعه برای دانشجویان است.",
+        "type": "resource",
+        "pdfLinks": [
+          {
+            "name": "01-PDA_ReferenceBooks.pdf",
+            "title": "فهرست مراجع درس",
+            "size": "168 KB"
+          },
+          {
+            "name": "02-Python for Data Analysis_2022.pdf",
+            "title": "کتاب اصلی وس مک‌کینی (PDF)",
+            "size": "9.15 MB"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch-basics",
+    "num": "۱",
+    "title": "مبانی پایتون، ورودی/خروجی و دستورات شرطی",
+    "subtitle": "متغیرها، عملگرها، تبدیل نوع، فرمت‌بندی f-string و ساختارهای تصمیم‌گیری",
+    "badge": "فصل ۱ • پایه",
+    "color": "from-emerald-500 to-teal-600",
+    "sourcePdfs": [
+      "03-booklet_PDA_Session1.pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-syntax",
+        "title": "۱. مفاهیم پایه، متغیرها و انواع داده (جزوه جلسه ۱)",
+        "content": "در پایتون متغیرها بدون نیاز به تعیین نوع صریح تعریف می‌شوند (Dynamic Typing). \nدستور `input()` همواره خروجی را به صورت رشته (str) دریافت می‌کند، بنابراین برای انجام محاسبات ریاضی باید از توابع تبدیل نوع نظیر `int()` یا `float()` استفاده شود.\n\nبرای نمایش خروجی‌های زیبا و پیشرفته، بهترین و مدرن‌ترین روش استفاده از **f-string** است:\n`print(f\"مقدار: {x} | نتیجه: {s}\")`",
+        "type": "text"
+      },
+      {
+        "id": "sec-scripts-1",
+        "title": "۲. نمونه کدهای عملی فصل ۱ (اسکریپت‌های ۱-۱ تا ۱-۹)",
+        "content": "نمونه کدهای زیر را مطالعه کرده و با کلیک روی دکمه «⚡ ارسال به IDE»، آن‌ها را مستقیماً در کنسول تعاملی اجرا و دستکاری کنید:",
+        "type": "scripts_group",
+        "scripts": [
+          {
+            "id": "chapter-1-1-1_py",
+            "filename": "1-1.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "دریافت دو عدد از کاربر و نمایش حاصل‌جمع با ساختار f-string و جداکننده‌های سفارشی",
+            "sampleInputs": "x=15, y=25",
+            "expectedOutput": "x=15 @@@ y=25 @@@ x+y=40",
+            "code": "x=int(input(\"Adad aval ra vared konid:\"))\ny=int(input(\"Adad Dovom ra vared konid:\"))\ns=x+y\n#print(\"x=\",x,\" y=\",y,\" x+y=\",s,end=\" , \",sep=\"***\")\nprint(f\"x={x} @@@ y={y} @@@ x+y={s}\")",
+            "lineCount": 5,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-1.py"
+          },
+          {
+            "id": "chapter-1-1-2_py",
+            "filename": "1-2.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "محاسبه مساحت و محیط دایره با دریافت شعاع با استفاده از عدد پی در کتابخانه math",
+            "sampleInputs": "r=15",
+            "expectedOutput": "Masahat=706.8583470577034 , Mohit=94.24777960769379",
+            "code": "import math\nr=float(input(\"Shoa Dayere ra vared konid:\"))\ns=math.pi*r**2\np=2*math.pi*r\nprint(f\"Masahat={s} , Mohit={p}\")",
+            "lineCount": 5,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "ماژول",
+              "ریاضیات",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-2.py"
+          },
+          {
+            "id": "chapter-1-1-3_py",
+            "filename": "1-3.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "دریافت عدد صحیح و چاپ مقدار آن در خروجی",
+            "sampleInputs": "x=15",
+            "expectedOutput": "x=15",
+            "code": "x=int(input(\"Adad ra vared konid:\"))\nif (x<0):\n    x=-x\nprint(f\"{x=}\")",
+            "lineCount": 4,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-3.py"
+          },
+          {
+            "id": "chapter-1-1-4_py",
+            "filename": "1-4.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "تشخیص زوج یا فرد بودن عدد ورودی با عملگر باقیمانده (%) و ساختار شرطی if-else",
+            "sampleInputs": "x=15",
+            "expectedOutput": "Adad 15 *fard* ast.",
+            "code": "x=int(input(\"Adad ra vared konid:\"))\nif x%2==0:\n    print(f\"Adad {x} *zoj* ast.\")\nelse:\n    print(f\"Adad {x} *fard* ast.\")",
+            "lineCount": 5,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-4.py"
+          },
+          {
+            "id": "chapter-1-1-5_py",
+            "filename": "1-5.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "ماشین‌حساب ساده ۴ عمل اصلی (+, -, *, /) با دریافت دو عدد و عملگر",
+            "sampleInputs": "x=15, y=25, op=+",
+            "expectedOutput": "15 + 25 = 40",
+            "code": "a=int(input(\"Adad aval ra vared konid: \"))\nb=int(input(\"Adad Dovom ra vared konid: \"))\nop=input(\"Amalgar ra vared konid: \")\nif op==\"+\":\n    print(f\"{a+b=}\")\nelif op==\"-\":\n    print(f\"{a-b=}\")\nelif op==\"*\":\n    print(f\"{a*b=}\")\nelif op==\"**\":\n    print(f\"{a**b=}\")\nelif op==\"/\":\n    print(f\"{a/b=:6.2f}\")\nelif op==\"//\":\n    print(f\"{a//b=}\")\nelse:\n    print(f\"yek amlgar Mojaz vared konid.\")\n",
+            "lineCount": 17,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-5.py"
+          },
+          {
+            "id": "chapter-1-1-6_py",
+            "filename": "1-6.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "بررسی علامت عدد ورودی (نامنفی Non-Negative یا منفی)",
+            "sampleInputs": "x=15",
+            "expectedOutput": "Non-Negative",
+            "code": "x=int(input(\"Enter x:\"))\n# if x<0:\n#     print(f\"Negative.\")\n# else:\n#     print(f\"Non-Negative.\")\n\ny=\"Negative\" if x<0 else \"Non-Negative\"\nprint(f\"{y}\")",
+            "lineCount": 8,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-6.py"
+          },
+          {
+            "id": "chapter-1-1-7_py",
+            "filename": "1-7.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "شمارش تعداد ارقام موجود در یک رشته متنی ورودی با پیمایش کاراکترها",
+            "sampleInputs": "text='Test 123'",
+            "expectedOutput": "Tedad Argham Matn hast=3",
+            "code": "text=input(\"Matan ra vared konid: \")\ncount=0\nfor ch in text:\n    if ch>=\"0\" and ch<=\"9\":\n        count+=1\n    print(f\"{ch}\",end=\" \")\nprint(f\"\\nTedad Argham Matn hast={count}\")\n",
+            "lineCount": 7,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-7.py"
+          },
+          {
+            "id": "chapter-1-1-8_py",
+            "filename": "1-8.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "پیدا کردن بزرگترین عدد بین سه عدد ورودی با ساختارهای مقایسه‌ای",
+            "sampleInputs": "a=12, b=45, c=20",
+            "expectedOutput": "Bozorgtarin adad: 45",
+            "code": "#range(start,stop,step)\ns=0\nN=5\nfor i in range(N):\n    s+=float(input(f\"Adad {i+1} ra vared konid: \"))\nprint(f\"Miyangin {N} adad hast={s/5:8.2f}\")\n",
+            "lineCount": 6,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-8.py"
+          },
+          {
+            "id": "chapter-1-1-9_py",
+            "filename": "1-9.py",
+            "chapterId": "chapter-1",
+            "chapterFolder": "05-Examples_Python_1",
+            "chapterTitle": "فصل ۱: ورودی/خروجی، محاسبات و عبارات شرطی",
+            "description": "محاسبه عبارت ریاضی سری توانی متغیرها با حلقه و فرمول",
+            "sampleInputs": "x=2, n=3",
+            "expectedOutput": "hasel ebarat ba x=2 va n=3 barabar ast ba 15",
+            "code": "x=int(input(\"Enter x: \"))\nn=int(input(\"Enter n: \"))\nsign=1\ns=0\nfor i in range(1,n+1,2):\n    s+=sign*(x**i)\n    sign=-sign\nprint(f\"hasel ebarat ba {x=} va {n=} barabar ast ba={s}\")\n\n",
+            "lineCount": 9,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/05-Examples_Python_1/1-9.py"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch-sequences",
+    "num": "۲",
+    "title": "ساختارهای توالی و داده‌های پیشرفته (Sequences)",
+    "subtitle": "لیست‌ها (List)، تاپل‌ها (Tuple)، دیکشنری‌ها (Dictionary) و حلقه‌های تکرار",
+    "badge": "فصل ۲ • توالی‌ها",
+    "color": "from-blue-500 to-indigo-600",
+    "sourcePdfs": [
+      "04-Sequences_in_Python.pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-seq-theory",
+        "title": "۱. مقایسه انواع ساختارهای توالی در پایتون",
+        "content": "چهار ساختمان داده اصلی توالی در پایتون عبارتند از:\n\n۱. **لیست (List):** با `[]` تعریف می‌شود. تغییرپذیر (Mutable) است و عناصر می‌توانند اضافه یا حذف شوند.\n۲. **تاپل (Tuple):** با `()` تعریف می‌شود. غیرقابل تغییر (Immutable) است و امنیت داده بالایی دارد.\n۳. **دیکشنری (Dictionary):** با `{}` و به صورت کلید:مقدار تعریف می‌شود و دسترسی با کلید با پیچیدگی زمانی O(1) انجام می‌شود.\n۴. **مجموعه (Set):** عناصر یکتا و بدون تکرار را ذخیره می‌کند.\n\nحلقه‌های `for` و `while` به ما اجازه می‌دهند این ساختارها را پیمایش کرده، مقادیر ماکسیمم/مینیمم را پیدا کنیم و محاسبات تجمعی انجام دهیم.",
+        "type": "text"
+      },
+      {
+        "id": "sec-scripts-2",
+        "title": "۲. نمونه کدهای عملی فصل ۲ (اسکریپت‌های ۲-۱ تا ۲-۱۱)",
+        "content": "الگوهای کاربردی کار با لیست‌ها، متدهای append، حذف، مجموع ارقام و بررسی رفتار ارجاع در حافظه:",
+        "type": "scripts_group",
+        "scripts": [
+          {
+            "id": "chapter-2-2-1_py",
+            "filename": "2-1.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "پیمایش اعداد و چاپ دنباله با حلقه و فیلتر شروط",
+            "sampleInputs": "بدون ورودی مستقیم",
+            "expectedOutput": "3 5 7 11 13",
+            "code": "for i in range(3, 15):\n    for j in range(2, i):\n        if i % j == 0:\n            break\n    else:\n        print(i, end=\" \")\n",
+            "lineCount": 6,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-1.py"
+          },
+          {
+            "id": "chapter-2-2-10_py",
+            "filename": "2-10.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "بررسی تفاوت حوزه دید متغیر محلی و متغیر عمومی (Scope: Local vs Global)",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "x=5\nx=10\nx=5",
+            "code": "def Func(x):\n    print(f\"{x=}\")  # 5\n    x = 10\n    print(f\"{x=}\")  # 10\n\n\n# --------------------\nx = 5\nFunc(x)\nprint(f\"{x=}\")  # 5\n",
+            "lineCount": 10,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-10.py"
+          },
+          {
+            "id": "chapter-2-2-11_py",
+            "filename": "2-11.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "رفتار ارجاع و حافظه در لیست‌های پایتون (Pass by Reference / Mutability)",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "x=[44, 55, 66]\nx=[44, 99, 66]\nx=[44, 99, 66]",
+            "code": "def Func(x):\n    print(f\"{x=}\")  # [44,55,66]\n    x[1] = 99\n    print(f\"{x=}\")  # [44,99,66]\n\n\n# --------------------\nx = [44, 55, 66]\nFunc(x)\nprint(f\"{x=}\")  # [44,99,66]\n",
+            "lineCount": 10,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "لیست",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-11.py"
+          },
+          {
+            "id": "chapter-2-2-2_py",
+            "filename": "2-2.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "دریافت متوالی اعداد تا ورود شرط خاتمه و محاسبه مجموع و میانگین",
+            "sampleInputs": "دنباله اعداد",
+            "expectedOutput": "Majmoo=... Miangin=...",
+            "code": "s = 0\nnum = int(input(\"Yek add vared konid:\"))\nwhile num != 0:\n    s += num**2\n    num = int(input(\"Yek add vared konid:\"))\nprint(f\"Majmoe Morabaat={s}\")\n",
+            "lineCount": 6,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-2.py"
+          },
+          {
+            "id": "chapter-2-2-3_py",
+            "filename": "2-3.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "محاسبه مجموع ارقام یک عدد صحیح (Sum of digits)",
+            "sampleInputs": "n=15",
+            "expectedOutput": "Hasel Argham Adad 15 hast=6",
+            "code": "# 462 => 12\nnum = int(input(\"Adad ra vared konid:\"))\nhlp = num\ns = 0\nwhile hlp != 0:\n    s += hlp % 10\n    hlp //= 10\nprint(f\"Hasel Argham Adad {num} hast={s}\")\n",
+            "lineCount": 8,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-3.py"
+          },
+          {
+            "id": "chapter-2-2-4_py",
+            "filename": "2-4.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "پیدا کردن بیشترین و کمترین مقدار در یک دنباله",
+            "sampleInputs": "اعداد ورودی",
+            "expectedOutput": "Max=... Min=...",
+            "code": "sum_evens = 0\nsum_odds = 0\nwhile True:\n    num = int(input(\"Adad ra vared konid:\"))\n    if num == 0:\n        break\n    elif num % 2 == 0:\n        sum_evens += num\n    else:\n        sum_odds += num\nprint(f\"Hasel Adade Fard={sum_odds}, Hasel Adade Zoj={sum_evens}\")\n",
+            "lineCount": 11,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-4.py"
+          },
+          {
+            "id": "chapter-2-2-5_py",
+            "filename": "2-5.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "حلقه با دریافت تاییدیه ادامه کاربر (y/n) و محاسبه حاصل‌جمع اعداد فرد",
+            "sampleInputs": "adad=15, edame=n",
+            "expectedOutput": "Hasel Adad Fard hast=15",
+            "code": "sum_odds = 0\nwhile True:\n    num = int(input(\"Yek adad vared konid:\"))\n    if num % 2 == 0:\n        print(\"Yek add *Fard* vared konid!\")\n        continue\n    sum_odds += num\n    ans = input(\"Edame Midahid?(y/n):\")\n    if ans == \"Y\" or ans == \"y\":\n        continue\n    break\nprint(f\"Hasel Adad Fard hast={sum_odds}\")\n",
+            "lineCount": 12,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-5.py"
+          },
+          {
+            "id": "chapter-2-2-6_py",
+            "filename": "2-6.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "محاسبه مجموع اعداد مشخص با حلقه for",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "s=30",
+            "code": "def Func(a, b):\n    s = a + b\n    print(f\"{s=}\")\n\n\n# ---------------------\nx = 10\ny = 20\nFunc(x, y)\n",
+            "lineCount": 9,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-6.py"
+          },
+          {
+            "id": "chapter-2-2-7_py",
+            "filename": "2-7.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "محاسبه دنباله حسابی و نمایش مجموع",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "s=500",
+            "code": "def sqFunc(a, b):\n    s = a**2 + b**2\n    print(f\"{s=}\")\n\n\n# ---------------------\nx = 10\ny = 20\nsqFunc(x, y)\n",
+            "lineCount": 9,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-7.py"
+          },
+          {
+            "id": "chapter-2-2-8_py",
+            "filename": "2-8.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "محاسبه مجموع مکعبات دو عدد (a^3 + b^3)",
+            "sampleInputs": "بدون ورودی (مقادیر داخلی ۲ و ۶)",
+            "expectedOutput": "Majmoe Mokaabat 2 va 6 hast=224",
+            "code": "def cubFunc(a, b):\n    s = a**3 + b**3\n    return s\n\n\n# ---------------\nx = 2\ny = 6\nres = cubFunc(x, y)\nprint(f\"Majmoe Mokaabat {x} va {y} hast={res}\")\n",
+            "lineCount": 10,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-8.py"
+          },
+          {
+            "id": "chapter-2-2-9_py",
+            "filename": "2-9.py",
+            "chapterId": "chapter-2",
+            "chapterFolder": "06-Examples_Python_2",
+            "chapterTitle": "فصل ۲: لیست‌ها، حلقه‌ها و ساختارهای داده",
+            "description": "تعریف تابع با بازگرداندن چند مقدار همزمان (Multiple Return Values)",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "r1=12\nr2=35",
+            "code": "def Func2(a, b):\n    s1 = a + b\n    s2 = a * b\n    return s1, s2\n\n\n# ------------------\nx = 5\ny = 7\nr1, r2 = Func2(x, y)\nprint(f\"{r1=}\")\nprint(f\"{r2=}\")\n",
+            "lineCount": 12,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/06-Examples_Python_2/2-9.py"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch-functions",
+    "num": "۳",
+    "title": "توابع، آرگومان‌ها، Lambda و ماژول‌ها",
+    "subtitle": "تعریف توابع با def، پارامترهای نامحدود *args و **kwargs، بازگشت و ماژول m1.py",
+    "badge": "فصل ۳ • توابع",
+    "color": "from-amber-500 to-orange-600",
+    "sourcePdfs": [
+      "07-Function_Parameter_Argument.pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-func-theory",
+        "title": "۱. تئوری توابع و آرگومان‌های پیشرفته",
+        "content": "توابع در پایتون با کلمه کلیدی `def` تعریف می‌شوند.\nمفاهیم پیشرفته پارامترها عبارتند از:\n• **Default Arguments:** مقادیری که در صورت عدم ارسال از سوی کاربر استفاده می‌شوند (`def f(x=10):`).\n• **Positional Variable Arguments (*args):** دریافت تعداد دلخواه آرگومان موقعیتی به صورت تاپل (Tuple).\n• **Keyword Variable Arguments (**kwargs):** دریافت تعداد دلخواه آرگومان نام‌دار به صورت دیکشنری (Dictionary).\n• **توابع لامبدا (Lambda):** توابع تک‌خطی بدون نام (`lambda x: x ** 2`) برای محاسبات سریع و استفاده در `sort`.\n• **ماژول‌ها:** ذخیره توابع در یک فایل مجزا (مانند `m1.py`) و فراخوانی با `import m1`.",
+        "type": "text"
+      },
+      {
+        "id": "sec-scripts-3",
+        "title": "۲. نمونه کدهای عملی فصل ۳ و ۴ (اسکریپت‌های ۳-۱ تا ۴-۵ و m1.py)",
+        "content": "نمونه‌های عملی توابع، فاکتوریل بازگشتی، ماژول هندسی m1 و مرتب‌سازی با کلید تابع:",
+        "type": "scripts_group",
+        "scripts": [
+          {
+            "id": "chapter-3-3-1_py",
+            "filename": "3-1.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "تعریف تابع ماکسیمم برای پیدا کردن بزرگترین عدد از بین سه متغیر",
+            "sampleInputs": "۳ عدد",
+            "expectedOutput": "Max: بزرگترین عدد ورودی",
+            "code": "def findMax(a, b, c):\n    my_max = a if a > b else b\n    my_max = c if c > my_max else my_max\n    return my_max\n\n\n# ----------------------\nx = int(input(\"Adad aval ra vared konid:\"))\ny = int(input(\"Adad dovom ra vared konid:\"))\nz = int(input(\"Adad sevom ra vared konid:\"))\nprint(f\"Bozorgtarin={findMax(x,y,z)}\")\n",
+            "lineCount": 11,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-1.py"
+          },
+          {
+            "id": "chapter-3-3-2_py",
+            "filename": "3-2.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "محاسبه شاخص توده بدنی (BMI) با دریافت قد و وزن در قالب تابع",
+            "sampleInputs": "ghad, vazn",
+            "expectedOutput": "BMI=...",
+            "code": "def BMI(height, weight):\n    bmi = weight / (height**2)\n    if bmi < 18.5:\n        print(f\"BMI={bmi}, Shoma *kambod* vazn darid.\")\n    elif bmi < 25:\n        print(f\"BMI={bmi:8.2f}, Shoma daraye vazn *Salamat* hastid.\")\n    elif bmi < 30:\n        print(f\"BMI={bmi}, Shoma *Ezafe* vazn darid.\")\n    else:\n        print(f\"BMI={bmi}, Shoma *chagh* hastid.\")\n\n\n# -----------------\nh = float(input(\"Ghad ra vared konid:\"))\nw = float(input(\"Vazn ra vared konid:\"))\n# BMI(h,w)\nBMI(weight=w, height=h)\n",
+            "lineCount": 17,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "دستور شرطی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-2.py"
+          },
+          {
+            "id": "chapter-3-3-3_py",
+            "filename": "3-3.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "تابع Min/Max با پشتیبانی از پارامترهای اختیاری و پیش‌فرض",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "Min=-5\nMin=9",
+            "code": "def findMin(*t):\n    my_min = t[0]\n    for item in t[1:]:\n        if item < my_min:\n            my_min = item\n    return my_min\n\n\n# -------------------\nprint(f\"Min={findMin(34,56,-1,98,0,-5,456,55)}\")\nprint(f\"Min={findMin(58,9,240)}\")\n",
+            "lineCount": 11,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه",
+              "تابع",
+              "لیست",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-3.py"
+          },
+          {
+            "id": "chapter-3-3-4_py",
+            "filename": "3-4.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "محاسبه نسبت سرعت، مسافت و زمان و برگرداندن نتیجه در قالب یک Dictionary",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "{'rate': 120, 'distance': 400, 'time': 3.3333333333333335}",
+            "code": "def rtd(**d):\n    if \"rate\" in d and \"distance\" in d:\n        d[\"time\"] = d[\"distance\"] / d[\"rate\"]\n    elif \"time\" in d and \"distance\" in d:\n        d[\"rate\"] = d[\"distance\"] / d[\"time\"]\n    elif \"rate\" in d and \"time\" in d:\n        d[\"distance\"] = d[\"rate\"] * d[\"time\"]\n    else:\n        print(f\"{d} kafi nist.\")\n    return d\n\n\n# --------------------\nprint(f\"{rtd(rate=120,distance=400)}\")\nprint(f\"{rtd(time=2,distance=1000)}\")\n",
+            "lineCount": 15,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "دستور شرطی",
+              "تابع",
+              "لیست",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-4.py"
+          },
+          {
+            "id": "chapter-3-3-5_py",
+            "filename": "3-5.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "استفاده از آرگومان‌های نامحدود موقعیتی (*args) در تابع جهت دریافت مقادیر دلخواه",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "345\n-2",
+            "code": "def compare(*numbers, case):\n    if case == True:\n        result = findMax(numbers)\n    else:\n        result = findMin(numbers)\n    return result\n\n\n# ----------------------------\ndef findMin(numbers):\n    my_min = numbers[0]\n    for item in numbers[1:]:\n        if item < my_min:\n            my_min = item\n    return my_min\n\n\n# ------------------------------\ndef findMax(numbers):\n    my_max = numbers[0]\n    for item in numbers[1:]:\n        if item > my_max:\n            my_max = item\n    return my_max\n\n\n# ------------------------------\n# def compare(*numbers, case):\nprint(f\"{compare(23,45,90,-2,0,33,345,80,case=True)}\")\nprint(f\"{compare(23,45,90,-2,0,33,345,80,case=False)}\")\n",
+            "lineCount": 30,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "دستور شرطی",
+              "حلقه",
+              "تابع",
+              "لیست",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-5.py"
+          },
+          {
+            "id": "chapter-3-3-6_py",
+            "filename": "3-6.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "استفاده از آرگومان‌های کلیدواژه‌ای نامحدود (**kwargs) جهت ثبت مشخصات دانشجو",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "stno=140233\nyear=1403\ngrades=(12, 18, 17)\nterm=2\ngender='male'",
+            "code": "def Student(stno, year, *grades, term=1, gender, **courses):\n    print(f\"{stno=}\")\n    print(f\"{year=}\")\n    print(f\"{grades=}\")\n    print(f\"{term=}\")\n    print(f\"{gender=}\")\n    print(f\"{courses=}\")\n\n\n# --------------------\nStudent(140233, 1403, 12, 18, 17, term=2, gender=\"male\", DB=3, DS=4, Web=2)\n",
+            "lineCount": 11,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-6.py"
+          },
+          {
+            "id": "chapter-3-3-7_py",
+            "filename": "3-7.py",
+            "chapterId": "chapter-3",
+            "chapterFolder": "08-Examples_Python_3",
+            "chapterTitle": "فصل ۳: توابع، آرگومان‌های پیشرفته و Lambda",
+            "description": "ترکیب توابع محاسباتی و ارزیابی مقادیر پیچیده",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "68",
+            "code": "def addFunc(a, b, c):\n    return a + b + c\n\n\n# -----------------\nt1 = (20, 33, 15)\nprint(f\"{addFunc(*t1)}\")\n",
+            "lineCount": 7,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/08-Examples_Python_3/3-7.py"
+          },
+          {
+            "id": "chapter-4-4-1_py",
+            "filename": "4-1.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "ارسال توابع به عنوان پارامتر و استفاده از عبارات لامبدا (Lambda Expressions)",
+            "sampleInputs": "x=10, y=20",
+            "expectedOutput": "res2=850\nres3=850",
+            "code": "# تابع بی نام\n# def S(a, b):\n#     return a**2 + b**2\n\n# -------------------\nx = int(input(\"Enter x:\"))\ny = int(input(\"Enter y:\"))\n\n# روش معمول تعریف تابع\n# res1 = S(x, y)\n# print(f\"{res1=}\")\n\n# روش اول\nres2 = (lambda a, b: a**2 + b**2)(x, y)\nprint(f\"{res2=}\")\n\n# روش دوم\nfunc = lambda a, b: a**2 + b**2\nres3 = func(x, y)\nprint(f\"{res3=}\")\n",
+            "lineCount": 20,
+            "hasInput": true,
+            "tags": [
+              "ورودی کاربر",
+              "چاپ خروجی",
+              "تابع",
+              "لامبدا",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/4-1.py"
+          },
+          {
+            "id": "chapter-4-4-2_py",
+            "filename": "4-2.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "مرتب‌سازی لیست رشته‌ها بر اساس طول کلمات با ارسال تابع len به آرگومان key",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "text=['ab', 'bcd', 'cdcd', 'cmh', 'ddddd', 'eeee', 'kooo']",
+            "code": "# name_score = {\"ali\": 15, \"reza\": 13, \"hamid\": 17, \"ahmad\": 14}\n# result1 = max(name_score)\n# print(f\"{result1=}\")\n\n# result2 = max(name_score.keys(), key=(lambda x: name_score[x]))\n# print(f\"{result2=}\")\n# --------------------------\n# scores = [12, 5, 16, 19, 11, 8, 20, 13]\n# result3 = filter(lambda x: x < 10, scores)\n# print(f\"{list(result3)}\")\n# ---------------------------\n# names = [\"ali\", \"hasan\", \"hamid\", \"Zahra\", \"abas\"]\n# result4 = map(lambda x: len(x), names)\n# print(f\"{list(result4)}\")\n# -----------------------------\ntext = [\"bcd\", \"ab\", \"eeee\", \"ddddd\", \"cdcd\", \"kooo\", \"cmh\"]\ntext.sort()\nprint(f\"{text=}\")\ntext.sort(key=lambda x: len(set(x)))\nprint(f\"{text=}\")\n",
+            "lineCount": 20,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "لامبدا",
+              "لیست",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/4-2.py"
+          },
+          {
+            "id": "chapter-4-4-3_py",
+            "filename": "4-3.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "توابع تودرتو (Nested Functions) و ترتیب فراخوانی پشته تابع",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "I like python programming.\nI am in function2\nAfter calling function2",
+            "code": "def func1():\n    print(msg)\n\n\n# --------\ndef func2():\n    global msg\n    msg = \"I am in function2\"\n    print(msg)\n\n\n# --------\nmsg = \"I like python programming.\"\nfunc1()  # \"I like python programming.\"\nfunc2()  # \"I am in function2\"\nprint(\"After calling func2:\")\nprint(msg)  # \"I am in function2\"\n",
+            "lineCount": 17,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "تابع"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/4-3.py"
+          },
+          {
+            "id": "chapter-4-4-4_py",
+            "filename": "4-4.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "پیاده‌سازی تابع بازگشتی فاکتوریل (Recursive Factorial - محاسبه ۵ فاکتوریل)",
+            "sampleInputs": "بدون ورودی (n=5)",
+            "expectedOutput": "120",
+            "code": "# n!=n*(n-1)!\ndef fact(n):\n    if n <= 1:\n        return 1\n    else:\n        return n * fact(n - 1)\n\n\n# ---------------------------------\nprint(f\"{fact(5)}\")\n",
+            "lineCount": 10,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "دستور شرطی",
+              "تابع",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/4-4.py"
+          },
+          {
+            "id": "chapter-4-4-5_py",
+            "filename": "4-5.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "وارد کردن و استفاده از توابع ماژول سفارشی m1.py جهت محاسبه مساحت اشکال",
+            "sampleInputs": "بدون ورودی",
+            "expectedOutput": "rectangle(4,8)=32",
+            "code": "# import m1\n# from m1 import *\nfrom m1 import rectangle\n\nl = 3\nw = 6\nh = 7\n# print(f\"{m1.rectangle(l,w)=}\")\n# print(f\"{m1.triangle(l,h)=}\")\n# print(f\"{m1.cube(l,w,h)=}\")\n\n# print(f\"{rectangle(l,w)=}\")\n# print(f\"{triangle(l,h)=}\")\n# print(f\"{cube(l,w,h)=}\")\n\nprint(f\"{rectangle(4,8)=}\")\n",
+            "lineCount": 16,
+            "hasInput": false,
+            "tags": [
+              "چاپ خروجی",
+              "ماژول",
+              "دیکشنری"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/4-5.py"
+          },
+          {
+            "id": "chapter-4-m1_py",
+            "filename": "m1.py",
+            "chapterId": "chapter-4",
+            "chapterFolder": "09-Examples_Python_4",
+            "chapterTitle": "فصل ۴: ماژول‌ها و الگوهای پیشرفته پایتون",
+            "description": "ماژول سفارشی هندسه شامل توابع rectangle(a,b)، square(a) و circle(r)",
+            "sampleInputs": "ماژول کمکی (کتابخانه)",
+            "expectedOutput": "توابع آماده فراخوانی در فایل‌های دیگر",
+            "code": "def rectangle(a, b):\n    return a * b\n\n\n# ---------------------\ndef triangle(l, h):\n    return (l * h) / 2\n\n\n# ---------------------\ndef cube(l, w, h):\n    return l * w * h\n",
+            "lineCount": 12,
+            "hasInput": false,
+            "tags": [
+              "تابع"
+            ],
+            "downloadUrl": "/scripts/09-Examples_Python_4/m1.py"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ch-numpy",
+    "num": "۴",
+    "title": "محاسبات ماتریسی و علمی با NumPy",
+    "subtitle": "آرایه‌های چندبعدی ndarray، ابعاد، ایندکس‌گذاری، برودکستینگ و آمار برداری",
+    "badge": "فصل ۴ • نام‌پای",
+    "color": "from-cyan-600 to-blue-700",
+    "sourcePdfs": [
+      "10-NumPy.pdf",
+      "12-NumPy_TableOfContents.pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-numpy-theory",
+        "title": "۱. مقدمه و چرایی استفاده از NumPy",
+        "content": "کتابخانه **NumPy (Numerical Python)** هسته مرکزی اکوسیستم تحلیل داده پایتون است.\nمزایای اصلی نسبت به لیست‌های معمولی:\n۱. سرعت فوق‌العاده بالا به دلیل پیاده‌سازی هسته با زبان C.\n۲. همگن بودن داده‌ها (همه عناصر دارای یک `dtype` یکسان هستند).\n۳. قابلیت **Vectorization** (محاسبات روی کل آرایه بدون نیاز به حلقه `for`).\n۴. مشخصه **Broadcasting** (سازگار کردن خودکار ابعاد در عملیات ریاضی).\n\n⚠️ **نکته بسیار مهم امتحانی درباره محورها (axis):**\n• `axis=0`: عملیات در امتداد سطرها (به سمت پایین) روی هر ستون انجام می‌شود.\n• `axis=1`: عملیات در امتداد ستون‌ها (به سمت افقی) روی هر سطر انجام می‌شود.",
+        "type": "text"
+      },
+      {
+        "id": "sec-nb-11",
+        "title": "۲. نوت‌بوک تمرینی نام‌پای ۱ (۳۲ سلول - ساخت آرایه‌ها و اسلایس)",
+        "content": "سلول‌های آموزشی زیر مراحل ساخت آرایه‌ها، ابعاد shape و ndim، توابع arange و zeros و برش چندبعدی را آموزش می‌دهند:",
+        "type": "notebook_embed",
+        "notebookId": "nb-11"
+      },
+      {
+        "id": "sec-nb-13",
+        "title": "۳. نوت‌بوک تمرینی نام‌پای ۲ (۶۲ سلول - محاسبات برداری، آمار و برودکستینگ)",
+        "content": "سلول‌های پیشرفته نام‌پای شامل اعمال ریاضی، پخش ماتریسی، reshape و توابع آماری sum، mean و ماسک بولین:",
+        "type": "notebook_embed",
+        "notebookId": "nb-13"
+      }
+    ]
+  },
+  {
+    "id": "ch-pandas",
+    "num": "۵",
+    "title": "تحلیل، کاوش و مهندسی داده با Pandas",
+    "subtitle": "ساختارهای Series و DataFrame، برش با loc و iloc، فیلترهای شرطی و توابع آماری",
+    "badge": "فصل ۵ • پانداس",
+    "color": "from-purple-600 to-indigo-700",
+    "sourcePdfs": [
+      "14-Pandas_TableOfContents.pdf",
+      "17-Pandas_Titles_1.pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-pandas-theory",
+        "title": "۱. ساختارهای داده Series و DataFrame",
+        "content": "کتابخانه Pandas دارای دو ساختار داده بنیادی است:\n• **Series:** یک آرایه یک‌بعدی برچسب‌دار (Labelled 1D Array).\n• **DataFrame:** یک جدول داده دوبعدی با سطرها و ستون‌های نام‌دار.\n\n🔍 **تفاوت حیاتی loc در برابر iloc:**\n• `df.loc[row_label, col_label]`: بر اساس **نام و برچسب** سطر و ستون کار می‌کند و انتهای بازه inclusive است.\n• `df.iloc[row_idx, col_idx]`: بر اساس **موقعیت عددی** کار می‌کند و انتهای بازه exclusive است (مانند برش‌های پایتون).",
+        "type": "text"
+      },
+      {
+        "id": "sec-nb-15",
+        "title": "۲. نوت‌بوک تمرینی پانداس ۱ (۷۷ سلول آموزشی و ۲۳ خروجی جدول دیتافریم)",
+        "content": "مطالعه گام‌به‌گام نحوه ایجاد Series، DataFrame، متدهای head و info، انتخاب ستون‌ها و فیلترینگ شرطی:",
+        "type": "notebook_embed",
+        "notebookId": "nb-15"
+      }
+    ]
+  },
+  {
+    "id": "ch-projects",
+    "num": "۶",
+    "title": "کار با دیتاست‌های واقعی و پروژه‌ها (Employees & Titanic)",
+    "subtitle": "پاکسازی مقادیر گمشده (NaN)، گروه‌بندی (groupby)، جداول تعاملی و تحلیل نرخ بقا",
+    "badge": "فصل ۶ • پروژه‌ها",
+    "color": "from-rose-600 to-pink-700",
+    "sourcePdfs": [
+      "19-Pandas_Titles(Employees).pdf",
+      "20-Pandas_Titles(titanic).pdf"
+    ],
+    "sections": [
+      {
+        "id": "sec-cleaning-theory",
+        "title": "۱. مفاهیم پاکسازی داده‌ها (Handling Missing Values)",
+        "content": "در دنیای واقعی داده‌ها همیشه تمیز نیستند!\nدر دیتاست کارکنان (`16-Employees.csv`) مقادیری به شکل `?` و `-` وجود دارند. برای حل این مشکل:\n`df = pd.read_csv('Employees.csv', na_values=['?', '-'])`\n\nمتدهای کلیدی مدیریت داده‌های گمشده:\n• `df.isnull().sum()`: شمارش تعداد مقادیر خالی در هر ستون.\n• `df.dropna(how='all')`: حذف سطرهایی که تمام ستون‌های آنها تهی است.\n• `df['Age'].fillna(df['Age'].mean())`: جایگزینی مقادیر خالی با میانگین کل.",
+        "type": "text"
+      },
+      {
+        "id": "sec-nb-18",
+        "title": "۲. نوت‌بوک تمرینی پانداس ۲ (۴۷ سلول تحلیلی و ۲۸ جدول خروجی)",
+        "content": "تحلیل کاربردی دو دیتاست Employees و Titanic به همراه توابع groupby و محاسبات تجمیعی:",
+        "type": "notebook_embed",
+        "notebookId": "nb-18"
+      },
+      {
+        "id": "sec-dataset-explorer",
+        "title": "۳. کاوشگر تعاملی دیتاست‌ها و نمودارهای بصری",
+        "content": "جداول زیر داده‌های کامل و آمار هر دو دیتاست را با قابلیت جستجو، سورت و صفحه‌بندی نشان می‌دهند:",
+        "type": "datasets_interactive"
+      }
+    ]
+  },
+  {
+    "id": "ch-quiz",
+    "num": "۷",
+    "title": "خودآزمایی و جمع‌بندی نهایی درس (PDA Quiz)",
+    "subtitle": "سنجش تسلط بر کلیه مباحث با سوالات استاندارد آزمون دانشگاه و پاسخ تشریحی",
+    "badge": "فصل ۷ • آزمون",
+    "color": "from-purple-500 to-violet-600",
+    "sections": [
+      {
+        "id": "sec-quiz-hub",
+        "title": "آزمون سنجش مهارت ۸ سوالی",
+        "content": "با پاسخ به این سوالات، آمادگی خود را برای امتحان پایان‌ترم بسنجید:",
+        "type": "quiz_embed"
+      }
+    ]
+  }
+]

@@ -1,0 +1,245 @@
+[
+  {
+    "num": "01",
+    "type": "pdf",
+    "title": "کتاب‌ها و مراجع درس",
+    "file": "01-PDA_ReferenceBooks.pdf",
+    "category": "منابع",
+    "related": [
+      "02",
+      "03"
+    ]
+  },
+  {
+    "num": "02",
+    "type": "pdf",
+    "title": "کتاب مرجع Python for Data Analysis (ویرایش ۳)",
+    "file": "02-Python for Data Analysis_2022.pdf",
+    "category": "کتاب اصلی",
+    "related": [
+      "10",
+      "14",
+      "15",
+      "18"
+    ]
+  },
+  {
+    "num": "03",
+    "type": "pdf",
+    "title": "جزوه جلسه ۱: مقدمات و سینتکس پایتون",
+    "file": "03-booklet_PDA_Session1.pdf",
+    "category": "جزوه",
+    "related": [
+      "04",
+      "05"
+    ]
+  },
+  {
+    "num": "04",
+    "type": "pdf",
+    "title": "آموزش ساختارهای توالی (Sequences)",
+    "file": "04-Sequences_in_Python.pdf",
+    "category": "ساختار داده",
+    "related": [
+      "06"
+    ]
+  },
+  {
+    "num": "05",
+    "type": "scripts",
+    "title": "نمونه کدهای سری ۱: ورودی/خروجی و شروط (۹ برنامه)",
+    "file": "05-Examples_Python_1",
+    "category": "کد پایتون",
+    "related": [
+      "03",
+      "04"
+    ]
+  },
+  {
+    "num": "06",
+    "type": "scripts",
+    "title": "نمونه کدهای سری ۲: لیست‌ها و حلقه‌ها (۱۱ برنامه)",
+    "file": "06-Examples_Python_2",
+    "category": "کد پایتون",
+    "related": [
+      "04",
+      "07"
+    ]
+  },
+  {
+    "num": "07",
+    "type": "pdf",
+    "title": "آموزش جامع توابع، پارامترها و آرگومان‌ها",
+    "file": "07-Function_Parameter_Argument.pdf",
+    "category": "توابع",
+    "related": [
+      "08",
+      "09"
+    ]
+  },
+  {
+    "num": "08",
+    "type": "scripts",
+    "title": "نمونه کدهای سری ۳: توابع و عبارات Lambda (۷ برنامه)",
+    "file": "08-Examples_Python_3",
+    "category": "کد پایتون",
+    "related": [
+      "07",
+      "09"
+    ]
+  },
+  {
+    "num": "09",
+    "type": "scripts",
+    "title": "نمونه کدهای سری ۴: ماژول‌ها و توابع پیشرفته (۶ برنامه)",
+    "file": "09-Examples_Python_4",
+    "category": "کد پایتون",
+    "related": [
+      "07",
+      "08"
+    ]
+  },
+  {
+    "num": "10",
+    "type": "pdf",
+    "title": "جزوه آموزشی کتابخانه محاسباتی NumPy",
+    "file": "10-NumPy.pdf",
+    "category": "نام‌پای",
+    "related": [
+      "11",
+      "12",
+      "13"
+    ]
+  },
+  {
+    "num": "11",
+    "type": "notebook",
+    "title": "نوت‌بوک تمرینی نام‌پای ۱ (۳۲ سلول)",
+    "file": "11-numpy_1.ipynb",
+    "category": "ژوپیتر",
+    "related": [
+      "10",
+      "12",
+      "13"
+    ]
+  },
+  {
+    "num": "12",
+    "type": "pdf",
+    "title": "سرفصل‌ها و نقشه مباحث نام‌پای (NumPy TOC)",
+    "file": "12-NumPy_TableOfContents.pdf",
+    "category": "سرفصل",
+    "related": [
+      "10",
+      "11",
+      "13"
+    ]
+  },
+  {
+    "num": "13",
+    "type": "notebook",
+    "title": "نوت‌بوک تمرینی نام‌پای ۲ (۶۲ سلول)",
+    "file": "13-numpy_2.ipynb",
+    "category": "ژوپیتر",
+    "related": [
+      "10",
+      "11",
+      "12"
+    ]
+  },
+  {
+    "num": "14",
+    "type": "pdf",
+    "title": "سرفصل‌ها و نقشه مباحث پانداس (Pandas TOC)",
+    "file": "14-Pandas_TableOfContents.pdf",
+    "category": "سرفصل",
+    "related": [
+      "15",
+      "17",
+      "18"
+    ]
+  },
+  {
+    "num": "15",
+    "type": "notebook",
+    "title": "نوت‌بوک تمرینی پانداس ۱ (۷۷ سلول)",
+    "file": "15-pandas_1.ipynb",
+    "category": "ژوپیتر",
+    "related": [
+      "14",
+      "16",
+      "17",
+      "18"
+    ]
+  },
+  {
+    "num": "16",
+    "type": "dataset",
+    "title": "دیتاست تمرینی کارکنان (Employees.csv)",
+    "file": "16-Employees.csv",
+    "category": "دیتاست",
+    "related": [
+      "15",
+      "17",
+      "18",
+      "19"
+    ]
+  },
+  {
+    "num": "17",
+    "type": "pdf",
+    "title": "عناوین و تمرینات سری اول پانداس",
+    "file": "17-Pandas_Titles_1.pdf",
+    "category": "تمرین",
+    "related": [
+      "15",
+      "16"
+    ]
+  },
+  {
+    "num": "18",
+    "type": "notebook",
+    "title": "نوت‌بوک تمرینی پانداس ۲ (۴۷ سلول)",
+    "file": "18-pandas_2.ipynb",
+    "category": "ژوپیتر",
+    "related": [
+      "16",
+      "19",
+      "20",
+      "21"
+    ]
+  },
+  {
+    "num": "19",
+    "type": "pdf",
+    "title": "تمرینات تحلیل داده روی دیتاست کارمندان",
+    "file": "19-Pandas_Titles(Employees).pdf",
+    "category": "پروژه",
+    "related": [
+      "16",
+      "18"
+    ]
+  },
+  {
+    "num": "20",
+    "type": "pdf",
+    "title": "تمرینات تحلیل داده پیشرفته روی دیتاست تایتانیک",
+    "file": "20-Pandas_Titles(titanic).pdf",
+    "category": "پروژه",
+    "related": [
+      "18",
+      "21"
+    ]
+  },
+  {
+    "num": "21",
+    "type": "dataset",
+    "title": "دیتاست مسافران تایتانیک (titanic.csv - ۸۹۱ سطر)",
+    "file": "21-titanic.csv",
+    "category": "دیتاست",
+    "related": [
+      "18",
+      "20"
+    ]
+  }
+]

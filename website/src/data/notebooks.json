@@ -1,0 +1,2600 @@
+[
+  {
+    "id": "nb-11",
+    "order": 11,
+    "filename": "11-numpy_1.ipynb",
+    "title": "آموزش گام‌به‌گام NumPy (بخش اول)",
+    "subtitle": "ایجاد آرایه‌ها، ابعاد، ایندکس‌گذاری و برش آرایه‌های چندبعدی",
+    "description": "نوت‌بوک تمرینی بخش ۱ نام‌پای شامل ساخت انواع آرایه‌های تک‌بعدی و دوبعدی با np.array، np.arange، np.zeros، ماتریس‌های همانی، ویژگی‌های shape و ndim، و برش پیشرفته (Slicing).",
+    "topics": [
+      "np.array",
+      "ndim & shape",
+      "np.arange",
+      "np.zeros & np.ones",
+      "Array Indexing & Slicing"
+    ],
+    "relatedItems": [
+      "10-NumPy.pdf",
+      "12-NumPy_TableOfContents.pdf",
+      "13-numpy_2.ipynb"
+    ],
+    "totalCells": 32,
+    "codeCells": 32,
+    "markdownCells": 0,
+    "downloadUrl": "/notebooks/11-numpy_1.ipynb",
+    "cells": [
+      {
+        "index": 1,
+        "cell_type": "code",
+        "execution_count": 1,
+        "source": "import numpy as np",
+        "outputs": []
+      },
+      {
+        "index": 2,
+        "cell_type": "code",
+        "execution_count": 2,
+        "source": "n=1_000_000",
+        "outputs": []
+      },
+      {
+        "index": 3,
+        "cell_type": "code",
+        "execution_count": 3,
+        "source": "my_list=list(range(n))\n#my_list",
+        "outputs": []
+      },
+      {
+        "index": 4,
+        "cell_type": "code",
+        "execution_count": 4,
+        "source": "my_arr=np.arange(n)\n#my_arr",
+        "outputs": []
+      },
+      {
+        "index": 5,
+        "cell_type": "code",
+        "execution_count": 5,
+        "source": "my_list2=[x*2 for x in my_list]\n#my_list2",
+        "outputs": []
+      },
+      {
+        "index": 6,
+        "cell_type": "code",
+        "execution_count": 6,
+        "source": "my_arr2=my_arr*2\n#my_arr2",
+        "outputs": []
+      },
+      {
+        "index": 7,
+        "cell_type": "code",
+        "execution_count": 7,
+        "source": "%timeit my_list2=[x*2 for x in my_list]",
+        "outputs": [
+          {
+            "output_type": "stream",
+            "text": "103 ms ± 2.5 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)\n"
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "cell_type": "code",
+        "execution_count": 8,
+        "source": "%timeit my_arr2=my_arr*2",
+        "outputs": [
+          {
+            "output_type": "stream",
+            "text": "2 ms ± 34.3 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)\n"
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "cell_type": "code",
+        "execution_count": 9,
+        "source": "#ایجاد آرایه های یک بعدی و دوبعدی و بیشتر",
+        "outputs": []
+      },
+      {
+        "index": 10,
+        "cell_type": "code",
+        "execution_count": 10,
+        "source": "a1=np.array([4,78,-2,0,23,78])\na1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([ 4, 78, -2,  0, 23, 78])"
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "cell_type": "code",
+        "execution_count": 20,
+        "source": "a2=np.array([ [34,87,90,1],\n      [76,12,-3,66] ])\na2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[34, 87, 90,  1],\n       [76, 12, -3, 66]])"
+          }
+        ]
+      },
+      {
+        "index": 12,
+        "cell_type": "code",
+        "execution_count": 21,
+        "source": "a1.shape",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "(6,)"
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "cell_type": "code",
+        "execution_count": 22,
+        "source": "a2.shape",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "(2, 4)"
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "cell_type": "code",
+        "execution_count": 23,
+        "source": "a1.ndim",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "1"
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "cell_type": "code",
+        "execution_count": 24,
+        "source": "a2.ndim",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "2"
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "cell_type": "code",
+        "execution_count": 25,
+        "source": "a1.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('int32')"
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "cell_type": "code",
+        "execution_count": 26,
+        "source": "a2.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('int32')"
+          }
+        ]
+      },
+      {
+        "index": 18,
+        "cell_type": "code",
+        "execution_count": 27,
+        "source": "b1=np.zeros(9)\nb1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([0., 0., 0., 0., 0., 0., 0., 0., 0.])"
+          }
+        ]
+      },
+      {
+        "index": 19,
+        "cell_type": "code",
+        "execution_count": 28,
+        "source": "b1.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('float64')"
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "cell_type": "code",
+        "execution_count": 29,
+        "source": "b2=np.zeros((3,5))\nb2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[0., 0., 0., 0., 0.],\n       [0., 0., 0., 0., 0.],\n       [0., 0., 0., 0., 0.]])"
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "cell_type": "code",
+        "execution_count": 31,
+        "source": "b3=np.zeros((2,4,3))\nb3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[[0., 0., 0.],\n        [0., 0., 0.],\n        [0., 0., 0.],\n        [0., 0., 0.]],\n\n       [[0., 0., 0.],\n        [0., 0., 0.],\n        [0., 0., 0.],\n        [0., 0., 0.]]])"
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "cell_type": "code",
+        "execution_count": 32,
+        "source": "c1=np.ones(5)\nc1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([1., 1., 1., 1., 1.])"
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "cell_type": "code",
+        "execution_count": 33,
+        "source": "c2=np.ones((4,7))\nc2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.],\n       [1., 1., 1., 1., 1., 1., 1.]])"
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "cell_type": "code",
+        "execution_count": 34,
+        "source": "d1=np.empty(6)\nd1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([6.23042070e-307, 4.67296746e-307, 1.69121096e-306, 4.67292333e-307,\n       2.67018098e-306, 1.00136896e-307])"
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "cell_type": "code",
+        "execution_count": 35,
+        "source": "e1=np.arange(4)\ne1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([0, 1, 2, 3])"
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "cell_type": "code",
+        "execution_count": 36,
+        "source": "e2=np.arange(12).reshape((3,4))\ne2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 0,  1,  2,  3],\n       [ 4,  5,  6,  7],\n       [ 8,  9, 10, 11]])"
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "cell_type": "code",
+        "execution_count": 37,
+        "source": "e3=np.arange(50,62,1).reshape((3,4))\ne3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[50, 51, 52, 53],\n       [54, 55, 56, 57],\n       [58, 59, 60, 61]])"
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "cell_type": "code",
+        "execution_count": 39,
+        "source": "e4=np.arange(100,124,2).reshape((3,4))\ne4",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[100, 102, 104, 106],\n       [108, 110, 112, 114],\n       [116, 118, 120, 122]])"
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "cell_type": "code",
+        "execution_count": 43,
+        "source": "r1=np.random.standard_normal((3,4))\nr1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[-1.42152237,  0.24063581, -0.02674925,  0.16755107],\n       [-0.43749308, -0.17175094, -0.00651459,  1.54115844],\n       [-0.90752438,  0.1349632 ,  1.1268234 ,  1.1831712 ]])"
+          }
+        ]
+      },
+      {
+        "index": 30,
+        "cell_type": "code",
+        "execution_count": 53,
+        "source": "rng=np.random.default_rng(seed=675)\nr2=rng.standard_normal((2,4))\nr2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[-0.6197933 , -1.3127816 , -0.56791171, -2.27782789],\n       [-0.45988988,  0.33097293,  0.18382698, -0.96428732]])"
+          }
+        ]
+      },
+      {
+        "index": 31,
+        "cell_type": "code",
+        "execution_count": 55,
+        "source": "rng=np.random.default_rng(seed=675)\nr3=rng.integers(low=1000,high=4500,size=(3,5))\nr3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[3322, 1646, 3139, 4396, 3100],\n       [2499, 1625, 2656, 3622, 2444],\n       [3035, 3802, 2253, 3808, 4158]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "cell_type": "code",
+        "execution_count": null,
+        "source": "",
+        "outputs": []
+      }
+    ]
+  },
+  {
+    "id": "nb-13",
+    "order": 13,
+    "filename": "13-numpy_2.ipynb",
+    "title": "آموزش پیشرفته NumPy (بخش دوم)",
+    "subtitle": "محاسبات برداری، اعمال ریاضی، آمار و توابع جامع (Ufuncs)",
+    "description": "نوت‌بوک تمرینی بخش ۲ نام‌پای با ۶۲ سلول کد شامل عملیات ریاضی برداری، پخش ماتریسی (Broadcasting)، متدهای آماری sum، mean، std بر روی محورهای مختلف (axis)، و فیلترینگ با ماسک بولین.",
+    "topics": [
+      "Broadcasting",
+      "Universal Functions (ufunc)",
+      "Aggregations (sum, mean, std)",
+      "Boolean Masking",
+      "Reshaping"
+    ],
+    "relatedItems": [
+      "10-NumPy.pdf",
+      "11-numpy_1.ipynb",
+      "15-pandas_1.ipynb"
+    ],
+    "totalCells": 62,
+    "codeCells": 62,
+    "markdownCells": 0,
+    "downloadUrl": "/notebooks/13-numpy_2.ipynb",
+    "cells": [
+      {
+        "index": 1,
+        "cell_type": "code",
+        "execution_count": 1,
+        "source": "import numpy as np",
+        "outputs": []
+      },
+      {
+        "index": 2,
+        "cell_type": "code",
+        "execution_count": 2,
+        "source": "rng=np.random.default_rng(seed=14)\na1=rng.integers(low=10,high=99,size=(8))\na1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([23, 83, 68, 42, 17, 72, 40, 86], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "cell_type": "code",
+        "execution_count": 3,
+        "source": "a2=np.array([3,4,-6,7],dtype=np.int16)",
+        "outputs": []
+      },
+      {
+        "index": 4,
+        "cell_type": "code",
+        "execution_count": 4,
+        "source": "a2.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('int16')"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "cell_type": "code",
+        "execution_count": 5,
+        "source": "a3=np.array([3,7,9],dtype=np.uint16)",
+        "outputs": []
+      },
+      {
+        "index": 6,
+        "cell_type": "code",
+        "execution_count": 6,
+        "source": "a3.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('uint16')"
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "cell_type": "code",
+        "execution_count": 7,
+        "source": "a4=np.array([3,66,9],dtype=\"u2\")",
+        "outputs": []
+      },
+      {
+        "index": 8,
+        "cell_type": "code",
+        "execution_count": 8,
+        "source": "a4.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('uint16')"
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "cell_type": "code",
+        "execution_count": 9,
+        "source": "a1.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('int64')"
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "cell_type": "code",
+        "execution_count": 10,
+        "source": "a5=a1.astype(np.int32)\na5.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('int32')"
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "cell_type": "code",
+        "execution_count": 11,
+        "source": "a6=np.array([\"12.3\",\"9.1\",\"19.7\"])\na6.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('<U4')"
+          }
+        ]
+      },
+      {
+        "index": 12,
+        "cell_type": "code",
+        "execution_count": 12,
+        "source": "a7=a6.astype(np.float32)\na7",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([12.3,  9.1, 19.7], dtype=float32)"
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "cell_type": "code",
+        "execution_count": 13,
+        "source": "a8=a7.astype(np.int32)\na8",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([12,  9, 19])"
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "cell_type": "code",
+        "execution_count": 14,
+        "source": "b1=rng.integers(10,90,12)\nb1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([37, 61, 24, 53, 15, 70, 17, 67, 70, 47, 73, 55], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "cell_type": "code",
+        "execution_count": 15,
+        "source": "b1[5]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "70"
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "cell_type": "code",
+        "execution_count": 16,
+        "source": "b1[-4]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "70"
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "cell_type": "code",
+        "execution_count": 17,
+        "source": "b2=b1[2:8]\nb2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([24, 53, 15, 70, 17, 67], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 18,
+        "cell_type": "code",
+        "execution_count": 18,
+        "source": "b2[1]=500\nb2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([ 24, 500,  15,  70,  17,  67], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 19,
+        "cell_type": "code",
+        "execution_count": 19,
+        "source": "b1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([ 37,  61,  24, 500,  15,  70,  17,  67,  70,  47,  73,  55],\n      dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "cell_type": "code",
+        "execution_count": 20,
+        "source": "b3=b1[2:7].copy()\nb3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([ 24, 500,  15,  70,  17], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "cell_type": "code",
+        "execution_count": 21,
+        "source": "b3[1]=1000\nb3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([  24, 1000,   15,   70,   17], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "cell_type": "code",
+        "execution_count": 22,
+        "source": "b1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([ 37,  61,  24, 500,  15,  70,  17,  67,  70,  47,  73,  55],\n      dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "cell_type": "code",
+        "execution_count": 23,
+        "source": "b1[[2,5,-1]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([24, 70, 55], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "cell_type": "code",
+        "execution_count": 24,
+        "source": "c1=rng.integers(40,90,(6,5))\nc1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[83, 77, 85, 43, 40],\n       [72, 76, 76, 80, 59],\n       [81, 65, 48, 51, 79],\n       [72, 83, 88, 78, 54],\n       [67, 63, 53, 84, 88],\n       [67, 50, 61, 61, 73]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "cell_type": "code",
+        "execution_count": 25,
+        "source": "c1[2]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([81, 65, 48, 51, 79], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "cell_type": "code",
+        "execution_count": 26,
+        "source": "c1[1:4]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[72, 76, 76, 80, 59],\n       [81, 65, 48, 51, 79],\n       [72, 83, 88, 78, 54]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "cell_type": "code",
+        "execution_count": 27,
+        "source": "c1[2:4,1:3]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[65, 48],\n       [83, 88]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "cell_type": "code",
+        "execution_count": 28,
+        "source": "c1[:,2]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([85, 76, 48, 88, 53, 61], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "cell_type": "code",
+        "execution_count": 29,
+        "source": "c1[:,2:3]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[85],\n       [76],\n       [48],\n       [88],\n       [53],\n       [61]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 30,
+        "cell_type": "code",
+        "execution_count": 30,
+        "source": "c1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[83, 77, 85, 43, 40],\n       [72, 76, 76, 80, 59],\n       [81, 65, 48, 51, 79],\n       [72, 83, 88, 78, 54],\n       [67, 63, 53, 84, 88],\n       [67, 50, 61, 61, 73]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 31,
+        "cell_type": "code",
+        "execution_count": 31,
+        "source": "c1[[1,4,5],[1,2,4]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([76, 53, 73], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "cell_type": "code",
+        "execution_count": 32,
+        "source": "c1[5]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([67, 50, 61, 61, 73], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 33,
+        "cell_type": "code",
+        "execution_count": 33,
+        "source": "c1[5,:]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([67, 50, 61, 61, 73], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 34,
+        "cell_type": "code",
+        "execution_count": 34,
+        "source": "c1[5:,:]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[67, 50, 61, 61, 73]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 35,
+        "cell_type": "code",
+        "execution_count": 35,
+        "source": "d1=rng.integers(10,100,(2,3,4))\nd1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[[93, 12, 15, 23],\n        [12, 88, 39, 24],\n        [14, 12, 88, 93]],\n\n       [[20, 77, 82, 97],\n        [94, 78, 92, 93],\n        [32, 40, 64, 77]]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 36,
+        "cell_type": "code",
+        "execution_count": 36,
+        "source": "d1[1]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[20, 77, 82, 97],\n       [94, 78, 92, 93],\n       [32, 40, 64, 77]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 37,
+        "cell_type": "code",
+        "execution_count": 37,
+        "source": "d1[0,2]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([14, 12, 88, 93], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 38,
+        "cell_type": "code",
+        "execution_count": 38,
+        "source": "d1[1:2,:,1:3]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[[77, 82],\n        [78, 92],\n        [40, 64]]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 39,
+        "cell_type": "code",
+        "execution_count": 39,
+        "source": "d1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[[93, 12, 15, 23],\n        [12, 88, 39, 24],\n        [14, 12, 88, 93]],\n\n       [[20, 77, 82, 97],\n        [94, 78, 92, 93],\n        [32, 40, 64, 77]]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 40,
+        "cell_type": "code",
+        "execution_count": 40,
+        "source": "d1[[0,1],[1,2],[2,2]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([39, 64], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 41,
+        "cell_type": "code",
+        "execution_count": 41,
+        "source": "names=np.array([\"ali\",\"reza\",\"ahmad\",\"reza\",\"ahmad\",\"reza\"])\nscores=np.array([[2,17],[8,11],[14,19],[12,15],[7,11],[6,16]])",
+        "outputs": []
+      },
+      {
+        "index": 42,
+        "cell_type": "code",
+        "execution_count": 42,
+        "source": "names==\"reza\"",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([False,  True, False,  True, False,  True])"
+          }
+        ]
+      },
+      {
+        "index": 43,
+        "cell_type": "code",
+        "execution_count": 43,
+        "source": "scores[names==\"reza\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 8, 11],\n       [12, 15],\n       [ 6, 16]])"
+          }
+        ]
+      },
+      {
+        "index": 44,
+        "cell_type": "code",
+        "execution_count": 44,
+        "source": "scores[names!=\"reza\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 2, 17],\n       [14, 19],\n       [ 7, 11]])"
+          }
+        ]
+      },
+      {
+        "index": 45,
+        "cell_type": "code",
+        "execution_count": 45,
+        "source": "scores[~(names==\"reza\")]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 2, 17],\n       [14, 19],\n       [ 7, 11]])"
+          }
+        ]
+      },
+      {
+        "index": 46,
+        "cell_type": "code",
+        "execution_count": 46,
+        "source": "e1=rng.integers(-200,200,(4,5))\ne1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[  19, -135, -157,  129,  -20],\n       [  92,  -84, -124,  121, -127],\n       [ 147, -133, -147,  127, -158],\n       [  65,  108,  -88, -149,   61]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 47,
+        "cell_type": "code",
+        "execution_count": 47,
+        "source": "e1<0",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[False,  True,  True, False,  True],\n       [False,  True,  True, False,  True],\n       [False,  True,  True, False,  True],\n       [False, False,  True,  True, False]])"
+          }
+        ]
+      },
+      {
+        "index": 48,
+        "cell_type": "code",
+        "execution_count": 48,
+        "source": "e1[e1<0]=0",
+        "outputs": []
+      },
+      {
+        "index": 49,
+        "cell_type": "code",
+        "execution_count": 49,
+        "source": "e1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 19,   0,   0, 129,   0],\n       [ 92,   0,   0, 121,   0],\n       [147,   0,   0, 127,   0],\n       [ 65, 108,   0,   0,  61]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 50,
+        "cell_type": "code",
+        "execution_count": 50,
+        "source": "e2=rng.integers(2,20,(3,4))\ne2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[15, 14, 16, 14],\n       [ 8, 19, 12, 17],\n       [ 3,  9, 14,  2]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 51,
+        "cell_type": "code",
+        "execution_count": 51,
+        "source": "e2*2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[30, 28, 32, 28],\n       [16, 38, 24, 34],\n       [ 6, 18, 28,  4]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 52,
+        "cell_type": "code",
+        "execution_count": 52,
+        "source": "1/e2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[0.06666667, 0.07142857, 0.0625    , 0.07142857],\n       [0.125     , 0.05263158, 0.08333333, 0.05882353],\n       [0.33333333, 0.11111111, 0.07142857, 0.5       ]])"
+          }
+        ]
+      },
+      {
+        "index": 53,
+        "cell_type": "code",
+        "execution_count": 53,
+        "source": "e2*2+3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[33, 31, 35, 31],\n       [19, 41, 27, 37],\n       [ 9, 21, 31,  7]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 54,
+        "cell_type": "code",
+        "execution_count": 54,
+        "source": "xarr = np.array([1.1, 1.2, 1.3, 1.4, 1.5])\nyarr = np.array([2.1, 2.2, 2.3, 2.4, 2.5])\ncond = np.array([True, False, True, True, False])",
+        "outputs": []
+      },
+      {
+        "index": 55,
+        "cell_type": "code",
+        "execution_count": 55,
+        "source": "result=[(x if c else y) for x,y,c in zip(xarr,yarr,cond)]\nresult",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "[1.1, 2.2, 1.3, 1.4, 2.5]"
+          }
+        ]
+      },
+      {
+        "index": 56,
+        "cell_type": "code",
+        "execution_count": 56,
+        "source": "result2=np.where(cond,xarr,yarr)\nresult2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([1.1, 2.2, 1.3, 1.4, 2.5])"
+          }
+        ]
+      },
+      {
+        "index": 57,
+        "cell_type": "code",
+        "execution_count": 57,
+        "source": "f1=rng.standard_normal((4,5))\nf1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 1.08889771, -0.61942333,  0.56878609,  0.42947131, -1.52431837],\n       [-1.03972336,  0.44467081, -1.17656801, -1.22691637,  0.89524002],\n       [ 0.28556629, -0.23515624,  0.10549359, -0.40452583, -0.5369294 ],\n       [-0.46058843,  0.38606191,  1.32130368, -0.47075686, -0.06865728]])"
+          }
+        ]
+      },
+      {
+        "index": 58,
+        "cell_type": "code",
+        "execution_count": 58,
+        "source": "f2=np.where(f1<0,0,20)\nf2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[20,  0, 20, 20,  0],\n       [ 0, 20,  0,  0, 20],\n       [20,  0, 20,  0,  0],\n       [ 0, 20, 20,  0,  0]])"
+          }
+        ]
+      },
+      {
+        "index": 59,
+        "cell_type": "code",
+        "execution_count": 59,
+        "source": "f3=np.where(f1<0,0,f1)\nf3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[1.08889771, 0.        , 0.56878609, 0.42947131, 0.        ],\n       [0.        , 0.44467081, 0.        , 0.        , 0.89524002],\n       [0.28556629, 0.        , 0.10549359, 0.        , 0.        ],\n       [0.        , 0.38606191, 1.32130368, 0.        , 0.        ]])"
+          }
+        ]
+      },
+      {
+        "index": 60,
+        "cell_type": "code",
+        "execution_count": 60,
+        "source": "f4=rng.integers(1000,4900,(4,5))\nf4",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[4567, 1575, 4809, 4800, 1266],\n       [3718, 4513, 3200, 4562, 2769],\n       [2461, 3231, 1798, 2804, 2677],\n       [1257, 2828, 1898, 3806, 2224]], dtype=int64)"
+          }
+        ]
+      },
+      {
+        "index": 61,
+        "cell_type": "code",
+        "execution_count": 61,
+        "source": "f4.sum()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "60763"
+          }
+        ]
+      },
+      {
+        "index": 62,
+        "cell_type": "code",
+        "execution_count": 62,
+        "source": "f4.sum(axis=0)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([12003, 12147, 11705, 15972,  8936], dtype=int64)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "nb-15",
+    "order": 15,
+    "filename": "15-pandas_1.ipynb",
+    "title": "مفاهیم پایه و دیتافریم‌ها در Pandas (بخش اول)",
+    "subtitle": "ساختارهای Series و DataFrame، ایندکس‌گذاری و کاوش داده",
+    "description": "نوت‌بوک تمرینی بخش ۱ پانداس با ۷۷ سلول کد شامل ساخت انواع سری‌ها و دیتافریم‌ها، بررسی متدهای head و tail و info، استخراج سطرها و ستون‌ها با loc و iloc، و فیلترهای شرطی.",
+    "topics": [
+      "pd.Series",
+      "pd.DataFrame",
+      "head() & tail()",
+      "loc vs iloc",
+      "فیلترینگ و استخراج ستون‌ها"
+    ],
+    "relatedItems": [
+      "14-Pandas_TableOfContents.pdf",
+      "16-Employees.csv",
+      "17-Pandas_Titles_1.pdf",
+      "18-pandas_2.ipynb"
+    ],
+    "totalCells": 77,
+    "codeCells": 77,
+    "markdownCells": 0,
+    "downloadUrl": "/notebooks/15-pandas_1.ipynb",
+    "cells": [
+      {
+        "index": 1,
+        "cell_type": "code",
+        "execution_count": 1,
+        "source": "#pip install pandas",
+        "outputs": []
+      },
+      {
+        "index": 2,
+        "cell_type": "code",
+        "execution_count": 2,
+        "source": "#1)Series",
+        "outputs": []
+      },
+      {
+        "index": 3,
+        "cell_type": "code",
+        "execution_count": 3,
+        "source": "import numpy as np\nimport pandas as pd",
+        "outputs": []
+      },
+      {
+        "index": 4,
+        "cell_type": "code",
+        "execution_count": 4,
+        "source": "s1=pd.Series([4,3,-9,0,8])\ns1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    4\n1    3\n2   -9\n3    0\n4    8\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "cell_type": "code",
+        "execution_count": 5,
+        "source": "s2=pd.Series([55,12,-5,99],index=[\"a\",\"c\",\"b\",\"k\"])\ns2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    55\nc    12\nb    -5\nk    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "cell_type": "code",
+        "execution_count": 6,
+        "source": "s1[2]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "-9"
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "cell_type": "code",
+        "execution_count": 7,
+        "source": "s2[\"k\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "99"
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "cell_type": "code",
+        "execution_count": 8,
+        "source": "s2[\"c\"]=60\ns2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    55\nc    60\nb    -5\nk    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "cell_type": "code",
+        "execution_count": 9,
+        "source": "s1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    4\n1    3\n2   -9\n3    0\n4    8\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "cell_type": "code",
+        "execution_count": 10,
+        "source": "s1*2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0     8\n1     6\n2   -18\n3     0\n4    16\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "cell_type": "code",
+        "execution_count": 11,
+        "source": "d1={\"ali\":14.5, \"reza\":17, \"bahram\":15.44}",
+        "outputs": []
+      },
+      {
+        "index": 12,
+        "cell_type": "code",
+        "execution_count": 12,
+        "source": "s3=pd.Series(d1)\ns3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "ali       14.50\nreza      17.00\nbahram    15.44\ndtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "cell_type": "code",
+        "execution_count": 13,
+        "source": "d2=s3.to_dict()\nd2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "{'ali': 14.5, 'reza': 17.0, 'bahram': 15.44}"
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "cell_type": "code",
+        "execution_count": 14,
+        "source": "d1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "{'ali': 14.5, 'reza': 17, 'bahram': 15.44}"
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "cell_type": "code",
+        "execution_count": 15,
+        "source": "s4=pd.Series(d1,index=[\"reza\",\"ali\",\"ahmad\"])\ns4",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "reza     17.0\nali      14.5\nahmad     NaN\ndtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "cell_type": "code",
+        "execution_count": 16,
+        "source": "s4.isna()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "reza     False\nali      False\nahmad     True\ndtype: bool"
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "cell_type": "code",
+        "execution_count": 17,
+        "source": "s4.notna()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "reza      True\nali       True\nahmad    False\ndtype: bool"
+          }
+        ]
+      },
+      {
+        "index": 18,
+        "cell_type": "code",
+        "execution_count": 18,
+        "source": "s2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    55\nc    60\nb    -5\nk    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 19,
+        "cell_type": "code",
+        "execution_count": 19,
+        "source": "s5=pd.Series([43,19,5,23,196],index=[\"b\",\"f\",\"k\",\"a\",\"n\"])\ns5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "b     43\nf     19\nk      5\na     23\nn    196\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "cell_type": "code",
+        "execution_count": 20,
+        "source": "s2+s5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a     78.0\nb     38.0\nc      NaN\nf      NaN\nk    104.0\nn      NaN\ndtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "cell_type": "code",
+        "execution_count": 21,
+        "source": "s2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    55\nc    60\nb    -5\nk    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "cell_type": "code",
+        "execution_count": 22,
+        "source": "s2[\"b\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "-5"
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "cell_type": "code",
+        "execution_count": 23,
+        "source": "# s2[2] FutureWarning",
+        "outputs": []
+      },
+      {
+        "index": 24,
+        "cell_type": "code",
+        "execution_count": 24,
+        "source": "s2.index[2]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "'b'"
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "cell_type": "code",
+        "execution_count": 25,
+        "source": "# s2.index[2]=\"f\" TypeError",
+        "outputs": []
+      },
+      {
+        "index": 26,
+        "cell_type": "code",
+        "execution_count": 26,
+        "source": "s2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    55\nc    60\nb    -5\nk    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "cell_type": "code",
+        "execution_count": 27,
+        "source": "s2.index=[\"p\",\"f\",\"r\",\"c\"]\ns2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "p    55\nf    60\nr    -5\nc    99\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "cell_type": "code",
+        "execution_count": 28,
+        "source": "s2.name=\"numbers\"\ns2.index.name=\"indexs\"\ns2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "indexs\np    55\nf    60\nr    -5\nc    99\nName: numbers, dtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "cell_type": "code",
+        "execution_count": 29,
+        "source": "#2)DataFrame",
+        "outputs": []
+      },
+      {
+        "index": 30,
+        "cell_type": "code",
+        "execution_count": 30,
+        "source": "d3={\"state\":[\"tehran\",\"tehran\",\"tehran\",\"lorestan\",\"lorstan\",\"lorstan\"],\n    \"year\":[1375,1385,1395,1385,1395,1404],\n    \"pop\":[10.1,11.5,13.7,1.2,1.9,1.8]}",
+        "outputs": []
+      },
+      {
+        "index": 31,
+        "cell_type": "code",
+        "execution_count": 31,
+        "source": "df1=pd.DataFrame(d3)\ndf1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>state</th>\n      <th>year</th>\n      <th>pop</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>10.1</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>11.5</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>13.7</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>1.2</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>1.9</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>1.8</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      state  year   pop\n0    tehran  1375  10.1\n1    tehran  1385  11.5\n2    tehran  1395  13.7\n3  lorestan  1385   1.2\n4   lorstan  1395   1.9\n5   lorstan  1404   1.8"
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "cell_type": "code",
+        "execution_count": 32,
+        "source": "df1.head(3)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>state</th>\n      <th>year</th>\n      <th>pop</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>10.1</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>11.5</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>13.7</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    state  year   pop\n0  tehran  1375  10.1\n1  tehran  1385  11.5\n2  tehran  1395  13.7"
+          }
+        ]
+      },
+      {
+        "index": 33,
+        "cell_type": "code",
+        "execution_count": 33,
+        "source": "df1.tail(2)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>state</th>\n      <th>year</th>\n      <th>pop</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>4</th>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>1.9</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>1.8</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     state  year  pop\n4  lorstan  1395  1.9\n5  lorstan  1404  1.8"
+          }
+        ]
+      },
+      {
+        "index": 34,
+        "cell_type": "code",
+        "execution_count": 34,
+        "source": "df1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>state</th>\n      <th>year</th>\n      <th>pop</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>10.1</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>11.5</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>13.7</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>1.2</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>1.9</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>1.8</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      state  year   pop\n0    tehran  1375  10.1\n1    tehran  1385  11.5\n2    tehran  1395  13.7\n3  lorestan  1385   1.2\n4   lorstan  1395   1.9\n5   lorstan  1404   1.8"
+          }
+        ]
+      },
+      {
+        "index": 35,
+        "cell_type": "code",
+        "execution_count": 35,
+        "source": "df1[\"year\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    1375\n1    1385\n2    1395\n3    1385\n4    1395\n5    1404\nName: year, dtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 36,
+        "cell_type": "code",
+        "execution_count": 36,
+        "source": "df1.year",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    1375\n1    1385\n2    1395\n3    1385\n4    1395\n5    1404\nName: year, dtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 37,
+        "cell_type": "code",
+        "execution_count": 37,
+        "source": "df1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>state</th>\n      <th>year</th>\n      <th>pop</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>10.1</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>11.5</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>13.7</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>1.2</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>1.9</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>1.8</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      state  year   pop\n0    tehran  1375  10.1\n1    tehran  1385  11.5\n2    tehran  1395  13.7\n3  lorestan  1385   1.2\n4   lorstan  1395   1.9\n5   lorstan  1404   1.8"
+          }
+        ]
+      },
+      {
+        "index": 38,
+        "cell_type": "code",
+        "execution_count": 38,
+        "source": "df2=pd.DataFrame(d3,columns=[\"pop\",\"state\",\"year\",\"debt\"])\ndf2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pop</th>\n      <th>state</th>\n      <th>year</th>\n      <th>debt</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>10.1</td>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>11.5</td>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>13.7</td>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1.2</td>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1.9</td>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1.8</td>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    pop     state  year debt\n0  10.1    tehran  1375  NaN\n1  11.5    tehran  1385  NaN\n2  13.7    tehran  1395  NaN\n3   1.2  lorestan  1385  NaN\n4   1.9   lorstan  1395  NaN\n5   1.8   lorstan  1404  NaN"
+          }
+        ]
+      },
+      {
+        "index": 39,
+        "cell_type": "code",
+        "execution_count": 39,
+        "source": "df2[\"debt\"]=2\ndf2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pop</th>\n      <th>state</th>\n      <th>year</th>\n      <th>debt</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>10.1</td>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>11.5</td>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>13.7</td>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1.2</td>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1.9</td>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1.8</td>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>2</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    pop     state  year  debt\n0  10.1    tehran  1375     2\n1  11.5    tehran  1385     2\n2  13.7    tehran  1395     2\n3   1.2  lorestan  1385     2\n4   1.9   lorstan  1395     2\n5   1.8   lorstan  1404     2"
+          }
+        ]
+      },
+      {
+        "index": 40,
+        "cell_type": "code",
+        "execution_count": 40,
+        "source": "df2[\"debt\"]=np.arange(1,7)\ndf2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pop</th>\n      <th>state</th>\n      <th>year</th>\n      <th>debt</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>10.1</td>\n      <td>tehran</td>\n      <td>1375</td>\n      <td>1</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>11.5</td>\n      <td>tehran</td>\n      <td>1385</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>13.7</td>\n      <td>tehran</td>\n      <td>1395</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1.2</td>\n      <td>lorestan</td>\n      <td>1385</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1.9</td>\n      <td>lorstan</td>\n      <td>1395</td>\n      <td>5</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1.8</td>\n      <td>lorstan</td>\n      <td>1404</td>\n      <td>6</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    pop     state  year  debt\n0  10.1    tehran  1375     1\n1  11.5    tehran  1385     2\n2  13.7    tehran  1395     3\n3   1.2  lorestan  1385     4\n4   1.9   lorstan  1395     5\n5   1.8   lorstan  1404     6"
+          }
+        ]
+      },
+      {
+        "index": 41,
+        "cell_type": "code",
+        "execution_count": 41,
+        "source": "del df2[\"debt\"]\ndf2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>pop</th>\n      <th>state</th>\n      <th>year</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>10.1</td>\n      <td>tehran</td>\n      <td>1375</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>11.5</td>\n      <td>tehran</td>\n      <td>1385</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>13.7</td>\n      <td>tehran</td>\n      <td>1395</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1.2</td>\n      <td>lorestan</td>\n      <td>1385</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1.9</td>\n      <td>lorstan</td>\n      <td>1395</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1.8</td>\n      <td>lorstan</td>\n      <td>1404</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    pop     state  year\n0  10.1    tehran  1375\n1  11.5    tehran  1385\n2  13.7    tehran  1395\n3   1.2  lorestan  1385\n4   1.9   lorstan  1395\n5   1.8   lorstan  1404"
+          }
+        ]
+      },
+      {
+        "index": 42,
+        "cell_type": "code",
+        "execution_count": 42,
+        "source": "d4={\"lorstan\":{1385:1.2,1395:1.6,1404:1.5},\n    \"tehran\":{1385:13.2,1395:14.1,1402:13.9}}\ndf3=pd.DataFrame(d4)\ndf3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>lorstan</th>\n      <th>tehran</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>1385</th>\n      <td>1.2</td>\n      <td>13.2</td>\n    </tr>\n    <tr>\n      <th>1395</th>\n      <td>1.6</td>\n      <td>14.1</td>\n    </tr>\n    <tr>\n      <th>1404</th>\n      <td>1.5</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1402</th>\n      <td>NaN</td>\n      <td>13.9</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      lorstan  tehran\n1385      1.2    13.2\n1395      1.6    14.1\n1404      1.5     NaN\n1402      NaN    13.9"
+          }
+        ]
+      },
+      {
+        "index": 43,
+        "cell_type": "code",
+        "execution_count": 43,
+        "source": "df3.T",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>1385</th>\n      <th>1395</th>\n      <th>1404</th>\n      <th>1402</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>lorstan</th>\n      <td>1.2</td>\n      <td>1.6</td>\n      <td>1.5</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>13.2</td>\n      <td>14.1</td>\n      <td>NaN</td>\n      <td>13.9</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "         1385  1395  1404  1402\nlorstan   1.2   1.6   1.5   NaN\ntehran   13.2  14.1   NaN  13.9"
+          }
+        ]
+      },
+      {
+        "index": 44,
+        "cell_type": "code",
+        "execution_count": 44,
+        "source": "df3.index.name=\"year\"\ndf3.columns.name=\"state\"\ndf3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>state</th>\n      <th>lorstan</th>\n      <th>tehran</th>\n    </tr>\n    <tr>\n      <th>year</th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>1385</th>\n      <td>1.2</td>\n      <td>13.2</td>\n    </tr>\n    <tr>\n      <th>1395</th>\n      <td>1.6</td>\n      <td>14.1</td>\n    </tr>\n    <tr>\n      <th>1404</th>\n      <td>1.5</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1402</th>\n      <td>NaN</td>\n      <td>13.9</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "state  lorstan  tehran\nyear                  \n1385       1.2    13.2\n1395       1.6    14.1\n1404       1.5     NaN\n1402       NaN    13.9"
+          }
+        ]
+      },
+      {
+        "index": 45,
+        "cell_type": "code",
+        "execution_count": 45,
+        "source": "n1=df3.to_numpy()\nn1",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "array([[ 1.2, 13.2],\n       [ 1.6, 14.1],\n       [ 1.5,  nan],\n       [ nan, 13.9]])"
+          }
+        ]
+      },
+      {
+        "index": 46,
+        "cell_type": "code",
+        "execution_count": 46,
+        "source": "n1.dtype",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "dtype('float64')"
+          }
+        ]
+      },
+      {
+        "index": 47,
+        "cell_type": "code",
+        "execution_count": 47,
+        "source": "s2",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "indexs\np    55\nf    60\nr    -5\nc    99\nName: numbers, dtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 48,
+        "cell_type": "code",
+        "execution_count": 48,
+        "source": "#عملیات های ضروری\n#1) reindex",
+        "outputs": []
+      },
+      {
+        "index": 49,
+        "cell_type": "code",
+        "execution_count": 49,
+        "source": "s6=pd.Series([3,46,11,7],index=[\"b\",\"d\",\"a\",\"f\"])\ns6",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "b     3\nd    46\na    11\nf     7\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 50,
+        "cell_type": "code",
+        "execution_count": 50,
+        "source": "s7=s6.reindex(index=list(\"abcdef\"))\ns7",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    11.0\nb     3.0\nc     NaN\nd    46.0\ne     NaN\nf     7.0\ndtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 51,
+        "cell_type": "code",
+        "execution_count": 51,
+        "source": "s8=pd.Series([\"ali\",\"reza\",\"ahmad\"], index=[0,2,4])\ns8",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      ali\n2     reza\n4    ahmad\ndtype: object"
+          }
+        ]
+      },
+      {
+        "index": 52,
+        "cell_type": "code",
+        "execution_count": 52,
+        "source": "s9=s8.reindex(index=np.arange(5),method=\"bfill\") #,method=\"ffill\"\ns9",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      ali\n1     reza\n2     reza\n3    ahmad\n4    ahmad\ndtype: object"
+          }
+        ]
+      },
+      {
+        "index": 53,
+        "cell_type": "code",
+        "execution_count": 53,
+        "source": "s9",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      ali\n1     reza\n2     reza\n3    ahmad\n4    ahmad\ndtype: object"
+          }
+        ]
+      },
+      {
+        "index": 54,
+        "cell_type": "code",
+        "execution_count": 54,
+        "source": "s9.drop([1,3])",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      ali\n2     reza\n4    ahmad\ndtype: object"
+          }
+        ]
+      },
+      {
+        "index": 55,
+        "cell_type": "code",
+        "execution_count": 55,
+        "source": "df3",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>state</th>\n      <th>lorstan</th>\n      <th>tehran</th>\n    </tr>\n    <tr>\n      <th>year</th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>1385</th>\n      <td>1.2</td>\n      <td>13.2</td>\n    </tr>\n    <tr>\n      <th>1395</th>\n      <td>1.6</td>\n      <td>14.1</td>\n    </tr>\n    <tr>\n      <th>1404</th>\n      <td>1.5</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1402</th>\n      <td>NaN</td>\n      <td>13.9</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "state  lorstan  tehran\nyear                  \n1385       1.2    13.2\n1395       1.6    14.1\n1404       1.5     NaN\n1402       NaN    13.9"
+          }
+        ]
+      },
+      {
+        "index": 56,
+        "cell_type": "code",
+        "execution_count": 56,
+        "source": "df4=df3.drop(columns=[\"tehran\"])\ndf4",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th>state</th>\n      <th>lorstan</th>\n    </tr>\n    <tr>\n      <th>year</th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>1385</th>\n      <td>1.2</td>\n    </tr>\n    <tr>\n      <th>1395</th>\n      <td>1.6</td>\n    </tr>\n    <tr>\n      <th>1404</th>\n      <td>1.5</td>\n    </tr>\n    <tr>\n      <th>1402</th>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "state  lorstan\nyear          \n1385       1.2\n1395       1.6\n1404       1.5\n1402       NaN"
+          }
+        ]
+      },
+      {
+        "index": 57,
+        "cell_type": "code",
+        "execution_count": 57,
+        "source": "s10=pd.Series([54,11,-8,0,4], index=list(\"abcde\"))\ns10",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    54\nb    11\nc    -8\nd     0\ne     4\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 58,
+        "cell_type": "code",
+        "execution_count": 58,
+        "source": "s10[\"c\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "-8"
+          }
+        ]
+      },
+      {
+        "index": 59,
+        "cell_type": "code",
+        "execution_count": 59,
+        "source": "# s10[2] FutureWarning",
+        "outputs": []
+      },
+      {
+        "index": 60,
+        "cell_type": "code",
+        "execution_count": 60,
+        "source": "s11=pd.Series([1,2,3], index=[20,310,11])\ns11",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "20     1\n310    2\n11     3\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 61,
+        "cell_type": "code",
+        "execution_count": 61,
+        "source": "#s11[0]  KeyError",
+        "outputs": []
+      },
+      {
+        "index": 62,
+        "cell_type": "code",
+        "execution_count": 62,
+        "source": "s10",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "a    54\nb    11\nc    -8\nd     0\ne     4\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 63,
+        "cell_type": "code",
+        "execution_count": 63,
+        "source": "s10.loc[\"d\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "index": 64,
+        "cell_type": "code",
+        "execution_count": 64,
+        "source": "#s10.loc[1] KeyError",
+        "outputs": []
+      },
+      {
+        "index": 65,
+        "cell_type": "code",
+        "execution_count": 65,
+        "source": "s10.iloc[3]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0"
+          }
+        ]
+      },
+      {
+        "index": 66,
+        "cell_type": "code",
+        "execution_count": 66,
+        "source": "df5=pd.DataFrame(np.arange(16).reshape(4,4),\n                 index=[\"shiraz\",\"yazd\",\"tehran\",\"kerman\"],\n                 columns=[\"one\",\"two\",\"three\",\"four\"])\ndf5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>4</td>\n      <td>5</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>12</td>\n      <td>13</td>\n      <td>14</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nyazd      4    5      6     7\ntehran    8    9     10    11\nkerman   12   13     14    15"
+          }
+        ]
+      },
+      {
+        "index": 67,
+        "cell_type": "code",
+        "execution_count": 67,
+        "source": "df5[\"four\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "shiraz     3\nyazd       7\ntehran    11\nkerman    15\nName: four, dtype: int32"
+          }
+        ]
+      },
+      {
+        "index": 68,
+        "cell_type": "code",
+        "execution_count": 68,
+        "source": "df5[[\"four\",\"one\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>four</th>\n      <th>one</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>3</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>7</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>11</td>\n      <td>8</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>15</td>\n      <td>12</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        four  one\nshiraz     3    0\nyazd       7    4\ntehran    11    8\nkerman    15   12"
+          }
+        ]
+      },
+      {
+        "index": 69,
+        "cell_type": "code",
+        "execution_count": 69,
+        "source": "df5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>4</td>\n      <td>5</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>12</td>\n      <td>13</td>\n      <td>14</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nyazd      4    5      6     7\ntehran    8    9     10    11\nkerman   12   13     14    15"
+          }
+        ]
+      },
+      {
+        "index": 70,
+        "cell_type": "code",
+        "execution_count": 70,
+        "source": "df5[:\"tehran\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>4</td>\n      <td>5</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>11</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nyazd      4    5      6     7\ntehran    8    9     10    11"
+          }
+        ]
+      },
+      {
+        "index": 71,
+        "cell_type": "code",
+        "execution_count": 71,
+        "source": "df5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>4</td>\n      <td>5</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>12</td>\n      <td>13</td>\n      <td>14</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nyazd      4    5      6     7\ntehran    8    9     10    11\nkerman   12   13     14    15"
+          }
+        ]
+      },
+      {
+        "index": 72,
+        "cell_type": "code",
+        "execution_count": 72,
+        "source": "#df1.loc[#index , columns ]",
+        "outputs": []
+      },
+      {
+        "index": 73,
+        "cell_type": "code",
+        "execution_count": 73,
+        "source": "df5.loc[[\"shiraz\",\"kerman\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>12</td>\n      <td>13</td>\n      <td>14</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nkerman   12   13     14    15"
+          }
+        ]
+      },
+      {
+        "index": 74,
+        "cell_type": "code",
+        "execution_count": 74,
+        "source": "df5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>1</td>\n      <td>2</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>4</td>\n      <td>5</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>11</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>12</td>\n      <td>13</td>\n      <td>14</td>\n      <td>15</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    1      2     3\nyazd      4    5      6     7\ntehran    8    9     10    11\nkerman   12   13     14    15"
+          }
+        ]
+      },
+      {
+        "index": 75,
+        "cell_type": "code",
+        "execution_count": 75,
+        "source": "df5.loc[[\"yazd\",\"tehran\"],[\"two\",\"three\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>two</th>\n      <th>three</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>yazd</th>\n      <td>5</td>\n      <td>6</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>9</td>\n      <td>10</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        two  three\nyazd      5      6\ntehran    9     10"
+          }
+        ]
+      },
+      {
+        "index": 76,
+        "cell_type": "code",
+        "execution_count": 76,
+        "source": "df5[(df5<6) | (df5>10)]=0\ndf5",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>one</th>\n      <th>two</th>\n      <th>three</th>\n      <th>four</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>shiraz</th>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>yazd</th>\n      <td>0</td>\n      <td>0</td>\n      <td>6</td>\n      <td>7</td>\n    </tr>\n    <tr>\n      <th>tehran</th>\n      <td>8</td>\n      <td>9</td>\n      <td>10</td>\n      <td>0</td>\n    </tr>\n    <tr>\n      <th>kerman</th>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n      <td>0</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        one  two  three  four\nshiraz    0    0      0     0\nyazd      0    0      6     7\ntehran    8    9     10     0\nkerman    0    0      0     0"
+          }
+        ]
+      },
+      {
+        "index": 77,
+        "cell_type": "code",
+        "execution_count": null,
+        "source": "",
+        "outputs": []
+      }
+    ]
+  },
+  {
+    "id": "nb-18",
+    "order": 18,
+    "filename": "18-pandas_2.ipynb",
+    "title": "تحلیل کاربردی و پاکسازی داده با Pandas (بخش دوم)",
+    "subtitle": "تحلیل دیتاست‌های Titanic و Employees، مدیریت داده‌های گمشده و GroupBy",
+    "description": "نوت‌بوک تمرینی بخش ۲ پانداس با ۴۷ سلول کد و جداول خروجی متعدد شامل کار مستقیم بر روی دیتاسِت‌های titanic.csv و Employees.csv، پاکسازی مقادیر NaN با dropna و fillna، و تحلیل‌های گروه‌بندی با groupby.",
+    "topics": [
+      "تحلیل Titanic و Employees",
+      "مدیریت مقادیر گمشده (NaN)",
+      "گروه‌بندی (groupby)",
+      "تحلیل‌های آماری ترکیبی",
+      "پاکسازی داده"
+    ],
+    "relatedItems": [
+      "16-Employees.csv",
+      "19-Pandas_Titles(Employees).pdf",
+      "20-Pandas_Titles(titanic).pdf",
+      "21-titanic.csv"
+    ],
+    "totalCells": 47,
+    "codeCells": 47,
+    "markdownCells": 0,
+    "downloadUrl": "/notebooks/18-pandas_2.ipynb",
+    "cells": [
+      {
+        "index": 1,
+        "cell_type": "code",
+        "execution_count": 1,
+        "source": "import numpy as np\nimport pandas as pd",
+        "outputs": []
+      },
+      {
+        "index": 2,
+        "cell_type": "code",
+        "execution_count": 2,
+        "source": "df=pd.read_csv(\"Employees.csv\")\ndf",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>-</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>?</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>0.0</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>n.a.</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor           -   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0            ?  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   0.0       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0         n.a.       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "cell_type": "code",
+        "execution_count": 3,
+        "source": "MissingData=[0,\"?\",\"-\",\"n.a.\",\"NA\"]",
+        "outputs": []
+      },
+      {
+        "index": 4,
+        "cell_type": "code",
+        "execution_count": 4,
+        "source": "df=pd.read_csv(\"Employees.csv\",na_values=MissingData)\ndf",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "cell_type": "code",
+        "execution_count": 5,
+        "source": "df.dropna(axis=0,how=\"any\",inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n\n   Workday  Salary  \n0       21    4500  \n4       14    5800  \n6       20    5500  \n7       25    5200  \n8       23    5900  "
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "cell_type": "code",
+        "execution_count": 6,
+        "source": "df.dropna(axis=1,how=\"any\",inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender  Workday  Salary\n0  1001      ali  nosrati    male       21    4500\n1  1290     reza  bahmani    male       18    3400\n2  1211    zahra  farhadi  female       19    3900\n3  1599    hadis  sohrabi  female       28    4800\n4  1441    saber   tohidi    male       14    5800\n5  1733    kazem     yari    male       10    3100\n6  1930  fatemeh  bagheri  female       20    5500\n7  1322   bahram   karimi    male       25    5200\n8  1870   narges  rahmati  female       23    5900\n9  1655    hamed  sadeghi    male       19    6300"
+          }
+        ]
+      },
+      {
+        "index": 7,
+        "cell_type": "code",
+        "execution_count": 7,
+        "source": "df[\"test1\"]=np.nan\ndf",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n      <th>test1</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  test1  \n0       21    4500    NaN  \n1       18    3400    NaN  \n2       19    3900    NaN  \n3       28    4800    NaN  \n4       14    5800    NaN  \n5       10    3100    NaN  \n6       20    5500    NaN  \n7       25    5200    NaN  \n8       23    5900    NaN  \n9       19    6300    NaN  "
+          }
+        ]
+      },
+      {
+        "index": 8,
+        "cell_type": "code",
+        "execution_count": 8,
+        "source": "df.dropna(axis=1,how=\"all\",inplace=True)\ndf",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 9,
+        "cell_type": "code",
+        "execution_count": 9,
+        "source": "df[\"Age\"].fillna(df[\"Age\"].mean(),inplace=False)\ndf",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 10,
+        "cell_type": "code",
+        "execution_count": 10,
+        "source": "df[\"Age\"].fillna(20,inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    41.0\n1    34.0\n2    20.0\n3    25.0\n4    32.0\n5    20.0\n6    50.0\n7    21.0\n8    37.0\n9    49.0\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "cell_type": "code",
+        "execution_count": 11,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 12,
+        "cell_type": "code",
+        "execution_count": 12,
+        "source": "df[\"Speciality\"].ffill(inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      computer\n1      computer\n2       physics\n3      computer\n4           art\n5           law\n6    accounting\n7           art\n8      computer\n9       physics\nName: Speciality, dtype: object"
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "cell_type": "code",
+        "execution_count": 13,
+        "source": "df[\"Speciality\"].bfill(inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0      computer\n1       physics\n2       physics\n3      computer\n4           art\n5           law\n6    accounting\n7           art\n8      computer\n9       physics\nName: Speciality, dtype: object"
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "cell_type": "code",
+        "execution_count": 14,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 15,
+        "cell_type": "code",
+        "execution_count": 15,
+        "source": "df[\"Age\"].interpolate(method=\"linear\",inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    41.0\n1    34.0\n2    29.5\n3    25.0\n4    32.0\n5    41.0\n6    50.0\n7    21.0\n8    37.0\n9    49.0\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 16,
+        "cell_type": "code",
+        "execution_count": 16,
+        "source": "df[\"Age\"].interpolate(method=\"polynomial\",order=2,inplace=False)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "0    41.000000\n1    34.000000\n2    27.198244\n3    25.000000\n4    32.000000\n5    49.335040\n6    50.000000\n7    21.000000\n8    37.000000\n9    49.000000\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 17,
+        "cell_type": "code",
+        "execution_count": 17,
+        "source": "df.to_csv(\"file1.csv\",index=False)",
+        "outputs": []
+      },
+      {
+        "index": 18,
+        "cell_type": "code",
+        "execution_count": 18,
+        "source": "df.to_excel(\"file2.xlsx\",index=False, sheet_name=\"کارمندان\")",
+        "outputs": []
+      },
+      {
+        "index": 19,
+        "cell_type": "code",
+        "execution_count": 19,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 20,
+        "cell_type": "code",
+        "execution_count": 20,
+        "source": "df[[\"Name\",\"Family\",\"Age\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Age</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>41.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>34.0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>25.0</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>32.0</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>50.0</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>21.0</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>37.0</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>49.0</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      Name   Family   Age\n0      ali  nosrati  41.0\n1     reza  bahmani  34.0\n2    zahra  farhadi   NaN\n3    hadis  sohrabi  25.0\n4    saber   tohidi  32.0\n5    kazem     yari   NaN\n6  fatemeh  bagheri  50.0\n7   bahram   karimi  21.0\n8   narges  rahmati  37.0\n9    hamed  sadeghi  49.0"
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "cell_type": "code",
+        "execution_count": 21,
+        "source": "df.loc[:,[\"Name\",\"Family\",\"Age\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Age</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>41.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>34.0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>25.0</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>32.0</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>50.0</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>21.0</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>37.0</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>49.0</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      Name   Family   Age\n0      ali  nosrati  41.0\n1     reza  bahmani  34.0\n2    zahra  farhadi   NaN\n3    hadis  sohrabi  25.0\n4    saber   tohidi  32.0\n5    kazem     yari   NaN\n6  fatemeh  bagheri  50.0\n7   bahram   karimi  21.0\n8   narges  rahmati  37.0\n9    hamed  sadeghi  49.0"
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "cell_type": "code",
+        "execution_count": 22,
+        "source": "df.iloc[:,[1,2,4]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Age</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>41.0</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>34.0</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>25.0</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>32.0</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>50.0</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>21.0</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>37.0</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>49.0</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "      Name   Family   Age\n0      ali  nosrati  41.0\n1     reza  bahmani  34.0\n2    zahra  farhadi   NaN\n3    hadis  sohrabi  25.0\n4    saber   tohidi  32.0\n5    kazem     yari   NaN\n6  fatemeh  bagheri  50.0\n7   bahram   karimi  21.0\n8   narges  rahmati  37.0\n9    hamed  sadeghi  49.0"
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "cell_type": "code",
+        "execution_count": 23,
+        "source": "df.loc[:,\"Family\":\"City\"]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    Family  Gender   Age         City\n0  nosrati    male  41.0       tehran\n1  bahmani    male  34.0         yazd\n2  farhadi  female   NaN       tehran\n3  sohrabi  female  25.0          NaN\n4   tohidi    male  32.0  khorramabad\n5     yari    male   NaN       kashan\n6  bagheri  female  50.0       tehran\n7   karimi    male  21.0         yazd\n8  rahmati  female  37.0       kashan\n9  sadeghi    male  49.0          NaN"
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "cell_type": "code",
+        "execution_count": 24,
+        "source": "df.head(3)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID   Name   Family  Gender   Age    City    Degree Speciality  Workday  \\\n0  1001    ali  nosrati    male  41.0  tehran  Bachelor   computer       21   \n1  1290   reza  bahmani    male  34.0    yazd  Bachelor        NaN       18   \n2  1211  zahra  farhadi  female   NaN  tehran    Master    physics       19   \n\n   Salary  \n0    4500  \n1    3400  \n2    3900  "
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "cell_type": "code",
+        "execution_count": 25,
+        "source": "df.tail(3)",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID    Name   Family  Gender   Age    City    Degree Speciality  Workday  \\\n7  1322  bahram   karimi    male  21.0    yazd  Bachelor        art       25   \n8  1870  narges  rahmati  female  37.0  kashan    Master   computer       23   \n9  1655   hamed  sadeghi    male  49.0     NaN       PhD    physics       19   \n\n   Salary  \n7    5200  \n8    5900  \n9    6300  "
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "cell_type": "code",
+        "execution_count": 26,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "cell_type": "code",
+        "execution_count": 27,
+        "source": "df.loc[df[\"Gender\"]==\"male\",[\"Family\",\"Workday\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Family</th>\n      <th>Workday</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>nosrati</td>\n      <td>21</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>bahmani</td>\n      <td>18</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>tohidi</td>\n      <td>14</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>yari</td>\n      <td>10</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>karimi</td>\n      <td>25</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>sadeghi</td>\n      <td>19</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    Family  Workday\n0  nosrati       21\n1  bahmani       18\n4   tohidi       14\n5     yari       10\n7   karimi       25\n9  sadeghi       19"
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "cell_type": "code",
+        "execution_count": 28,
+        "source": "df.loc[df[\"Age\"]>40,[\"Family\",\"Speciality\"]]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>Family</th>\n      <th>Speciality</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>nosrati</td>\n      <td>computer</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>bagheri</td>\n      <td>accounting</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>sadeghi</td>\n      <td>physics</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "    Family  Speciality\n0  nosrati    computer\n6  bagheri  accounting\n9  sadeghi     physics"
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "cell_type": "code",
+        "execution_count": 29,
+        "source": "df.loc[(df[\"City\"]==\"tehran\") | (df[\"City\"]==\"yazd\")]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age    City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0  tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0    yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN  tehran    Master     physics   \n6  1930  fatemeh  bagheri  female  50.0  tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0    yazd  Bachelor         art   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n6       20    5500  \n7       25    5200  "
+          }
+        ]
+      },
+      {
+        "index": 30,
+        "cell_type": "code",
+        "execution_count": 30,
+        "source": "df.loc[df[\"City\"].isin([\"tehran\",\"yazd\"])]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age    City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0  tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0    yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN  tehran    Master     physics   \n6  1930  fatemeh  bagheri  female  50.0  tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0    yazd  Bachelor         art   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n6       20    5500  \n7       25    5200  "
+          }
+        ]
+      },
+      {
+        "index": 31,
+        "cell_type": "code",
+        "execution_count": 31,
+        "source": "df.loc[(df[\"Speciality\"]==\"computer\") & (df[\"Workday\"]>25)]",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID   Name   Family  Gender   Age City    Degree Speciality  Workday  \\\n3  1599  hadis  sohrabi  female  25.0  NaN  Bachelor   computer       28   \n\n   Salary  \n3    4800  "
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "cell_type": "code",
+        "execution_count": 32,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 33,
+        "cell_type": "code",
+        "execution_count": 33,
+        "source": "gr1=df.groupby(\"Gender\")",
+        "outputs": []
+      },
+      {
+        "index": 34,
+        "cell_type": "code",
+        "execution_count": 34,
+        "source": "gr1.groups",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "{'female': [2, 3, 6, 8], 'male': [0, 1, 4, 5, 7, 9]}"
+          }
+        ]
+      },
+      {
+        "index": 35,
+        "cell_type": "code",
+        "execution_count": 37,
+        "source": "for name_g,member_g in gr1[[\"Name\",\"Family\",\"Age\"]]:\n    print(name_g)\n    print(member_g)",
+        "outputs": [
+          {
+            "output_type": "stream",
+            "text": "female\n      Name   Family   Age\n2    zahra  farhadi   NaN\n3    hadis  sohrabi  25.0\n6  fatemeh  bagheri  50.0\n8   narges  rahmati  37.0\nmale\n     Name   Family   Age\n0     ali  nosrati  41.0\n1    reza  bahmani  34.0\n4   saber   tohidi  32.0\n5   kazem     yari   NaN\n7  bahram   karimi  21.0\n9   hamed  sadeghi  49.0\n"
+          }
+        ]
+      },
+      {
+        "index": 36,
+        "cell_type": "code",
+        "execution_count": 38,
+        "source": "df",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>0</th>\n      <td>1001</td>\n      <td>ali</td>\n      <td>nosrati</td>\n      <td>male</td>\n      <td>41.0</td>\n      <td>tehran</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>21</td>\n      <td>4500</td>\n    </tr>\n    <tr>\n      <th>1</th>\n      <td>1290</td>\n      <td>reza</td>\n      <td>bahmani</td>\n      <td>male</td>\n      <td>34.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>NaN</td>\n      <td>18</td>\n      <td>3400</td>\n    </tr>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>3</th>\n      <td>1599</td>\n      <td>hadis</td>\n      <td>sohrabi</td>\n      <td>female</td>\n      <td>25.0</td>\n      <td>NaN</td>\n      <td>Bachelor</td>\n      <td>computer</td>\n      <td>28</td>\n      <td>4800</td>\n    </tr>\n    <tr>\n      <th>4</th>\n      <td>1441</td>\n      <td>saber</td>\n      <td>tohidi</td>\n      <td>male</td>\n      <td>32.0</td>\n      <td>khorramabad</td>\n      <td>PhD</td>\n      <td>art</td>\n      <td>14</td>\n      <td>5800</td>\n    </tr>\n    <tr>\n      <th>5</th>\n      <td>1733</td>\n      <td>kazem</td>\n      <td>yari</td>\n      <td>male</td>\n      <td>NaN</td>\n      <td>kashan</td>\n      <td>NaN</td>\n      <td>law</td>\n      <td>10</td>\n      <td>3100</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>7</th>\n      <td>1322</td>\n      <td>bahram</td>\n      <td>karimi</td>\n      <td>male</td>\n      <td>21.0</td>\n      <td>yazd</td>\n      <td>Bachelor</td>\n      <td>art</td>\n      <td>25</td>\n      <td>5200</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n    <tr>\n      <th>9</th>\n      <td>1655</td>\n      <td>hamed</td>\n      <td>sadeghi</td>\n      <td>male</td>\n      <td>49.0</td>\n      <td>NaN</td>\n      <td>PhD</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>6300</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age         City    Degree  Speciality  \\\n0  1001      ali  nosrati    male  41.0       tehran  Bachelor    computer   \n1  1290     reza  bahmani    male  34.0         yazd  Bachelor         NaN   \n2  1211    zahra  farhadi  female   NaN       tehran    Master     physics   \n3  1599    hadis  sohrabi  female  25.0          NaN  Bachelor    computer   \n4  1441    saber   tohidi    male  32.0  khorramabad       PhD         art   \n5  1733    kazem     yari    male   NaN       kashan       NaN         law   \n6  1930  fatemeh  bagheri  female  50.0       tehran    Master  accounting   \n7  1322   bahram   karimi    male  21.0         yazd  Bachelor         art   \n8  1870   narges  rahmati  female  37.0       kashan    Master    computer   \n9  1655    hamed  sadeghi    male  49.0          NaN       PhD     physics   \n\n   Workday  Salary  \n0       21    4500  \n1       18    3400  \n2       19    3900  \n3       28    4800  \n4       14    5800  \n5       10    3100  \n6       20    5500  \n7       25    5200  \n8       23    5900  \n9       19    6300  "
+          }
+        ]
+      },
+      {
+        "index": 37,
+        "cell_type": "code",
+        "execution_count": 42,
+        "source": "gr2=df.groupby(\"Degree\")\ngr2.groups",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "{'Bachelor': [0, 1, 3, 7], 'Master': [2, 6, 8], 'PhD': [4, 9]}"
+          }
+        ]
+      },
+      {
+        "index": 38,
+        "cell_type": "code",
+        "execution_count": 43,
+        "source": "gr3=df.groupby([\"Gender\",\"Degree\"])\ngr3.groups",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "{('female', 'Bachelor'): [3], ('female', 'Master'): [2, 6, 8], ('male', 'Bachelor'): [0, 1, 7], ('male', 'PhD'): [4, 9], ('male', nan): [5]}"
+          }
+        ]
+      },
+      {
+        "index": 39,
+        "cell_type": "code",
+        "execution_count": 44,
+        "source": "gr2.get_group(\"Master\")",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Gender</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>2</th>\n      <td>1211</td>\n      <td>zahra</td>\n      <td>farhadi</td>\n      <td>female</td>\n      <td>NaN</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>physics</td>\n      <td>19</td>\n      <td>3900</td>\n    </tr>\n    <tr>\n      <th>6</th>\n      <td>1930</td>\n      <td>fatemeh</td>\n      <td>bagheri</td>\n      <td>female</td>\n      <td>50.0</td>\n      <td>tehran</td>\n      <td>Master</td>\n      <td>accounting</td>\n      <td>20</td>\n      <td>5500</td>\n    </tr>\n    <tr>\n      <th>8</th>\n      <td>1870</td>\n      <td>narges</td>\n      <td>rahmati</td>\n      <td>female</td>\n      <td>37.0</td>\n      <td>kashan</td>\n      <td>Master</td>\n      <td>computer</td>\n      <td>23</td>\n      <td>5900</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "     ID     Name   Family  Gender   Age    City  Degree  Speciality  Workday  \\\n2  1211    zahra  farhadi  female   NaN  tehran  Master     physics       19   \n6  1930  fatemeh  bagheri  female  50.0  tehran  Master  accounting       20   \n8  1870   narges  rahmati  female  37.0  kashan  Master    computer       23   \n\n   Salary  \n2    3900  \n6    5500  \n8    5900  "
+          }
+        ]
+      },
+      {
+        "index": 40,
+        "cell_type": "code",
+        "execution_count": 45,
+        "source": "gr1.count()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>ID</th>\n      <th>Name</th>\n      <th>Family</th>\n      <th>Age</th>\n      <th>City</th>\n      <th>Degree</th>\n      <th>Speciality</th>\n      <th>Workday</th>\n      <th>Salary</th>\n    </tr>\n    <tr>\n      <th>Gender</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>female</th>\n      <td>4</td>\n      <td>4</td>\n      <td>4</td>\n      <td>3</td>\n      <td>3</td>\n      <td>4</td>\n      <td>4</td>\n      <td>4</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <th>male</th>\n      <td>6</td>\n      <td>6</td>\n      <td>6</td>\n      <td>5</td>\n      <td>5</td>\n      <td>5</td>\n      <td>5</td>\n      <td>6</td>\n      <td>6</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "        ID  Name  Family  Age  City  Degree  Speciality  Workday  Salary\nGender                                                                  \nfemale   4     4       4    3     3       4           4        4       4\nmale     6     6       6    5     5       5           5        6       6"
+          }
+        ]
+      },
+      {
+        "index": 41,
+        "cell_type": "code",
+        "execution_count": 46,
+        "source": "gr1.size()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "Gender\nfemale    4\nmale      6\ndtype: int64"
+          }
+        ]
+      },
+      {
+        "index": 42,
+        "cell_type": "code",
+        "execution_count": 48,
+        "source": "gr1[\"Age\"].mean()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "Gender\nfemale    37.333333\nmale      35.400000\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 43,
+        "cell_type": "code",
+        "execution_count": 49,
+        "source": "gr1[\"Age\"].max()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "Gender\nfemale    50.0\nmale      49.0\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 44,
+        "cell_type": "code",
+        "execution_count": 50,
+        "source": "gr1[\"Age\"].min()",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "text": "Gender\nfemale    25.0\nmale      21.0\nName: Age, dtype: float64"
+          }
+        ]
+      },
+      {
+        "index": 45,
+        "cell_type": "code",
+        "execution_count": 51,
+        "source": "gr1[\"Age\"].agg([\"min\",\"max\",\"mean\",\"count\"])",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>min</th>\n      <th>max</th>\n      <th>mean</th>\n      <th>count</th>\n    </tr>\n    <tr>\n      <th>Gender</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>female</th>\n      <td>25.0</td>\n      <td>50.0</td>\n      <td>37.333333</td>\n      <td>3</td>\n    </tr>\n    <tr>\n      <th>male</th>\n      <td>21.0</td>\n      <td>49.0</td>\n      <td>35.400000</td>\n      <td>5</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "         min   max       mean  count\nGender                              \nfemale  25.0  50.0  37.333333      3\nmale    21.0  49.0  35.400000      5"
+          }
+        ]
+      },
+      {
+        "index": 46,
+        "cell_type": "code",
+        "execution_count": 52,
+        "source": "gr2[\"Age\"].agg([\"min\",\"max\",\"mean\",\"count\"])",
+        "outputs": [
+          {
+            "output_type": "execute_result",
+            "html": "<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n</style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th></th>\n      <th>min</th>\n      <th>max</th>\n      <th>mean</th>\n      <th>count</th>\n    </tr>\n    <tr>\n      <th>Degree</th>\n      <th></th>\n      <th></th>\n      <th></th>\n      <th></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <th>Bachelor</th>\n      <td>21.0</td>\n      <td>41.0</td>\n      <td>30.25</td>\n      <td>4</td>\n    </tr>\n    <tr>\n      <th>Master</th>\n      <td>37.0</td>\n      <td>50.0</td>\n      <td>43.50</td>\n      <td>2</td>\n    </tr>\n    <tr>\n      <th>PhD</th>\n      <td>32.0</td>\n      <td>49.0</td>\n      <td>40.50</td>\n      <td>2</td>\n    </tr>\n  </tbody>\n</table>\n</div>",
+            "text": "           min   max   mean  count\nDegree                            \nBachelor  21.0  41.0  30.25      4\nMaster    37.0  50.0  43.50      2\nPhD       32.0  49.0  40.50      2"
+          }
+        ]
+      },
+      {
+        "index": 47,
+        "cell_type": "code",
+        "execution_count": null,
+        "source": "",
+        "outputs": []
+      }
+    ]
+  }
+]

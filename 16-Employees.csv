@@ -1,0 +1,11 @@
+ID,Name,Family,Gender,Age,City,Degree,Speciality,Workday,Salary
+1001,ali,nosrati,male,41.0,tehran,Bachelor,computer,21,4500
+1290,reza,bahmani,male,34.0,yazd,Bachelor,-,18,3400
+1211,zahra,farhadi,female,,tehran,Master,physics,19,3900
+1599,hadis,sohrabi,female,25.0,?,Bachelor,computer,28,4800
+1441,saber,tohidi,male,32.0,khorramabad,PhD,art,14,5800
+1733,kazem,yari,male,0.0,kashan,,law,10,3100
+1930,fatemeh,bagheri,female,50.0,tehran,Master,accounting,20,5500
+1322,bahram,karimi,male,21.0,yazd,Bachelor,art,25,5200
+1870,narges,rahmati,female,37.0,kashan,Master,computer,23,5900
+1655,hamed,sadeghi,male,49.0,n.a.,PhD,physics,19,6300
