@@ -1,9 +1,10 @@
 import React from 'react'
-import { BookOpen, Code2, Database, FileText, Search, Sun, Moon, Sparkles, HelpCircle, BookMarked, FileSpreadsheet } from 'lucide-react'
+import { BookOpen, Code2, Database, FileText, Search, Sun, Moon, Sparkles, HelpCircle, BookMarked, FileSpreadsheet, Terminal } from 'lucide-react'
 
 export default function Navbar({ activeTab, setActiveTab, onOpenSearch, isDarkMode, setIsDarkMode }) {
   const navItems = [
     { id: 'a4booklet', label: '📄 جزوه کامل A4 + محیط تعاملی', icon: FileSpreadsheet, isPrimary: true },
+    { id: 'ide', label: '💻 استودیو کد پایتون (IDE)', icon: Terminal, isPrimary: true },
     { id: 'dashboard', label: 'داشبورد و نقشه راه', icon: Sparkles },
     { id: 'cheatsheet', label: 'جعبه‌ابزار و تقلب', icon: BookMarked },
     { id: 'pdfs', label: 'کتاب‌ها و جزوات', icon: FileText, count: 11 },

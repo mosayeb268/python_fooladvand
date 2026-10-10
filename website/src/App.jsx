@@ -16,6 +16,7 @@ const DatasetsSection = lazy(() => import('./components/DatasetsSection'))
 const QuizSection = lazy(() => import('./components/QuizSection'))
 const AboutSection = lazy(() => import('./components/AboutSection'))
 const SearchModal = lazy(() => import('./components/SearchModal'))
+const InteractiveIDE = lazy(() => import('./components/InteractiveIDE'))
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('a4booklet') // Default: Exactly matching the user's requested A4 Booklet template!
@@ -94,6 +95,13 @@ export default function App() {
         )}
 
         <Suspense fallback={renderTabFallback()}>
+          {/* TAB: Full Interactive Python IDE Studio */}
+          {activeTab === 'ide' && (
+            <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 py-4 h-[calc(100vh-5rem)] animate-in fade-in duration-200">
+              <InteractiveIDE isEmbedded={true} />
+            </div>
+          )}
+
           {/* TAB 2: Dashboard & Roadmap */}
           {activeTab === 'dashboard' && (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-in fade-in duration-200">

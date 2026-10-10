@@ -2,32 +2,23 @@ import React, { useState, useEffect, useMemo } from 'react'
 import {
   Terminal, Play, Copy, Check, Printer,
   X, Download, CheckCircle2, XCircle,
-  RotateCcw, ZoomIn, ArrowUp, Database,
-  Image as ImageIcon, Columns, Maximize2
+  ZoomIn, ArrowUp, Database
 } from 'lucide-react'
 import pythonExamples from '../data/python_examples.json'
 import datasetsData from '../data/datasets.json'
 import quizQuestions from '../data/quiz.json'
 import pdfsData from '../data/pdfs.json'
-import { executePython, initPyodide } from '../utils/pythonRunner'
+import { initPyodide } from '../utils/pythonRunner'
+
+const InteractiveIDE = React.lazy(() => import('./InteractiveIDE'))
 
 export default function A4BookletView({ onOpenPdf }) {
   // IDE State
   const [isIdeOpen, setIsIdeOpen] = useState(false)
-  const [isIdeDocked, setIsIdeDocked] = useState(false)
   const [ideCode, setIdeCode] = useState(
     `# به کنسول تعاملی پایتون خوش آمدید!\nx = 15\ny = 25\ns = x + y\nprint(f"x={x} @@@ y={y} @@@ x+y={s}")`
   )
-  const [ideOutput, setIdeOutput] = useState([
-    'Python 3.12+ Interactive Terminal (NumPy / Pandas Ready)',
-    'کنسول آماده اجرای واقعی کدهای جزوه و رسم نمودارها است.',
-    'روی دکمه "⚡ اجرای زنده در کنسول" هر مثال کلیک کنید.'
-  ])
-  const [idePlots, setIdePlots] = useState([])
-  const [isRunning, setIsRunning] = useState(false)
-  const [userInputVal, setUserInputVal] = useState('20')
   const [copiedId, setCopiedId] = useState(null)
-  const [engineTag, setEngineTag] = useState('آماده اجرا')
 
   // Reading & Display State
   const [fontSizeClass, setFontSizeClass] = useState('text-base') // 'text-sm' | 'text-base' | 'text-lg'
@@ -47,11 +38,9 @@ export default function A4BookletView({ onOpenPdf }) {
   // Quiz State
   const [quizAnswers, setQuizAnswers] = useState({})
 
-  // Pre-init Pyodide in background
+  // Pre-init Pyodide in background for snappy performance
   useEffect(() => {
-    initPyodide().then(p => {
-      if (p) setEngineTag('🟢 پایتون ۳ (Pyodide WASM آماده)')
-    })
+    initPyodide().catch(() => {})
   }, [])
 
   // Datasets extraction
@@ -70,7 +59,6 @@ export default function A4BookletView({ onOpenPdf }) {
 
   // Filter Titanic rows
   const filteredTitanicRows = useMemo(() => {
-    if (!titanicDataset || !titanicDataset.sampleRows) return []
     return titanicDataset.sampleRows.filter(row => {
       const matchSex = titanicSexFilter === 'all' || row.Sex === titanicSexFilter
       const matchClass = titanicClassFilter === 'all' || String(row.Pclass) === titanicClassFilter
@@ -92,37 +80,10 @@ export default function A4BookletView({ onOpenPdf }) {
     return score
   }, [quizAnswers])
 
-  // Real execution handler via pythonRunner
-  const handleRunInIde = async (code, filename = 'اسکریپت پایتون', expectedOutput = null) => {
+  // Open script in full interactive IDE
+  const handleRunInIde = (code) => {
     setIdeCode(code)
     setIsIdeOpen(true)
-    setIsRunning(true)
-    setIdePlots([])
-    setIdeOutput([
-      `>>> در حال اجرای [${filename}] ...`,
-      `----------------------------------------`
-    ])
-
-    try {
-      const result = await executePython(code, userInputVal, expectedOutput)
-      setEngineTag(result.engine || 'پایتون ۳')
-      setIdeOutput([
-        `>>> اجرای برنامه [${filename}] پایان یافت.`,
-        `[موتور: ${result.engine}]`,
-        `----------------------------------------`,
-        ...result.logs
-      ])
-      if (result.plots && result.plots.length > 0) {
-        setIdePlots(result.plots)
-      }
-    } catch (err) {
-      setIdeOutput([
-        `>>> خطا در اجرای [${filename}]:`,
-        String(err.message || err)
-      ])
-    } finally {
-      setIsRunning(false)
-    }
   }
 
   const handleCopy = (code, id) => {
@@ -169,146 +130,17 @@ export default function A4BookletView({ onOpenPdf }) {
         </button>
       </div>
 
-      {/* ===== Interactive Python IDE Drawer / Modal (با پشتیبانی از حالت تبلت و داک کناری) ===== */}
+      {/* ===== Interactive Professional Python IDE Modal (Real Terminal & Inline Input) ===== */}
       {isIdeOpen && (
-        <div className={`z-50 bg-slate-950 text-slate-100 border-2 border-emerald-500/50 shadow-2xl overflow-hidden flex flex-col print:hidden transition-all duration-200 ${
-          isIdeDocked
-            ? 'fixed top-16 left-0 bottom-0 w-full sm:w-[480px] border-r-2 border-t-0 border-b-0 border-l-0 rounded-none'
-            : 'fixed bottom-20 left-4 sm:left-8 w-full max-w-lg rounded-2xl max-h-[660px] animate-in fade-in slide-in-from-bottom duration-200'
-        }`}>
-          {/* IDE Header */}
-          <div className="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className={`w-2.5 h-2.5 rounded-full ${isRunning ? 'bg-amber-400 animate-ping' : 'bg-emerald-400'}`} />
-              <div>
-                <h4 className="font-bold text-xs text-white">کنسول تعاملی و اجرای پایتون ۳</h4>
-                <p className="text-[10px] text-emerald-400/90 font-mono">{engineTag}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <button
-                onClick={() => setIsIdeDocked(!isIdeDocked)}
-                className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs"
-                title={isIdeDocked ? 'تغییر به حالت شناور' : 'داک کردن به گوشه صفحه (مناسب تبلت)'}
-              >
-                {isIdeDocked ? <Maximize2 className="w-3.5 h-3.5" /> : <Columns className="w-3.5 h-3.5" />}
-              </button>
-              <button
-                onClick={() => {
-                  setIdeOutput(['ترمینال پاکسازی شد.'])
-                  setIdePlots([])
-                }}
-                className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs"
-                title="پاکسازی خروجی"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-              </button>
-              <button
-                onClick={() => setIsIdeOpen(false)}
-                className="p-1 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 text-xs"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Quick Snippet Selector */}
-          <div className="px-3 py-1.5 bg-slate-900/60 border-b border-slate-800 flex items-center justify-between gap-2 text-[11px]">
-            <span className="text-slate-400 shrink-0 font-medium">کدهای آماده:</span>
-            <select
-              onChange={(e) => {
-                const ex = pythonExamples.find(p => p.filename === e.target.value)
-                if (ex) {
-                  setIdeCode(ex.code)
-                  handleRunInIde(ex.code, ex.filename, ex.expectedOutput)
-                }
-              }}
-              className="flex-1 bg-slate-950 border border-slate-700 rounded px-2 py-1 text-slate-200 text-xs font-mono focus:outline-none"
-              defaultValue=""
-            >
-              <option value="" disabled>-- انتخاب یک اسکریپت از ۳۳ کد دوره --</option>
-              {pythonExamples.map(p => (
-                <option key={p.id} value={p.filename}>
-                  {p.filename} — {p.description.slice(0, 38)}...
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Code Editor */}
-          <div className="p-3 bg-slate-950 flex flex-col space-y-2">
-            <div className="flex items-center justify-between text-[11px] text-slate-400">
-              <span className="font-mono text-emerald-400 font-bold">محیط ویرایش کد پایتون:</span>
-              <div className="flex items-center gap-1.5">
-                <span className="text-[10px] text-slate-500 hidden sm:inline">[Ctrl+Enter]</span>
-                <button
-                  onClick={() => handleCopy(ideCode, 'ide')}
-                  className="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs flex items-center gap-1"
-                >
-                  {copiedId === 'ide' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                  <span>کپی</span>
-                </button>
-                <button
-                  onClick={() => handleRunInIde(ideCode, 'کد سفارشی')}
-                  disabled={isRunning}
-                  className="flex items-center gap-1.5 px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all shadow-md disabled:opacity-50"
-                >
-                  <Play className="w-3 h-3 fill-current" />
-                  <span>{isRunning ? 'در حال اجرا...' : 'اجرای کد'}</span>
-                </button>
-              </div>
-            </div>
-
-            <textarea
-              value={ideCode}
-              onChange={(e) => setIdeCode(e.target.value)}
-              onKeyDown={(e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-                  e.preventDefault()
-                  handleRunInIde(ideCode, 'کد کاربر')
-                }
-              }}
-              className="w-full h-36 bg-slate-900/90 border border-slate-800 rounded-xl p-2.5 font-mono text-xs text-emerald-300 focus:outline-none focus:border-emerald-500/60 leading-5 resize-none"
-              dir="ltr"
-              placeholder="# کدهای پایتون را بنویسید (NumPy, Pandas, Matplotlib پشتیبانی می‌شوند)..."
-            />
-
-            {ideCode.includes('input(') && (
-              <div className="flex items-center gap-2 p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px]">
-                <span className="text-amber-400 font-bold">ورودی شبیه‌ساز input():</span>
-                <input
-                  type="text"
-                  value={userInputVal}
-                  onChange={(e) => setUserInputVal(e.target.value)}
-                  className="flex-1 bg-slate-950 border border-slate-700 rounded px-2 py-0.5 text-white font-mono text-xs"
-                  placeholder="مقدار ورودی کاربر..."
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Terminal Output */}
-          <div className="flex-1 min-h-[160px] max-h-56 bg-black/95 border-t border-slate-800 p-3 overflow-y-auto font-mono text-[11px] text-emerald-400 space-y-1 select-text" dir="ltr">
-            {ideOutput.map((l, idx) => (
-              <div key={idx} className="whitespace-pre-wrap">{l}</div>
-            ))}
-            {idePlots.length > 0 && (
-              <div className="pt-2 border-t border-slate-800 space-y-2">
-                <div className="text-amber-400 font-bold text-[10px] flex items-center gap-1">
-                  <ImageIcon className="w-3 h-3" />
-                  <span>نمودارهای ترسیم‌شده (Matplotlib Visualizations):</span>
-                </div>
-                <div className="grid grid-cols-1 gap-2">
-                  {idePlots.map((plotUrl, pIdx) => (
-                    <div key={pIdx} className="bg-white rounded-lg p-1.5 shadow-md">
-                      <img src={plotUrl} alt="Plot" className="max-h-52 rounded object-contain mx-auto" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        <React.Suspense fallback={null}>
+          <InteractiveIDE
+            code={ideCode}
+            setCode={setIdeCode}
+            isOpen={isIdeOpen}
+            onClose={() => setIsIdeOpen(false)}
+            isEmbedded={false}
+          />
+        </React.Suspense>
       )}
 
       {/* ===== A4 PAGE CONTAINER (عین استراکچر تمپلیت با تمام بهبودها) ===== */}
